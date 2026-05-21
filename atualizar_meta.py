@@ -45,7 +45,7 @@ DATE_PRESET   = "last_30d"
 NOMES_PAIS = {
     "BR":"Brasil","US":"EUA","AR":"Argentina","GB":"Reino Unido",
     "DE":"Alemanha","FR":"Franca","IT":"Italia","ES":"Espanha",
-    "PT":"Portugal","UY":"Uruguai","CL":"Chile","CO":"Colombia",
+    "PT":"Portugal","UY":"Uruguai","CL":"Chile","CO":"Colombia","EC":"Equador",
     "MX":"Mexico","PE":"Peru","AU":"Australia","CA":"Canada",
     "JP":"Japao","CN":"China","NL":"Holanda","CH":"Suica",
 }

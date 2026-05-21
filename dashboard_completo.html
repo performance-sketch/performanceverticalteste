@@ -919,7 +919,7 @@ const DADOS_META = {
       "cliques": 7168
     },
     {
-      "local": "EC",
+      "local": "Equador",
       "gasto": 991.54,
       "impressoes": 189269,
       "cliques": 6973
@@ -1023,45 +1023,71 @@ const DADOS_PASSAGEIROS = {
 const DADOS_REZDY_LIVE = {
   "resumo": {
     "total_reservas": 100,
-    "receita_total": 287469.31,
-    "total_pago": 122907.52,
-    "total_a_pagar": 164561.79,
+    "receita_total": 291679.18,
+    "total_pago": 130471.3,
+    "total_a_pagar": 161207.88,
     "contagem_status": {
-      "PENDING_CUSTOMER": 7,
-      "CONFIRMED": 39,
       "ABANDONED_CART": 50,
-      "ON_HOLD": 3,
+      "CONFIRMED": 38,
+      "PENDING_CUSTOMER": 6,
+      "ON_HOLD": 5,
       "CANCELLED": 1
     },
     "receita_por_produto": {
-      "Doors off | 30min": 235202.7,
+      "Doors off | 30min": 238816.7,
       "Doors off | 45min": 10290.0,
       "Doors off | 30min (GYG)": 7900.0,
       "No-Show Fee": 1900.0,
       "Shuttle Vertical Rio": 350.0
     },
     "reservas_por_dia": {
-      "2026-05-14": 14,
+      "2026-05-14": 12,
       "2026-05-15": 7,
       "2026-05-16": 23,
       "2026-05-17": 14,
       "2026-05-18": 10,
       "2026-05-19": 10,
       "2026-05-20": 12,
-      "2026-05-21": 10
+      "2026-05-21": 12
     },
     "tabela": [
       {
+        "numeroPedido": "VRUBD2HQ",
+        "status": "ABANDONED_CART",
+        "nomeCliente": "Performance Rio",
+        "emailCliente": "performance@verticalrio.com",
+        "produto": "Doors off | 30min",
+        "quantidade": 1,
+        "horarioVoo": "",
+        "valorTotal": 1417.8,
+        "valorPago": 0.0,
+        "valorAPagar": 1417.8,
+        "moeda": "BRL"
+      },
+      {
+        "numeroPedido": "VRQEQQYJ",
+        "status": "CONFIRMED",
+        "nomeCliente": "Derk-Jan Bruggink",
+        "emailCliente": "dirkbruggink@hotmail.com",
+        "produto": "Doors off | 30min",
+        "quantidade": 4,
+        "horarioVoo": "2026-07-08 11:30:00",
+        "valorTotal": 6083.28,
+        "valorPago": 6083.28,
+        "valorAPagar": 0.0,
+        "moeda": "BRL"
+      },
+      {
         "numeroPedido": "VRQMMAUP",
-        "status": "PENDING_CUSTOMER",
+        "status": "CONFIRMED",
         "nomeCliente": "Verena Nicole Marianne Fleischmann",
         "emailCliente": "Verena.steinhart@gmail.com",
         "produto": "Doors off | 30min",
         "quantidade": 2,
         "horarioVoo": "2026-05-22 11:30:00",
         "valorTotal": 3570.0,
-        "valorPago": 390.0,
-        "valorAPagar": 3180.0,
+        "valorPago": 3570.0,
+        "valorAPagar": 0.0,
         "moeda": "BRL"
       },
       {
@@ -1950,7 +1976,7 @@ const DADOS_REZDY_LIVE = {
       },
       {
         "numeroPedido": "VRPKVXYX",
-        "status": "CONFIRMED",
+        "status": "ON_HOLD",
         "nomeCliente": "Armen BABAYAN",
         "emailCliente": "Armen.babayan34@gmail.com",
         "produto": "Doors off | 30min",
@@ -2002,7 +2028,7 @@ const DADOS_REZDY_LIVE = {
       },
       {
         "numeroPedido": "VRRMUNDY",
-        "status": "CONFIRMED",
+        "status": "ON_HOLD",
         "nomeCliente": "Amy Kitteridge",
         "emailCliente": "amykitt30@gmail.com",
         "produto": "Doors off | 30min",
@@ -2324,32 +2350,6 @@ const DADOS_REZDY_LIVE = {
         "valorPago": 4080.0,
         "valorAPagar": 0.0,
         "moeda": "BRL"
-      },
-      {
-        "numeroPedido": "VR0WXGWL",
-        "status": "CONFIRMED",
-        "nomeCliente": "Volkan Cipa",
-        "emailCliente": "Vcipa@yahoo.com",
-        "produto": "Doors off | 30min",
-        "quantidade": 1,
-        "horarioVoo": "2026-05-25 11:00:00",
-        "valorTotal": 1630.0,
-        "valorPago": 1630.0,
-        "valorAPagar": 0.0,
-        "moeda": "BRL"
-      },
-      {
-        "numeroPedido": "VR9GDY5X",
-        "status": "ABANDONED_CART",
-        "nomeCliente": "Volkan Cipa",
-        "emailCliente": "Vcipa@yahoo.com",
-        "produto": "Doors off | 30min",
-        "quantidade": 1,
-        "horarioVoo": "",
-        "valorTotal": 1661.21,
-        "valorPago": 69.5,
-        "valorAPagar": 1591.71,
-        "moeda": "BRL"
       }
     ]
   },
@@ -2439,7 +2439,7 @@ const DADOS_REZDY_LIVE = {
       "imagem": ""
     }
   ],
-  "dataAtualizacao": "21/05/2026 15:14:31"
+  "dataAtualizacao": "21/05/2026 17:40:42"
 };
 
 // ────────────────────────────────────────────────────────────────────────────
@@ -2686,7 +2686,7 @@ function renderizarMetaAds() { try {
       <td>${formatarNumero(c.impressoes)}</td>
       <td>${formatarNumero(c.cliques)}</td>
       <td>${c.cpc!=null?formatarMoeda(c.cpc):"—"}</td>
-      <td>${c.ctr!=null?(c.ctr*100).toFixed(2)+"%":"—"}</td>
+      <td>${c.ctr!=null?c.ctr.toFixed(2)+"%":"—"}</td>
       <td>${c.cpm!=null?formatarMoeda(c.cpm):"—"}</td>
       <td>${c.alcance!=null?formatarNumero(c.alcance):"—"}</td>
       <td style="text-align:center">${c.conv!=null?`<span class="badge b-verde">${c.conv}</span>`:"—"}</td>
@@ -2799,7 +2799,7 @@ function renderizarGoogleAds() { try {
       <td>${formatarNumero(c.impressoes)}</td>
       <td>${formatarNumero(c.cliques)}</td>
       <td>${formatarMoeda(c.cpc)}</td>
-      <td>${(c.ctr*100).toFixed(2)}%</td>
+      <td>${c.ctr!=null?c.ctr.toFixed(2)+"%":"—"}</td>
       <td>${formatarNumero(Math.round(c.conv))}</td>
       <td style="color:#4ade80;font-weight:600">${formatarMoeda(c.valorConv)}</td>
       <td style="font-weight:700;color:${corRoas}">${roas}x</td>

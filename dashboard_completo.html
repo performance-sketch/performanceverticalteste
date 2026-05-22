@@ -539,10 +539,10 @@
         <span style="font-size:11px;color:#64748b">Filtrar por data de:</span>
         <button class="btn-periodo ativo" id="btnRezdyTipoBooking" onclick="setRezdyDateType('booking',this)" style="padding:3px 10px;font-size:11px">Booking</button>
         <button class="btn-periodo" id="btnRezdyTipoFulfillment" onclick="setRezdyDateType('fulfillment',this)" style="padding:3px 10px;font-size:11px">Fulfillment</button>
-        <button id="btnMinTabela" onclick="toggleRezdyTabela()" style="background:#1e2540;border:1px solid #2d3a5a;color:#94a3b8;font-size:11px;padding:3px 10px;border-radius:20px;cursor:pointer" title="Minimizar / Maximizar">&#x2212;</button>
+        <button id="btnMinTabela" onclick="toggleRezdyTabela()" style="background:#1e2540;border:1px solid #2d3a5a;color:#94a3b8;font-size:11px;padding:3px 10px;border-radius:20px;cursor:pointer" title="Maximizar">&#x25BC;</button>
       </span>
     </div>
-    <div id="rezdyTabelaWrapper" class="tabela-scroll">
+    <div id="rezdyTabelaWrapper" class="tabela-scroll" style="display:none">
       <table>
         <thead>
           <tr>
@@ -20324,29 +20324,26 @@ function aplicarFiltroTabelaRezdy(iniStr, fimStr) {
   }
 
   const tipoLabel = rezdyDateType === 'booking' ? 'Booking' : 'Fulfillment';
-  const periodoLabel = iniStr ? `${iniStr} a ${fimStr}` : 'Todo o periodo';
+  const periodoLabel = iniStr ? `${fmtData(iniStr)} a ${fmtData(fimStr)}` : 'Todo o periodo';
 
-  // ── KPIs ─────────────────────────────────────────────────────────
-  const pago     = filtradas.reduce((s,r)=>s+(r.valorPago||0),0);
-  const aReceber = filtradas.reduce((s,r)=>s+(r.valorAPagar||0),0);
+  // Confirmadas = subset de filtradas com status CONFIRMED
+  const confirmadas = filtradas.filter(r => r.status === 'CONFIRMED');
+
+  // ── KPIs — todos baseados em filtradas para consistência ──────────
   const contSt   = {};
   filtradas.forEach(r=>{ contSt[r.status]=(contSt[r.status]||0)+1; });
 
-  // Bookings e Fulfillments sempre contados pelo campo próprio no mesmo período
-  const bookingsPeriodo = iniStr
-    ? todas.filter(r => r.dataCriacao && r.dataCriacao >= iniStr && r.dataCriacao <= fimStr).length
-    : todas.length;
-  const fulfillmentsPeriodo = iniStr
-    ? todas.filter(r => r.dataFulfillment && r.dataFulfillment >= iniStr && r.dataFulfillment <= fimStr).length
-    : todas.filter(r => r.dataFulfillment).length;
+  // Total Pago e A Receber somente de confirmados
+  const pago     = confirmadas.reduce((s,r)=>s+(r.valorPago||0),0);
+  const aReceber = confirmadas.reduce((s,r)=>s+(r.valorAPagar||0),0);
 
   const elKpi = document.getElementById("kpiRezdy");
   if(elKpi) elKpi.innerHTML = `
-    <div class="card-kpi kpi-azul"><div class="kpi-label">Bookings</div><div class="kpi-valor">${bookingsPeriodo}</div><div class="kpi-sub">${periodoLabel}</div></div>
-    <div class="card-kpi kpi-verde"><div class="kpi-label">Fulfillments</div><div class="kpi-valor">${fulfillmentsPeriodo}</div><div class="kpi-sub">${periodoLabel}</div></div>
-    <div class="card-kpi kpi-roxo"><div class="kpi-label">Total Pago</div><div class="kpi-valor">R$ ${formatarMoeda(pago)}</div><div class="kpi-sub">${periodoLabel}</div></div>
-    <div class="card-kpi kpi-amarelo"><div class="kpi-label">A Receber</div><div class="kpi-valor">R$ ${formatarMoeda(aReceber)}</div><div class="kpi-sub">${periodoLabel}</div></div>
-    <div class="card-kpi kpi-ciano"><div class="kpi-label">Confirmados</div><div class="kpi-valor">${contSt["CONFIRMED"]||0}</div><div class="kpi-sub">${periodoLabel}</div></div>
+    <div class="card-kpi kpi-azul"><div class="kpi-label">Bookings</div><div class="kpi-valor">${filtradas.length}</div><div class="kpi-sub">${periodoLabel}</div></div>
+    <div class="card-kpi kpi-verde"><div class="kpi-label">Fulfillments</div><div class="kpi-valor">${filtradas.filter(r=>r.dataFulfillment).length}</div><div class="kpi-sub">${periodoLabel}</div></div>
+    <div class="card-kpi kpi-roxo"><div class="kpi-label">Total Pago</div><div class="kpi-valor">R$ ${formatarMoeda(pago)}</div><div class="kpi-sub">Confirmados</div></div>
+    <div class="card-kpi kpi-amarelo"><div class="kpi-label">A Receber</div><div class="kpi-valor">R$ ${formatarMoeda(aReceber)}</div><div class="kpi-sub">Confirmados</div></div>
+    <div class="card-kpi kpi-ciano"><div class="kpi-label">Confirmados</div><div class="kpi-valor">${confirmadas.length}</div><div class="kpi-sub">${periodoLabel}</div></div>
   `;
 
   // ── Gráfico: Status (rosca) ────────────────────────────────────
@@ -20365,9 +20362,9 @@ function aplicarFiltroTabelaRezdy(iniStr, fimStr) {
     }}
   });
 
-  // ── Gráfico: Reservas/Fulfillments por dia ────────────────────
+  // ── Gráfico: Reservas/Fulfillments por dia (só CONFIRMED) ────────
   const porDia = {};
-  filtradas.forEach(r=>{
+  confirmadas.forEach(r=>{
     const d = rezdyDateType==='booking' ? r.dataCriacao : r.dataFulfillment;
     if(d) porDia[d]=(porDia[d]||0)+1;
   });
@@ -20385,9 +20382,9 @@ function aplicarFiltroTabelaRezdy(iniStr, fimStr) {
               y:{ticks:{color:"#64748b",stepSize:1},grid:{color:"#1e2540"}}}}
   });
 
-  // ── Gráfico: Receita por produto ──────────────────────────────
+  // ── Gráfico: Receita por produto (só CONFIRMED) ───────────────
   const recProd = {};
-  filtradas.forEach(r=>{ recProd[r.produto]=(recProd[r.produto]||0)+(r.valorTotal||0); });
+  confirmadas.forEach(r=>{ recProd[r.produto]=(recProd[r.produto]||0)+(r.valorTotal||0); });
   const recEntries = Object.entries(recProd).sort((a,b)=>b[1]-a[1]);
   if(recEntries.length){
     criarGrafico("graficoRezdyProdutos",{

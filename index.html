@@ -638,11 +638,55 @@
     </div>
   </div>
 
-  <!-- Aviso sem dados -->
-  <div id="respondioAviso" style="display:none;background:#1a1500;border:1px solid #f59e0b;border-radius:8px;padding:14px 16px;margin-bottom:12px;font-size:12px;color:#fbbf24;line-height:1.8">
-    <strong>&#x26A0; Dados ainda nao carregados.</strong>
-    Execute <code style="background:#0f0e00;padding:1px 5px;border-radius:3px;font-size:11px">python atualizar_respondio.py</code> para conectar.
-    <span style="color:#64748b;margin-left:8px">Requer plano Growth ou superior no Respond.io.</span>
+  <!-- Aviso sem dados / guia de conexao -->
+  <div id="respondioAviso" style="display:none;margin-bottom:16px">
+
+    <div style="background:#1a1500;border:1px solid #f59e0b44;border-radius:10px;padding:20px 24px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
+        <span style="font-size:22px">&#x26A0;</span>
+        <div>
+          <div style="font-size:14px;font-weight:700;color:#fbbf24">Aguardando conexao com Respond.io</div>
+          <div style="font-size:11px;color:#78716c;margin-top:2px">Token valido — endpoints de lista requerem plano Growth ou superior</div>
+        </div>
+      </div>
+
+      <!-- Steps -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
+        <div style="background:#0f0d00;border:1px solid #44403c;border-radius:8px;padding:12px">
+          <div style="font-size:11px;font-weight:700;color:#f59e0b;margin-bottom:8px">PASSO 1 — Verificar Plano</div>
+          <div style="font-size:12px;color:#a8a29e;line-height:1.6">
+            Acesse <strong style="color:#e2e8f0">app.respond.io</strong> &rarr; Settings &rarr; Subscription<br>
+            O acesso a API de lista de conversas requer <strong style="color:#fbbf24">Growth Plan</strong> ou superior.
+          </div>
+        </div>
+        <div style="background:#0f0d00;border:1px solid #44403c;border-radius:8px;padding:12px">
+          <div style="font-size:11px;font-weight:700;color:#f59e0b;margin-bottom:8px">PASSO 2 — Novo Token</div>
+          <div style="font-size:12px;color:#a8a29e;line-height:1.6">
+            Acesse <strong style="color:#e2e8f0">app.respond.io</strong> &rarr; Settings &rarr; Developer API<br>
+            Clique em <strong style="color:#fbbf24">Generate API Key</strong> e cole o token em <code style="background:#1c1917;padding:1px 5px;border-radius:3px">atualizar_respondio.py</code>
+          </div>
+        </div>
+        <div style="background:#0f0d00;border:1px solid #44403c;border-radius:8px;padding:12px">
+          <div style="font-size:11px;font-weight:700;color:#f59e0b;margin-bottom:8px">PASSO 3 — Executar Script</div>
+          <div style="font-size:12px;color:#a8a29e;line-height:1.6">
+            No terminal, execute:<br>
+            <code style="background:#1c1917;padding:3px 8px;border-radius:3px;display:inline-block;margin-top:4px;color:#4ade80">python atualizar_respondio.py</code>
+          </div>
+        </div>
+        <div style="background:#0f0d00;border:1px solid #44403c;border-radius:8px;padding:12px">
+          <div style="font-size:11px;font-weight:700;color:#22c55e;margin-bottom:8px">O QUE SERA EXIBIDO</div>
+          <div style="font-size:12px;color:#a8a29e;line-height:1.6">
+            Conversas por dia &bull; Origem (Meta/Google/WhatsApp/Site)<br>
+            Funil de ciclo de vida &bull; Agentes &bull; Tags &bull; Status
+          </div>
+        </div>
+      </div>
+
+      <div style="font-size:11px;color:#57534e;border-top:1px solid #292524;padding-top:12px">
+        Token atual reconhecido como valido. Problema: endpoints <code style="background:#1c1917;padding:1px 4px;border-radius:3px">/v2/conversations</code> e <code style="background:#1c1917;padding:1px 4px;border-radius:3px">/v2/contacts</code> retornam 404 neste plano.
+      </div>
+    </div>
+
   </div>
 
   <!-- KPIs Linha 1: Conversas -->
@@ -19670,12 +19714,34 @@ const DADOS_RESPONDIO = {
     "porCanal": {},
     "porStatus": {}
   },
-  "cicloDaVida": [],
+  "cicloDaVida": [
+    {
+      "estagio": "New Lead",
+      "total": 0
+    },
+    {
+      "estagio": "Hot Lead",
+      "total": 0
+    },
+    {
+      "estagio": "Payment",
+      "total": 0
+    },
+    {
+      "estagio": "Customer",
+      "total": 0
+    },
+    {
+      "estagio": "Cold Lead",
+      "total": 0,
+      "perdido": true
+    }
+  ],
   "contagemEstagios": {},
   "agentes": [],
   "tags": [],
   "canais": [],
-  "dataAtualizacao": "Aguardando primeira atualizacao"
+  "dataAtualizacao": "22/05/2026 16:27:44"
 };
 
 // ────────────────────────────────────────────────────────────────────────────

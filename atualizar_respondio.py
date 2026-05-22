@@ -28,8 +28,10 @@ from collections import defaultdict
 
 # ─── CONFIGURACAO ─────────────────────────────────────────────────────────────
 ACCESS_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mjg0NDMsInNwYWNlSWQiOjI5ODE4OCwib3JnSWQiOjI5NDM3NiwidHlwZSI6ImFwaSIsImlhdCI6MTc3OTQ3MTc0NX0.kVCK6O588AHIdCPTESLEBFxWvX0LQrcGB2Yj6uzmqB0"
-ARQUIVO_DASH = "index.html"
-BASE_URL     = "https://api.respond.io/v2"
+ARQUIVO_DASH   = "index.html"
+BASE_URL       = "https://api.respond.io/v2"
+BASE_APP_URL   = "https://app.respond.io/api/v2"   # API interna do app
+SPACE_ID       = "298188"                           # extraido do JWT
 # ──────────────────────────────────────────────────────────────────────────────
 
 # Mapeamento: tipo de canal >> origem de trafego
@@ -79,40 +81,26 @@ def headers():
 def testar_conexao():
     log("Testando conexao com Respond.io...")
     try:
-        # Testa com o endpoint de contato que sabemos que responde
-        r = requests.get(
-            f"{BASE_URL}/contact/list",
-            headers=headers(),
-            params={"limit": 1},
-            timeout=15,
-        )
+        r = requests.get(f"{BASE_URL}/contact/list", headers=headers(), timeout=15)
         if r.status_code in (200, 400):
-            # 400 = endpoint existe, autenticado, parametros incorretos
-            log("  Conexao OK! (API respondeu)")
+            log("  Token valido (public API responde)")
             return True
         elif r.status_code == 401:
-            log("")
             log("  ERRO 401: Token invalido ou expirado.")
-            log("  Solucao: Gere um novo token em Settings >> Developer API")
+            log("  Solucao: Regenere o token em Settings >> Developer API")
             return False
         elif r.status_code == 403:
-            log("")
-            log("  ERRO 403: Sem permissao.")
-            log("  Solucao: Verifique se seu plano inclui Developer API (Growth Plan+)")
+            log("  ERRO 403: Sem permissao. Verifique plano (Growth Plan+)")
             return False
         elif r.status_code == 404:
-            log(f"\n  ERRO 404: Endpoint nao encontrado.")
-            log(f"  URL testada: {BASE_URL}/contact/list")
-            log("  Possiveis causas:")
-            log("    1. Token desatualizado -- gere um novo em Settings >> Developer API")
-            log("    2. Plano nao inclui API (necessario Growth Plan ou superior)")
-            log(f"\n  Resposta: {r.text[:200]}")
+            log("  AVISO: Public API retornou 404.")
+            log("  Verifique token e plano em Settings >> Developer API")
             return False
         else:
-            log(f"\n  ERRO {r.status_code}: {r.text[:200]}")
+            log(f"  ERRO {r.status_code}: {r.text[:100]}")
             return False
     except Exception as e:
-        log(f"\n  ERRO de conexao: {e}")
+        log(f"  ERRO de conexao: {e}")
         return False
 
 
@@ -192,13 +180,40 @@ def get_paginado(endpoint, params_base, campo_dados, max_pags=100):
     return todos
 
 
+def _get(path, params=None, base=None):
+    """GET helper. Retorna None se 404/erro."""
+    b = base or BASE_URL
+    try:
+        r = requests.get(f"{b}/{path}", headers=headers(), params=params or {}, timeout=20)
+        if r.ok:
+            ct = r.headers.get("content-type","")
+            if "json" in ct:
+                return r.json()
+        return None
+    except Exception:
+        return None
+
+
+def _post(path, body, base=None):
+    """POST helper. Retorna None se erro/nao-json."""
+    b = base or BASE_URL
+    try:
+        r = requests.post(f"{b}/{path}", headers=headers(), json=body, timeout=20)
+        if r.ok:
+            ct = r.headers.get("content-type","")
+            if "json" in ct:
+                return r.json()
+        return None
+    except Exception:
+        return None
+
+
 def buscar_canais():
     log("Buscando canais...")
     mapa = {}
-    try:
-        r = requests.get(f"{BASE_URL}/channels", headers=headers(), timeout=15)
-        if r.ok:
-            dado = r.json()
+    for ep in ["channels", "channel"]:
+        dado = _get(ep)
+        if dado:
             canais = dado.get("channels") or dado.get("data") or []
             for c in canais:
                 cid  = str(c.get("id") or c.get("channelId") or "")
@@ -210,22 +225,10 @@ def buscar_canais():
                         "nome":   nome,
                         "origem": MAPA_ORIGEM.get(tipo, f"Outro ({tipo})" if tipo else "Desconhecido"),
                     }
-            log(f"  {len(mapa)} canais")
-        else:
-            # Tenta com /channel
-            r2 = requests.get(f"{BASE_URL}/channel", headers=headers(), timeout=15)
-            if r2.ok:
-                dado = r2.json()
-                canais = dado.get("channels") or dado.get("data") or []
-                for c in canais:
-                    cid  = str(c.get("id") or "")
-                    tipo = (c.get("type") or "").lower()
-                    nome = c.get("name") or tipo
-                    if cid:
-                        mapa[cid] = {"tipo":tipo,"nome":nome,"origem":MAPA_ORIGEM.get(tipo,"Desconhecido")}
-                log(f"  {len(mapa)} canais")
-    except Exception as e:
-        log(f"  [AVISO] Canais: {e}")
+            log(f"  {len(mapa)} canais via /{ep}")
+            break
+    if not mapa:
+        log("  0 canais (endpoint nao disponivel neste plano)")
     return mapa
 
 
@@ -234,116 +237,79 @@ def buscar_conversas(dias=365):
     hoje   = datetime.now()
     inicio = (hoje - timedelta(days=dias)).strftime("%Y-%m-%dT00:00:00Z")
 
-    conv = []
-    # Tenta GET primeiro
-    for ep in ["conversations", "conversation"]:
-        try:
-            r = requests.get(f"{BASE_URL}/{ep}",
-                headers=headers(),
-                params={"createdAt[gte]": inicio, "limit": 100},
-                timeout=20)
-            if r.ok:
-                dado = r.json()
-                conv = dado.get("conversations") or dado.get("data") or []
-                if conv:
-                    log(f"  GET /{ep} OK")
-                    break
-        except Exception:
-            pass
+    # Tenta todas as combinacoes conhecidas de endpoint
+    tentativas = [
+        # (metodo, base, path, params_ou_body)
+        ("get",  BASE_URL,     "conversations",  {"createdAt[gte]": inicio, "limit": 100}),
+        ("get",  BASE_URL,     "conversation",   {"createdAt[gte]": inicio, "limit": 100}),
+        ("post", BASE_APP_URL, f"{SPACE_ID}/conversation/list",
+            {"filter": {"search": ""}, "pageSize": 100, "sortBy": "createdAt", "sortOrder": "desc"}),
+        ("post", BASE_APP_URL, "conversation/list",
+            {"filter": {"search": ""}, "pageSize": 100}),
+    ]
+    for met, base, path, payload in tentativas:
+        if met == "get":
+            dado = _get(path, params=payload, base=base)
+        else:
+            dado = _post(path, body=payload, base=base)
+        if dado:
+            conv = dado.get("conversations") or dado.get("data") or dado.get("results") or []
+            if conv:
+                log(f"  {len(conv)} conversas via {met.upper()} /{path}")
+                return conv
 
-    # Se nao funcionou, tenta POST
-    if not conv:
-        body = {
-            "filter": {"search": ""},
-            "pageSize": 100,
-            "sortBy": "createdAt",
-            "sortOrder": "desc",
-        }
-        for ep in ["conversation/list", "conversations/list"]:
-            try:
-                r = requests.post(f"{BASE_URL}/{ep}", headers=headers(), json=body, timeout=20)
-                if r.ok:
-                    dado = r.json()
-                    conv = dado.get("conversations") or dado.get("data") or []
-                    if conv:
-                        log(f"  POST /{ep} OK")
-                        break
-            except Exception:
-                pass
-
-    log(f"  {len(conv)} conversas")
-    return conv
+    log("  0 conversas (endpoints de lista nao disponiveis -- verifique plano Growth+)")
+    return []
 
 
 def buscar_contatos():
     log("Buscando contatos (ciclo de vida)...")
-    conts = []
-    # Tenta GET
-    for ep in ["contacts", "contact"]:
-        try:
-            r = requests.get(f"{BASE_URL}/{ep}", headers=headers(),
-                params={"limit": 100}, timeout=20)
-            if r.ok:
-                dado = r.json()
-                conts = dado.get("contacts") or dado.get("data") or []
-                if conts:
-                    log(f"  GET /{ep} OK")
-                    break
-        except Exception:
-            pass
 
-    # Tenta POST /contact/list se necessario
-    if not conts:
-        bodies = [
-            {"filter": {"search": ""}, "pageSize": 100},
-            {"filter": {"search": "", "sortBy": "createdAt"}, "pageSize": 100},
-            {"pageSize": 100, "filter": {}},
-        ]
-        for body in bodies:
-            try:
-                r = requests.post(f"{BASE_URL}/contact/list",
-                    headers=headers(), json=body, timeout=20)
-                if r.ok:
-                    dado = r.json()
-                    conts = dado.get("contacts") or dado.get("data") or []
-                    if conts:
-                        break
-            except Exception:
-                pass
+    tentativas = [
+        ("get",  BASE_URL,     "contacts",       {"limit": 100}),
+        ("get",  BASE_URL,     "contact",        {"limit": 100}),
+        ("post", BASE_APP_URL, f"{SPACE_ID}/contact/list",
+            {"filter": {"search": ""}, "pageSize": 100}),
+        ("post", BASE_URL,     "contact/list",   {"filter": {"search": ""}, "pageSize": 100}),
+    ]
+    for met, base, path, payload in tentativas:
+        if met == "get":
+            dado = _get(path, params=payload, base=base)
+        else:
+            dado = _post(path, body=payload, base=base)
+        if dado:
+            conts = dado.get("contacts") or dado.get("data") or dado.get("results") or []
+            if conts:
+                log(f"  {len(conts)} contatos via {met.upper()} /{path}")
+                return conts
 
-    log(f"  {len(conts)} contatos")
-    return conts
+    log("  0 contatos (endpoints de lista nao disponiveis -- verifique plano Growth+)")
+    return []
 
 
 def buscar_agentes():
     log("Buscando agentes/usuarios...")
-    try:
-        for ep in ["users", "user", "agents", "agent", "members"]:
-            r = requests.get(f"{BASE_URL}/{ep}", headers=headers(), timeout=15)
-            if r.ok:
-                dado = r.json()
-                users = dado.get("users") or dado.get("data") or dado.get("members") or []
-                if users:
-                    log(f"  {len(users)} agentes via /{ep}")
-                    return users
-    except Exception as e:
-        log(f"  [AVISO] Agentes: {e}")
+    for ep in ["users", "user", "agents", "members"]:
+        dado = _get(ep)
+        if dado:
+            users = dado.get("users") or dado.get("data") or dado.get("members") or []
+            if users:
+                log(f"  {len(users)} agentes via /{ep}")
+                return users
+    log("  0 agentes")
     return []
 
 
 def buscar_tags():
     log("Buscando tags...")
-    try:
-        for ep in ["tags", "tag"]:
-            r = requests.get(f"{BASE_URL}/{ep}", headers=headers(), timeout=15)
-            if r.ok:
-                dado = r.json()
-                tags = dado.get("tags") or dado.get("data") or []
-                if tags:
-                    log(f"  {len(tags)} tags")
-                    return tags
-    except Exception as e:
-        log(f"  [AVISO] Tags: {e}")
+    for ep in ["tags", "tag"]:
+        dado = _get(ep)
+        if dado:
+            tags = dado.get("tags") or dado.get("data") or []
+            if tags:
+                log(f"  {len(tags)} tags")
+                return tags
+    log("  0 tags")
     return []
 
 

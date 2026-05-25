@@ -225,6 +225,24 @@
       <div class="kpi-valor" id="kpiFulfillCount">--</div>
       <div class="kpi-sub">Confirmados (Rezdy)</div>
     </div>
+    <div class="card-kpi" style="background:linear-gradient(135deg,#833ab4 0%,#fd1d1d 50%,#fcb045 100%);border:none" draggable="true">
+      <span class="drag-hint">&#x2B1D;&#x2B1D;</span>
+      <div class="kpi-label" style="color:rgba(255,255,255,.8)">Seguidores Instagram</div>
+      <div class="kpi-valor" id="kpiGeralIgFollowers" style="color:#fff">—</div>
+      <div class="kpi-sub" style="color:rgba(255,255,255,.65)" id="kpiGeralIgVar"></div>
+    </div>
+    <div class="card-kpi kpi-verde" draggable="true">
+      <span class="drag-hint">&#x2B1D;&#x2B1D;</span>
+      <div class="kpi-label">Mensagens Meta</div>
+      <div class="kpi-valor" id="kpiGeralMensagens">—</div>
+      <div class="kpi-sub">Conexoes via anuncios</div>
+    </div>
+    <div class="card-kpi kpi-ciano" draggable="true">
+      <span class="drag-hint">&#x2B1D;&#x2B1D;</span>
+      <div class="kpi-label">Conversas Iniciadas</div>
+      <div class="kpi-valor" id="kpiGeralConversas">—</div>
+      <div class="kpi-sub">Janela 7d (Meta)</div>
+    </div>
   </div>
 
   <div class="grade-3">
@@ -108046,6 +108064,25 @@ function atualizarKpisGeral() {
   if(elRecFull) elRecFull.textContent = "R$ " + formatarMoeda(recFull);
   const elFull = document.getElementById("kpiFulfillCount");
   if(elFull) elFull.textContent = confirmed.length;
+
+  // Seguidores IG + mensagens Meta
+  const _perfil = DADOS_META.perfil || {};
+  const _periodoKey = FILTRO.dias==='max'?'d90':FILTRO.dias?`d${FILTRO.dias}`:'d30';
+  const _varPerfil  = (_perfil.variacoes || {})[_periodoKey] || {};
+  const elIG = document.getElementById("kpiGeralIgFollowers");
+  if(elIG) elIG.textContent = _perfil.igFollowers ? formatarNumero(_perfil.igFollowers) : "—";
+  const elIGVar = document.getElementById("kpiGeralIgVar");
+  if(elIGVar && _varPerfil.ig != null) {
+    const pct = _varPerfil.ig;
+    const up = pct >= 0;
+    elIGVar.innerHTML = `<span style="color:${up?'rgba(200,255,200,.9)':'rgba(255,200,200,.9)'}">${up?'▲':'▼'} ${up?'+':''}${pct.toFixed(1)}% vs período ant.</span>`;
+  }
+  const _meta = getMeta();
+  const _msg = _meta.mensagens || {};
+  const elMsg = document.getElementById("kpiGeralMensagens");
+  if(elMsg) elMsg.textContent = _msg.conexoes != null ? formatarNumero(_msg.conexoes) : "—";
+  const elConv = document.getElementById("kpiGeralConversas");
+  if(elConv) elConv.textContent = _msg.conversas != null ? formatarNumero(_msg.conversas) : "—";
 
   // Labels com periodo selecionado
   const _pLabel = FILTRO.ini && FILTRO.fim ? 'custom' : FILTRO.dias === 'max' ? 'maximo' : FILTRO.dias ? FILTRO.dias+'d' : 'todos';

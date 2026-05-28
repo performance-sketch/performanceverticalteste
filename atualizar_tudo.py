@@ -1,50 +1,81 @@
 """
 atualizar_tudo.py
 =================
-Atualiza todos os dados do dashboard de uma vez.
-Execute: python atualizar_tudo.py
+Orquestrador principal — atualiza todos os dados do dashboard de uma vez.
 
-Ordem:
-  1. Meta Ads (atualizar_meta.py)
-  2. Google Ads (atualizar_google.py)
-  3. Rezdy (atualizar_dados.py)
-  4. Respond.io (atualizar_respondio.py)
+Ordem de execução:
+  1. Meta Ads        (atualizar_meta.py)
+  2. Google Ads      (atualizar_google.py)
+  3. Publico-alvo    (atualizar_publico.py)
+  4. Rezdy           (atualizar_dados.py)
+  5. Respond.io      (atualizar_respondio.py)
+  6. Passageiros     (atualizar_passageiros.py)
+
+Execute: python atualizar_tudo.py
 """
 
 import subprocess
 import sys
+import time
 from datetime import datetime
 
-def rodar(script):
-    print(f"\n{'='*55}")
-    print(f"  Rodando {script}...")
-    print(f"{'='*55}")
+SCRIPTS = [
+    ("Meta Ads",        "atualizar_meta.py"),
+    ("Google Ads",      "atualizar_google.py"),
+    ("Publico-alvo",    "atualizar_publico.py"),
+    ("Rezdy",           "atualizar_dados.py"),
+    ("Respond.io",      "atualizar_respondio.py"),
+    ("Passageiros",     "atualizar_passageiros.py"),
+]
+
+SEP = "=" * 58
+
+
+def rodar(nome, script):
+    print(f"\n{SEP}")
+    print(f"  {nome} ({script})")
+    print(SEP)
+    t0     = time.time()
     result = subprocess.run([sys.executable, script], capture_output=False)
-    if result.returncode != 0:
-        print(f"\n  [AVISO] {script} encerrou com erro (codigo {result.returncode})")
-    return result.returncode == 0
+    dur    = round(time.time() - t0, 1)
+    ok     = result.returncode == 0
+    if not ok:
+        print(f"\n  [AVISO] {script} encerrou com codigo {result.returncode}")
+    return ok, dur
 
-inicio = datetime.now()
-print(f"\n{'='*55}")
-print(f"  ATUALIZANDO DASHBOARD — {inicio.strftime('%d/%m/%Y %H:%M')}")
-print(f"{'='*55}")
 
-ok_meta        = rodar("atualizar_meta.py")
-ok_google      = rodar("atualizar_google.py")
-ok_rezdy       = rodar("atualizar_dados.py")
-ok_respondio   = rodar("atualizar_respondio.py")
-ok_passageiros = rodar("atualizar_passageiros.py")
+def main():
+    inicio = datetime.now()
+    print(f"\n{SEP}")
+    print(f"  CENTRAL DE PERFORMANCE — Atualização Completa")
+    print(f"  {inicio.strftime('%d/%m/%Y %H:%M:%S')}")
+    print(SEP)
 
-fim = datetime.now()
-duracao = (fim - inicio).seconds
+    resultados = []
+    for nome, script in SCRIPTS:
+        ok, dur = rodar(nome, script)
+        resultados.append((nome, script, ok, dur))
 
-print(f"\n{'='*55}")
-print(f"  RESUMO")
-print(f"{'='*55}")
-print(f"  Meta Ads:    {'OK' if ok_meta      else 'ERRO — verifique token/conta'}")
-print(f"  Google Ads:  {'OK' if ok_google    else 'ERRO — verifique credenciais'}")
-print(f"  Rezdy:         {'OK' if ok_rezdy       else 'ERRO — verifique chave API'}")
-print(f"  Respond.io:    {'OK' if ok_respondio   else 'ERRO — verifique token e plano'}")
-print(f"  Passageiros:   {'OK' if ok_passageiros else 'ERRO — verifique acesso ao Google Sheets'}")
-print(f"  Duracao:       {duracao}s")
-print(f"\n  Abra: index.html\n")
+    fim     = datetime.now()
+    duracao = round((fim - inicio).total_seconds(), 1)
+
+    print(f"\n{SEP}")
+    print(f"  RESUMO FINAL")
+    print(SEP)
+    for nome, script, ok, dur in resultados:
+        status = "OK" if ok else "ERRO"
+        print(f"  {status:<6}  {nome:<20} {dur:>5}s   ({script})")
+    print(f"\n  Duração total: {duracao}s")
+    print(f"  Concluído:     {fim.strftime('%d/%m/%Y %H:%M:%S')}")
+    print(f"\n  Dashboard: https://performance-sketch.github.io/performanceverticalteste")
+    print(f"{SEP}\n")
+
+    erros = [n for n, _, ok, _ in resultados if not ok]
+    if erros:
+        print(f"  Scripts com erro: {', '.join(erros)}")
+        print("  Verifique tokens/credenciais nos respectivos arquivos.\n")
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()

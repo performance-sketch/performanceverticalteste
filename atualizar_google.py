@@ -2,27 +2,21 @@
 atualizar_google.py
 ===================
 Busca dados reais do Google Ads API e atualiza o index.html.
+
+Coleta:
+  - Campanhas: gasto, cliques, impressoes, CPC, CTR, conversoes
+  - Idades: breakdown por faixa etaria
+  - Paises: top 7 por gasto
+  - Dispositivos: mobile/desktop/tablet
+  - Genero: masculino/feminino/indefinido
+  - Palavras-chave: top 20 por gasto
+
 Execute: python atualizar_google.py
 
-─── REQUISITOS ──────────────────────────────────────────────────────────────
-  pip install google-ads
-
-─── COMO OBTER CREDENCIAIS ──────────────────────────────────────────────────
-1. DEVELOPER TOKEN
-   - Google Ads (conta MCC ou principal) → Ferramentas → API Center
-   - Solicite acesso de producao (ou use o token de teste para testes)
-
-2. OAUTH2 (CLIENT_ID + CLIENT_SECRET + REFRESH_TOKEN)
-   a. Google Cloud Console (console.cloud.google.com)
-   b. Crie um projeto → Ative "Google Ads API"
-   c. Credenciais → Criar credenciais → ID do cliente OAuth (tipo: App para computador)
-   d. Baixe o JSON e rode o script abaixo UMA VEZ para gerar o refresh_token:
-      python gerar_token_google.py
-   e. Cole os valores abaixo
-
-3. CUSTOMER_ID
-   - ID da conta Google Ads sem hifens (ex: 1234567890)
-   - Conta MCC: use o ID da conta filha (nao da MCC)
+─── CREDENCIAIS ─────────────────────────────────────────────────────────────
+1. DEVELOPER TOKEN → Google Ads → Ferramentas → API Center
+2. OAuth2 → Google Cloud Console → Criar credencial OAuth (Desktop App)
+3. Rodar gerar_token_google.py uma vez para obter REFRESH_TOKEN
 ──────────────────────────────────────────────────────────────────────────────
 """
 
@@ -31,19 +25,17 @@ import re
 from datetime import datetime
 
 # ─── CONFIGURACAO ─────────────────────────────────────────────────────────────
-DEVELOPER_TOKEN = "SEU_DEVELOPER_TOKEN"    # Da API Center do Google Ads
-CLIENT_ID       = "SEU_CLIENT_ID"          # Do Google Cloud Console
-CLIENT_SECRET   = "SEU_CLIENT_SECRET"
-REFRESH_TOKEN   = "SEU_REFRESH_TOKEN"      # Gerado por gerar_token_google.py
-CUSTOMER_ID     = "XXXXXXXXXX"             # ID da conta sem hifens
-LOGIN_CUSTOMER_ID = ""                     # ID da conta MCC (se houver); senao deixe ""
+DEVELOPER_TOKEN   = "SEU_DEVELOPER_TOKEN"
+CLIENT_ID         = "SEU_CLIENT_ID"
+CLIENT_SECRET     = "SEU_CLIENT_SECRET"
+REFRESH_TOKEN     = "SEU_REFRESH_TOKEN"
+CUSTOMER_ID       = "XXXXXXXXXX"
+LOGIN_CUSTOMER_ID = ""
 
-ARQUIVO_DASH    = "index.html"
-DATE_RANGE      = "LAST_30_DAYS"
-# Opcoes: LAST_7_DAYS, LAST_14_DAYS, LAST_30_DAYS, THIS_MONTH, LAST_MONTH
+ARQUIVO_DASH = "index.html"
+DATE_RANGE   = "LAST_30_DAYS"
 # ──────────────────────────────────────────────────────────────────────────────
 
-# Mapa de criterion_id (geo) → nome do pais
 PAISES_GEO = {
     2076:"Brasil", 2840:"EUA", 2032:"Argentina", 2826:"Reino Unido",
     2276:"Alemanha", 2250:"Franca", 2380:"Italia", 2724:"Espanha",
@@ -56,11 +48,11 @@ PAISES_GEO = {
 def criar_cliente():
     from google.ads.googleads.client import GoogleAdsClient
     config = {
-        "developer_token":    DEVELOPER_TOKEN,
-        "client_id":          CLIENT_ID,
-        "client_secret":      CLIENT_SECRET,
-        "refresh_token":      REFRESH_TOKEN,
-        "use_proto_plus":     True,
+        "developer_token": DEVELOPER_TOKEN,
+        "client_id":       CLIENT_ID,
+        "client_secret":   CLIENT_SECRET,
+        "refresh_token":   REFRESH_TOKEN,
+        "use_proto_plus":  True,
     }
     if LOGIN_CUSTOMER_ID:
         config["login_customer_id"] = LOGIN_CUSTOMER_ID
@@ -68,7 +60,7 @@ def criar_cliente():
 
 
 def executar_query(client, customer_id, query):
-    svc = client.get_service("GoogleAdsService")
+    svc  = client.get_service("GoogleAdsService")
     resp = svc.search_stream(customer_id=customer_id, query=query)
     linhas = []
     for batch in resp:
@@ -79,34 +71,30 @@ def executar_query(client, customer_id, query):
 def buscar_campanhas(client):
     query = f"""
         SELECT
-            campaign.name,
-            metrics.cost_micros,
-            metrics.impressions,
-            metrics.clicks,
-            metrics.average_cpc,
-            metrics.ctr,
-            metrics.conversions,
-            metrics.conversions_value
+            campaign.id, campaign.name,
+            metrics.cost_micros, metrics.impressions, metrics.clicks,
+            metrics.average_cpc, metrics.ctr,
+            metrics.conversions, metrics.conversions_value
         FROM campaign
         WHERE segments.date DURING {DATE_RANGE}
           AND campaign.status != 'REMOVED'
           AND metrics.cost_micros > 0
         ORDER BY metrics.cost_micros DESC
     """
-    linhas = executar_query(client, CUSTOMER_ID, query)
+    linhas    = executar_query(client, CUSTOMER_ID, query)
     campanhas = []
     for r in linhas:
-        c = r.campaign
-        m = r.metrics
-        gasto    = m.cost_micros / 1_000_000
-        cpc      = m.average_cpc / 1_000_000 if m.average_cpc else None
+        c, m  = r.campaign, r.metrics
+        gasto = m.cost_micros / 1_000_000
+        cpc   = m.average_cpc / 1_000_000 if m.average_cpc else None
         campanhas.append({
+            "id":        str(c.id),
             "nome":      c.name,
             "gasto":     round(gasto, 2),
-            "impressoes": int(m.impressions),
+            "impressoes":int(m.impressions),
             "cliques":   int(m.clicks),
             "cpc":       round(cpc, 2) if cpc else None,
-            "ctr":       round(m.ctr * 100, 2),     # fraction → percentual
+            "ctr":       round(m.ctr * 100, 2),
             "conv":      round(m.conversions, 2),
             "valorConv": round(m.conversions_value, 2),
         })
@@ -117,28 +105,25 @@ def buscar_idades(client):
     query = f"""
         SELECT
             ad_group_criterion.age_range.type,
-            metrics.cost_micros,
-            metrics.clicks,
-            metrics.conversions,
-            metrics.conversions_value
+            metrics.cost_micros, metrics.clicks,
+            metrics.conversions, metrics.conversions_value
         FROM age_range_view
         WHERE segments.date DURING {DATE_RANGE}
           AND metrics.cost_micros > 0
     """
-    linhas = executar_query(client, CUSTOMER_ID, query)
-
     FAIXAS = {
-        "AGE_RANGE_18_24": "18-24",
-        "AGE_RANGE_25_34": "25-34",
-        "AGE_RANGE_35_44": "35-44",
-        "AGE_RANGE_45_54": "45-54",
-        "AGE_RANGE_55_64": "55-64",
-        "AGE_RANGE_65_UP": "65+",
+        "AGE_RANGE_18_24":"18-24","AGE_RANGE_25_34":"25-34",
+        "AGE_RANGE_35_44":"35-44","AGE_RANGE_45_54":"45-54",
+        "AGE_RANGE_55_64":"55-64","AGE_RANGE_65_UP":"65+",
     }
+    try:
+        linhas = executar_query(client, CUSTOMER_ID, query)
+    except Exception as e:
+        print(f"  [AVISO] buscar_idades: {e}")
+        return []
     agg = {}
     for r in linhas:
-        tipo  = r.ad_group_criterion.age_range.type_.name
-        faixa = FAIXAS.get(tipo)
+        faixa = FAIXAS.get(r.ad_group_criterion.age_range.type_.name)
         if not faixa:
             continue
         m = r.metrics
@@ -148,37 +133,29 @@ def buscar_idades(client):
         agg[faixa]["cliques"]  += int(m.clicks)
         agg[faixa]["conv"]     += m.conversions
         agg[faixa]["valorConv"]+= m.conversions_value
-
-    idades = []
-    for f in ["18-24","25-34","35-44","45-54","55-64","65+"]:
-        if f in agg:
-            d = agg[f]
-            idades.append({
-                "faixa":     f,
-                "gasto":     round(d["gasto"], 2),
-                "cliques":   d["cliques"],
-                "conv":      round(d["conv"], 2),
-                "valorConv": round(d["valorConv"], 2),
-            })
-    return idades
+    return [{"faixa": f, "gasto": round(d["gasto"],2), "cliques": d["cliques"],
+             "conv": round(d["conv"],2), "valorConv": round(d["valorConv"],2)}
+            for f in ["18-24","25-34","35-44","45-54","55-64","65+"] if f in agg
+            for d in [agg[f]]]
 
 
 def buscar_paises(client):
     query = f"""
         SELECT
             geographic_view.country_criterion_id,
-            metrics.cost_micros,
-            metrics.clicks,
-            metrics.conversions,
-            metrics.conversions_value
+            metrics.cost_micros, metrics.clicks,
+            metrics.conversions, metrics.conversions_value
         FROM geographic_view
         WHERE segments.date DURING {DATE_RANGE}
           AND geographic_view.location_type = 'LOCATION_OF_PRESENCE'
           AND metrics.cost_micros > 0
-        ORDER BY metrics.cost_micros DESC
-        LIMIT 50
+        ORDER BY metrics.cost_micros DESC LIMIT 50
     """
-    linhas = executar_query(client, CUSTOMER_ID, query)
+    try:
+        linhas = executar_query(client, CUSTOMER_ID, query)
+    except Exception as e:
+        print(f"  [AVISO] buscar_paises: {e}")
+        return []
     agg = {}
     for r in linhas:
         cid  = r.geographic_view.country_criterion_id
@@ -190,13 +167,105 @@ def buscar_paises(client):
         agg[nome]["cliques"]  += int(m.clicks)
         agg[nome]["conv"]     += m.conversions
         agg[nome]["valorConv"]+= m.conversions_value
-
     geos = sorted(agg.values(), key=lambda x: x["gasto"], reverse=True)[:7]
     for g in geos:
-        g["gasto"]    = round(g["gasto"], 2)
-        g["conv"]     = round(g["conv"], 2)
-        g["valorConv"]= round(g["valorConv"], 2)
+        g["gasto"]     = round(g["gasto"], 2)
+        g["conv"]      = round(g["conv"], 2)
+        g["valorConv"] = round(g["valorConv"], 2)
     return geos
+
+
+def buscar_dispositivos(client):
+    """Breakdown por dispositivo (MOBILE, DESKTOP, TABLET)."""
+    query = f"""
+        SELECT
+            segments.device,
+            metrics.cost_micros, metrics.clicks,
+            metrics.impressions, metrics.conversions
+        FROM campaign
+        WHERE segments.date DURING {DATE_RANGE}
+          AND metrics.cost_micros > 0
+    """
+    try:
+        linhas = executar_query(client, CUSTOMER_ID, query)
+    except Exception as e:
+        print(f"  [AVISO] buscar_dispositivos: {e}")
+        return []
+    agg = {}
+    for r in linhas:
+        disp = r.segments.device.name
+        m    = r.metrics
+        if disp not in agg:
+            agg[disp] = {"dispositivo": disp, "gasto": 0.0, "cliques": 0,
+                         "impressoes": 0, "conv": 0.0}
+        agg[disp]["gasto"]     += m.cost_micros / 1_000_000
+        agg[disp]["cliques"]   += int(m.clicks)
+        agg[disp]["impressoes"]+= int(m.impressions)
+        agg[disp]["conv"]      += m.conversions
+    return [{"dispositivo": d["dispositivo"], "gasto": round(d["gasto"],2),
+             "cliques": d["cliques"], "impressoes": d["impressoes"],
+             "conv": round(d["conv"],2)}
+            for d in sorted(agg.values(), key=lambda x: x["gasto"], reverse=True)]
+
+
+def buscar_genero(client):
+    """Breakdown por genero."""
+    query = f"""
+        SELECT
+            ad_group_criterion.gender.type,
+            metrics.cost_micros, metrics.clicks, metrics.conversions
+        FROM gender_view
+        WHERE segments.date DURING {DATE_RANGE}
+          AND metrics.cost_micros > 0
+    """
+    GENEROS = {
+        "GENDER_MALE":    "Masculino",
+        "GENDER_FEMALE":  "Feminino",
+        "GENDER_UNDETERMINED": "Indefinido",
+    }
+    try:
+        linhas = executar_query(client, CUSTOMER_ID, query)
+    except Exception as e:
+        print(f"  [AVISO] buscar_genero: {e}")
+        return []
+    agg = {}
+    for r in linhas:
+        tipo = GENEROS.get(r.ad_group_criterion.gender.type_.name, "Outro")
+        m    = r.metrics
+        if tipo not in agg:
+            agg[tipo] = {"genero": tipo, "gasto": 0.0, "cliques": 0, "conv": 0.0}
+        agg[tipo]["gasto"]  += m.cost_micros / 1_000_000
+        agg[tipo]["cliques"]+= int(m.clicks)
+        agg[tipo]["conv"]   += m.conversions
+    return [{"genero": d["genero"], "gasto": round(d["gasto"],2),
+             "cliques": d["cliques"], "conv": round(d["conv"],2)}
+            for d in sorted(agg.values(), key=lambda x: x["gasto"], reverse=True)]
+
+
+def buscar_palavras_chave(client):
+    """Top 20 keywords por gasto."""
+    query = f"""
+        SELECT
+            ad_group_criterion.keyword.text,
+            metrics.cost_micros, metrics.clicks,
+            metrics.ctr, metrics.conversions
+        FROM keyword_view
+        WHERE segments.date DURING {DATE_RANGE}
+          AND metrics.cost_micros > 0
+          AND ad_group_criterion.status != 'REMOVED'
+        ORDER BY metrics.cost_micros DESC LIMIT 20
+    """
+    try:
+        linhas = executar_query(client, CUSTOMER_ID, query)
+    except Exception as e:
+        print(f"  [AVISO] buscar_palavras_chave: {e}")
+        return []
+    return [{"texto":  r.ad_group_criterion.keyword.text,
+             "gasto":  round(r.metrics.cost_micros / 1_000_000, 2),
+             "cliques":int(r.metrics.clicks),
+             "ctr":    round(r.metrics.ctr * 100, 2),
+             "conv":   round(r.metrics.conversions, 2)}
+            for r in linhas]
 
 
 def atualizar_html(dados):
@@ -204,7 +273,7 @@ def atualizar_html(dados):
         html = f.read()
 
     novo_json = json.dumps(dados, ensure_ascii=False, indent=2)
-    padrao = r"(const DADOS_GOOGLE\s*=\s*)(\{[\s\S]*?\})(\s*;)"
+    padrao    = r"(const DADOS_GOOGLE\s*=\s*)(\{[\s\S]*?\})(\s*;)"
     novo_html, n = re.subn(padrao, lambda m: m.group(1) + novo_json + m.group(3), html)
     if n == 0:
         raise RuntimeError("DADOS_GOOGLE nao encontrado no HTML")
@@ -218,8 +287,8 @@ def main():
     print(f"\n=== Google Ads — {datetime.now().strftime('%d/%m/%Y %H:%M')} ===\n")
 
     if DEVELOPER_TOKEN == "SEU_DEVELOPER_TOKEN":
-        print("  ATENCAO: Configure as credenciais neste arquivo antes de executar.")
-        print("  Veja as instrucoes no cabecalho do script.")
+        print("  ATENCAO: Configure as credenciais no topo deste arquivo.")
+        print("  Veja instrucoes no cabecalho do script.")
         return
 
     print("Conectando ao Google Ads API...")
@@ -231,11 +300,19 @@ def main():
 
     print("Buscando faixas etarias...")
     idades = buscar_idades(client)
-    print(f"  {len(idades)} faixas")
 
     print("Buscando paises...")
     geos = buscar_paises(client)
-    print(f"  {len(geos)} paises")
+
+    print("Buscando dispositivos...")
+    dispositivos = buscar_dispositivos(client)
+
+    print("Buscando genero...")
+    genero = buscar_genero(client)
+
+    print("Buscando palavras-chave...")
+    palavras_chave = buscar_palavras_chave(client)
+    print(f"  {len(palavras_chave)} keywords")
 
     total_gasto    = sum(c["gasto"]     for c in campanhas)
     total_cliques  = sum(c["cliques"]   for c in campanhas)
@@ -252,14 +329,13 @@ def main():
         "campanhas":       campanhas,
         "idades":          idades,
         "geos":            geos,
+        "dispositivos":    dispositivos,
+        "genero":          genero,
+        "palavrasChave":   palavras_chave,
+        "dataAtualizacao": datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
     }
 
-    print(f"\n  Gasto total:   R$ {total_gasto:,.2f}")
-    print(f"  Cliques:       {total_cliques:,}")
-    print(f"  Conversoes:    {total_conv:,.1f}")
-    print(f"  Valor conv:    R$ {total_val_conv:,.2f}")
-    print(f"  ROAS:          {roas}x")
-
+    print(f"\n  Gasto: R$ {total_gasto:,.2f} | Cliques: {total_cliques:,} | Conv: {total_conv:,.1f}")
     print(f"\nAtualizando {ARQUIVO_DASH}...")
     atualizar_html(dados)
     print("\nGoogle Ads atualizado com sucesso!")

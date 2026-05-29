@@ -32,14 +32,40 @@
     padding:6px 12px;border-radius:9px;cursor:pointer;font-size:12px;font-weight:600;font-family:inherit;transition:.15s}
   .filter-btn:hover{color:var(--txt)}
   .filter-btn.active{background:var(--cyan);color:#04121a;border-color:var(--cyan)}
-  .custom-picker{display:none;align-items:center;gap:6px;background:var(--card);border:1px solid var(--border);padding:6px 10px;border-radius:10px}
-  .custom-picker input[type=date]{background:var(--bg);border:1px solid var(--border);color:var(--txt);padding:4px 8px;border-radius:7px;font-size:12px;font-family:inherit;cursor:pointer;color-scheme:dark}
-  .custom-picker .sep{color:var(--muted);font-size:12px}
-  .custom-picker .btn-aplicar{background:var(--cyan);color:#04121a;border:none;padding:5px 14px;border-radius:7px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;transition:.15s}
-  .custom-picker .btn-aplicar:hover{opacity:.85}
-  .custom-picker .btn-aplicar:disabled{opacity:.5;cursor:not-allowed}
-  .loading-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:9999;display:flex;align-items:center;justify-content:center;display:none}
+  .loading-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:9999;align-items:center;justify-content:center;display:none}
   .loading-overlay span{color:#fff;font-size:16px;font-weight:700;background:var(--card);padding:18px 32px;border-radius:14px;border:1px solid var(--border)}
+  /* ── CALENDAR PICKER ── */
+  .cal-inputs{display:none;align-items:center;gap:8px;position:relative}
+  .cal-input-wrap{display:flex;flex-direction:column;gap:2px}
+  .cal-input-wrap label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;font-weight:600}
+  .cal-input-field{background:#0f172a;border:1px solid var(--border);color:var(--txt);padding:5px 10px;border-radius:8px;font-size:12px;font-family:inherit;cursor:pointer;min-width:110px;text-align:left;transition:.15s}
+  .cal-input-field:hover,.cal-input-field.active{border-color:var(--cyan);color:var(--cyan)}
+  .cal-sep{color:var(--muted);font-size:16px}
+  .cal-apply{background:var(--cyan);color:#04121a;border:none;padding:6px 16px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;transition:.15s;align-self:flex-end;margin-bottom:1px}
+  .cal-apply:hover{opacity:.85}
+  .cal-apply:disabled{opacity:.5;cursor:not-allowed}
+  .cal-dropdown{position:absolute;top:calc(100% + 8px);left:0;z-index:9999;background:#fff;border-radius:16px;box-shadow:0 8px 40px rgba(0,0,0,.18),0 2px 8px rgba(0,0,0,.10);padding:16px 20px 20px;width:320px;max-height:80vh;overflow-y:auto;display:none;scrollbar-width:thin}
+  .cal-dropdown.open{display:block}
+  .cal-nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;position:sticky;top:0;background:#fff;padding:4px 0 8px;z-index:2;border-bottom:1px solid #f1f5f9}
+  .cal-nav-btn{background:none;border:1px solid #e2e8f0;color:#334155;width:32px;height:32px;border-radius:8px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:.15s}
+  .cal-nav-btn:hover{background:#f1f5f9}
+  .cal-nav-label{font-size:13px;color:#64748b;font-weight:600}
+  .cal-month{margin-bottom:16px}
+  .cal-month-title{font-size:12px;font-weight:800;color:#1e293b;letter-spacing:1px;margin-bottom:8px;text-align:center}
+  .cal-weekdays{display:grid;grid-template-columns:repeat(7,1fr);gap:0;margin-bottom:4px}
+  .cal-weekdays span{font-size:10px;color:#94a3b8;text-align:center;font-weight:700;padding:3px 0}
+  .cal-days{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
+  .cal-day{height:32px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#334155;cursor:pointer;border-radius:50%;position:relative;transition:.1s;font-weight:500;user-select:none}
+  .cal-day:hover:not(.disabled):not(.empty){background:#e0f2fe;color:#0369a1}
+  .cal-day.empty{cursor:default}
+  .cal-day.disabled{color:#cbd5e1;cursor:default}
+  .cal-day.start{background:#1d4ed8!important;color:#fff!important;border-radius:50%!important;font-weight:700;z-index:1}
+  .cal-day.end{background:#1d4ed8!important;color:#fff!important;border-radius:50%!important;font-weight:700;z-index:1}
+  .cal-day.in-range{background:#bfdbfe;color:#1e40af;border-radius:0;font-weight:600}
+  .cal-day.in-range.start{border-radius:50% 0 0 50%}
+  .cal-day.in-range.end{border-radius:0 50% 50% 0}
+  .cal-day.today{font-weight:800;color:#0369a1}
+  .cal-day.today:not(.start):not(.end):not(.in-range)::after{content:'';position:absolute;bottom:3px;left:50%;transform:translateX(-50%);width:4px;height:4px;background:#1d4ed8;border-radius:50%}
   .cmp-toggle{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--muted);cursor:pointer;user-select:none}
   .cmp-toggle input{accent-color:var(--cyan);width:15px;height:15px}
   .status-dots{display:flex;gap:14px;font-size:11px;color:var(--muted)}
@@ -171,12 +197,19 @@
     <button class="filter-btn" onclick="setFiltro('90d')">90d</button>
     <button class="filter-btn" onclick="setFiltro('max')">Máximo</button>
     <button class="filter-btn" id="btnCustom" onclick="toggleCustomPicker()">📅 Personalizado</button>
-    <div class="custom-picker" id="customPicker">
-      <input type="date" id="customFrom">
-      <span class="sep">até</span>
-      <input type="date" id="customTo">
-      <button class="btn-aplicar" id="btnAplicar" onclick="aplicarCustom()">Aplicar</button>
+  </div>
+  <div class="cal-inputs" id="calInputs">
+    <div class="cal-input-wrap">
+      <label>Data de início</label>
+      <button class="cal-input-field" id="calFromBtn" onclick="abrirCal('from')">Selecionar data</button>
     </div>
+    <span class="cal-sep">→</span>
+    <div class="cal-input-wrap">
+      <label>Data de término</label>
+      <button class="cal-input-field" id="calToBtn" onclick="abrirCal('to')">Selecionar data</button>
+    </div>
+    <button class="cal-apply" id="btnAplicar" onclick="aplicarCustom()">Aplicar</button>
+    <div class="cal-dropdown" id="calDropdown"></div>
   </div>
   <div class="loading-overlay" id="loadingOverlay"><span>⏳ Buscando dados...</span></div>
   <label class="cmp-toggle"><input type="checkbox" id="cmpToggle" onchange="toggleComparar(this)">Comparar período anterior</label>
@@ -208,18 +241,12 @@
     <div class="kpi meta"><div class="label">Investimento Meta</div><div class="value" id="vg-metaGasto">—</div></div>
     <div class="kpi google"><div class="label">Investimento Google</div><div class="value" id="vg-googleGasto">—</div></div>
     <div class="kpi rezdy"><div class="label">Reservas Rezdy</div><div class="value" id="vg-rezdyReservas">—</div></div>
-    <div class="kpi rezdy"><div class="label">Receita Rezdy</div><div class="value" id="vg-rezdyReceita">—</div></div>
-  </div>
-  <div class="kpi-grid">
-    <div class="kpi meta"><div class="label">Conversões Meta</div><div class="value" id="vg-metaConv">—</div></div>
-    <div class="kpi google"><div class="label">Conv Google</div><div class="value" id="vg-googleConv">—</div></div>
-    <div class="kpi respondio"><div class="label">Conversas Respondio</div><div class="value" id="vg-respConv">—</div></div>
-    <div class="kpi green"><div class="label">Seguidores IG</div><div class="value" id="vg-igSeg">—</div></div>
+    <div class="kpi meta"><div class="label">Mensagens iniciadas Meta</div><div class="value" id="vg-metaConv">—</div></div>
   </div>
 
   <h2 class="section">Tendências</h2>
   <div class="grid2">
-    <div class="card"><h3>Gasto Meta x Reservas Rezdy (30d)</h3><div class="chart-box"><canvas id="vgLine"></canvas></div></div>
+    <div class="card"><h3 id="vgLineTitle">Investimento Meta e Google x Reservas Rezdy</h3><div class="chart-box"><canvas id="vgLine"></canvas></div></div>
     <div class="card"><h3>Split investimento Meta x Google</h3><div class="chart-box"><canvas id="vgDonut"></canvas></div></div>
   </div>
 
@@ -120953,17 +120980,149 @@ function toggleComparar(cb) {
   renderizarTudo();
 }
 
+/* ═════════════════════ CALENDAR PICKER ═════════════════════ */
+const CAL = {
+  from: null, to: null,
+  selecting: null,   // 'from' | 'to'
+  viewYear: new Date().getFullYear(),
+  viewMonth: new Date().getMonth(),   // 0-indexed
+  MONTHS_SHOWN: 3,
+};
+const MESES_PT  = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+const MESES_ABR = ['JAN','FEV','MAR','ABR','MAI','JUN','JUL','AGO','SET','OUT','NOV','DEZ'];
+const DIAS_PT   = ['D','S','T','Q','Q','S','S'];
+
 function toggleCustomPicker() {
-  const picker = document.getElementById('customPicker');
-  const aberto = picker.style.display === 'flex';
-  picker.style.display = aberto ? 'none' : 'flex';
+  const inputs = document.getElementById('calInputs');
+  const aberto = inputs.style.display === 'flex';
+  inputs.style.display = aberto ? 'none' : 'flex';
   if (!aberto) {
-    const hoje  = new Date();
-    const d30   = new Date(hoje - 29 * 86400000);
-    const fmt   = d => d.toISOString().slice(0,10);
-    if (!document.getElementById('customFrom').value) document.getElementById('customFrom').value = fmt(d30);
-    if (!document.getElementById('customTo').value)   document.getElementById('customTo').value   = fmt(hoje);
+    const hoje = new Date();
+    CAL.viewYear  = hoje.getFullYear();
+    CAL.viewMonth = Math.max(0, hoje.getMonth() - (CAL.MONTHS_SHOWN - 1));
+    if (!CAL.from) { const d30 = new Date(hoje - 29*86400000); CAL.from = d30.toISOString().slice(0,10); }
+    if (!CAL.to)   { CAL.to   = hoje.toISOString().slice(0,10); }
+    atualizarBotoesCal();
+  } else {
+    document.getElementById('calDropdown').classList.remove('open');
   }
+}
+
+function abrirCal(tipo) {
+  CAL.selecting = tipo;
+  document.getElementById('calFromBtn').classList.toggle('active', tipo==='from');
+  document.getElementById('calToBtn').classList.toggle('active', tipo==='to');
+  const dropdown = document.getElementById('calDropdown');
+  dropdown.classList.add('open');
+  renderCal();
+  // close on outside click
+  setTimeout(() => document.addEventListener('click', fecharCalFora, {once:true}), 10);
+}
+
+function fecharCalFora(e) {
+  const drop = document.getElementById('calDropdown');
+  const inputs = document.getElementById('calInputs');
+  if (drop && !drop.contains(e.target) && inputs && !inputs.contains(e.target)) {
+    drop.classList.remove('open');
+    document.getElementById('calFromBtn').classList.remove('active');
+    document.getElementById('calToBtn').classList.remove('active');
+  } else if (drop && drop.classList.contains('open')) {
+    setTimeout(() => document.addEventListener('click', fecharCalFora, {once:true}), 10);
+  }
+}
+
+function renderCal() {
+  const drop = document.getElementById('calDropdown');
+  if (!drop) return;
+  const hoje = new Date();
+  const hojeStr = hoje.toISOString().slice(0,10);
+  let html = `<div class="cal-nav">
+    <button class="cal-nav-btn" onclick="navCal(-1)">&#8249;</button>
+    <span class="cal-nav-label">${MESES_PT[CAL.viewMonth]} ${CAL.viewYear}</span>
+    <button class="cal-nav-btn" onclick="navCal(1)">&#8250;</button>
+  </div>`;
+
+  for (let i = 0; i < CAL.MONTHS_SHOWN; i++) {
+    let m = CAL.viewMonth + i;
+    let y = CAL.viewYear;
+    while (m > 11) { m -= 12; y++; }
+    html += renderMes(y, m, hojeStr);
+  }
+  drop.innerHTML = html;
+}
+
+function renderMes(year, month, hojeStr) {
+  const titulo = MESES_ABR[month] + '. DE ' + year;
+  const firstDay = new Date(year, month, 1).getDay();
+  const daysInMonth = new Date(year, month+1, 0).getDate();
+  let html = `<div class="cal-month">
+    <div class="cal-month-title">${titulo}</div>
+    <div class="cal-weekdays">${DIAS_PT.map(d=>`<span>${d}</span>`).join('')}</div>
+    <div class="cal-days">`;
+
+  for (let b = 0; b < firstDay; b++) html += `<div class="cal-day empty"></div>`;
+
+  for (let d = 1; d <= daysInMonth; d++) {
+    const ds = year+'-'+String(month+1).padStart(2,'0')+'-'+String(d).padStart(2,'0');
+    let cls = 'cal-day';
+    if (ds === hojeStr) cls += ' today';
+    const isStart = ds === CAL.from;
+    const isEnd   = ds === CAL.to;
+    const inRange = CAL.from && CAL.to && ds > CAL.from && ds < CAL.to;
+    if (isStart) cls += ' start in-range';
+    if (isEnd)   cls += ' end in-range';
+    if (inRange && !isStart && !isEnd) cls += ' in-range';
+    html += `<div class="${cls}" onclick="selecionarDia('${ds}')" onmouseenter="hoverDia('${ds}')">${d}</div>`;
+  }
+  html += `</div></div>`;
+  return html;
+}
+
+function selecionarDia(ds) {
+  if (CAL.selecting === 'from') {
+    CAL.from = ds;
+    if (CAL.to && CAL.to < CAL.from) CAL.to = null;
+    CAL.selecting = 'to';
+    document.getElementById('calFromBtn').classList.remove('active');
+    document.getElementById('calToBtn').classList.add('active');
+  } else {
+    if (CAL.from && ds < CAL.from) {
+      CAL.to = CAL.from; CAL.from = ds;
+    } else {
+      CAL.to = ds;
+    }
+    CAL.selecting = null;
+    document.getElementById('calToBtn').classList.remove('active');
+    document.getElementById('calDropdown').classList.remove('open');
+  }
+  atualizarBotoesCal();
+  renderCal();
+}
+
+function hoverDia(ds) {
+  if (CAL.selecting === 'to' && CAL.from) {
+    const orig = CAL.to;
+    CAL.to = ds >= CAL.from ? ds : CAL.from;
+    if (CAL.to !== orig) renderCal();
+    CAL.to = orig;
+  }
+}
+
+function navCal(dir) {
+  CAL.viewMonth += dir;
+  if (CAL.viewMonth < 0)  { CAL.viewMonth += 12; CAL.viewYear--; }
+  if (CAL.viewMonth > 11) { CAL.viewMonth -= 12; CAL.viewYear++; }
+  renderCal();
+}
+
+function atualizarBotoesCal() {
+  const fmtDisplay = s => {
+    if (!s) return 'Selecionar data';
+    const [y,m,d] = s.split('-');
+    return d+'/'+m+'/'+y;
+  };
+  document.getElementById('calFromBtn').textContent = fmtDisplay(CAL.from);
+  document.getElementById('calToBtn').textContent   = fmtDisplay(CAL.to);
 }
 
 /* ═════════════════════ PROCESSAR REGISTROS GOOGLE (JS) ═════════════════════ */
@@ -121035,9 +121194,9 @@ function processarRegistrosGoogle(registros) {
 
 /* ═════════════════════ APLICAR FILTRO PERSONALIZADO ═════════════════════ */
 async function aplicarCustom() {
-  const from = document.getElementById('customFrom').value;
-  const to   = document.getElementById('customTo').value;
-  if (!from || !to)  { alert('Selecione data inicial e final.'); return; }
+  const from = CAL.from;
+  const to   = CAL.to;
+  if (!from || !to)  { alert('Selecione data inicial e final no calendário.'); return; }
   if (from > to)     { alert('Data inicial deve ser anterior à final.');  return; }
 
   const overlay = document.getElementById('loadingOverlay');
@@ -121205,51 +121364,62 @@ function renderizarVisaoGeral() {
   const g = dadosGoogle();
   const r = DADOS_REZDY_LIVE && DADOS_REZDY_LIVE.resumo ? DADOS_REZDY_LIVE.resumo : {};
   const reservasArr = dadosRezdy();
-  const receita = reservasArr.reduce((s,t)=> s + (t.valor||t.total||0), 0) || (r.receitaBruta||0);
-  const conversasResp = (DADOS_RESPONDIO && DADOS_RESPONDIO.conversas && DADOS_RESPONDIO.conversas.total) || (DADOS_RESPONDIO && DADOS_RESPONDIO.total) || 0;
-  const igSeg = (m.organico && m.organico.seguidores) || (DADOS_META && DADOS_META.organico && DADOS_META.organico.seguidores) || 0;
 
-  set('vg-metaGasto', fmtR(m.totalGasto));
+  set('vg-metaGasto',  fmtR(m.totalGasto));
   set('vg-googleGasto', fmtR(g.totalGasto));
   set('vg-rezdyReservas', fmt(reservasArr.length || (r.totalReservas||0)));
-  set('vg-rezdyReceita', fmtR(receita));
-  set('vg-metaConv', fmt(m.mensagens.conversas || 0));
-  set('vg-googleConv', fmt(Math.round(g.totalConversoes)));
-  set('vg-respConv', fmt(conversasResp));
-  set('vg-igSeg', fmt(igSeg));
+  set('vg-metaConv',   fmt(m.mensagens ? (m.mensagens.conversas||m.mensagens.firstReply||0) : 0));
 
-  // dual line
-  const serie = m.serie.length ? m.serie : [];
-  const labels = serie.map(s=>s.data) ;
-  // build rezdy per-day from reservasArr
+  // título dinâmico
+  const tituloLabel = {ontem:'Ontem','7d':'7 dias','14d':'14 dias','30d':'30 dias','90d':'90 dias',max:'Histórico',custom:'Personalizado'};
+  const tl = document.getElementById('vgLineTitle');
+  if (tl) tl.textContent = 'Investimento Meta e Google x Reservas Rezdy (' + (tituloLabel[FILTRO_ATIVO]||'30 dias') + ')';
+
+  // série diária Meta
+  const serieMeta = m.serie || [];
+  // série diária Google
+  const serieGoogle = g.serie || [];
+  // rezdy por dia
   const rezdyDia = {};
   reservasArr.forEach(t => { const d=(t.dataCriacao||'').slice(0,10); if(d) rezdyDia[d]=(rezdyDia[d]||0)+1; });
-  const allLabels = labels.length ? labels : Object.keys(rezdyDia).sort();
+
+  // unir todos os labels de data
+  const labelsSet = new Set([
+    ...serieMeta.map(s=>s.data),
+    ...serieGoogle.map(s=>s.data),
+    ...Object.keys(rezdyDia),
+  ]);
+  const allLabels = Array.from(labelsSet).sort();
+
   criarChart('vgLine', {
     type:'line',
     data:{labels:allLabels, datasets:[
-      {label:'Gasto Meta', data:allLabels.map(d=>{const p=serie.find(s=>s.data===d);return p?p.gasto:null;}), borderColor:'#1877F2', backgroundColor:'rgba(24,119,242,.1)', tension:.3, yAxisID:'y'},
-      {label:'Reservas Rezdy', data:allLabels.map(d=>rezdyDia[d]||0), borderColor:'#ff6b35', backgroundColor:'rgba(255,107,53,.1)', tension:.3, yAxisID:'y1'},
+      {label:'Gasto Meta (R$)',   data:allLabels.map(d=>{const p=serieMeta.find(s=>s.data===d);   return p?p.gasto:null;}),  borderColor:'#1877F2', backgroundColor:'rgba(24,119,242,.08)', tension:.3, yAxisID:'y'},
+      {label:'Gasto Google (R$)', data:allLabels.map(d=>{const p=serieGoogle.find(s=>s.data===d); return p?p.gasto:null;}),  borderColor:'#4285F4', backgroundColor:'rgba(66,133,244,.08)', tension:.3, yAxisID:'y'},
+      {label:'Reservas Rezdy',    data:allLabels.map(d=>rezdyDia[d]||null), borderColor:'#ff6b35', backgroundColor:'rgba(255,107,53,.08)', tension:.3, yAxisID:'y1'},
     ]},
-    options:{maintainAspectRatio:false, interaction:{mode:'index'}, scales:{y:{position:'left'}, y1:{position:'right', grid:{drawOnChartArea:false}}}}
+    options:{maintainAspectRatio:false, interaction:{mode:'index'}, scales:{
+      y: {position:'left',  ticks:{callback:v=>'R$'+v.toLocaleString('pt-BR')}},
+      y1:{position:'right', grid:{drawOnChartArea:false}},
+    }}
   });
 
-  // donut split investimento
   criarChart('vgDonut', {
     type:'doughnut',
     data:{labels:['Meta','Google'], datasets:[{data:[m.totalGasto, g.totalGasto], backgroundColor:['#1877F2','#4285F4'], borderWidth:0}]},
     options:{maintainAspectRatio:false, cutout:'62%', plugins:{legend:{position:'bottom'}}}
   });
 
-  // insights
   const ins = [];
-  const cpaMeta = m.mensagens.conversas ? m.totalGasto/m.mensagens.conversas : 0;
-  ins.push({ic:'💸', ti:'Custo por conversa Meta', tx: cpaMeta? ('Cada conversa Meta custa '+fmtR(cpaMeta)+'.') : 'Sem conversas registradas no período.'});
   const totalInvest = m.totalGasto + g.totalGasto;
-  const shareMeta = totalInvest ? (m.totalGasto/totalInvest*100) : 0;
-  ins.push({ic:'⚖️', ti:'Mix de mídia', tx:'Meta representa '+shareMeta.toFixed(0)+'% do investimento total de '+fmtR(totalInvest)+'.'});
-  const cpr = reservasArr.length ? totalInvest/reservasArr.length : 0;
-  ins.push({ic:'🚁', ti:'Custo por reserva', tx: cpr? ('Investimento total / reservas Rezdy = '+fmtR(cpr)+' por reserva.') : 'Sem reservas no período selecionado.'});
+  const shareMeta   = totalInvest ? (m.totalGasto/totalInvest*100) : 0;
+  const msgs        = m.mensagens ? (m.mensagens.conversas||m.mensagens.firstReply||0) : 0;
+  const cpaMeta     = msgs ? m.totalGasto/msgs : 0;
+  const cpr         = reservasArr.length ? totalInvest/reservasArr.length : 0;
+
+  ins.push({ic:'💸', ti:'Custo por mensagem Meta', tx: cpaMeta ? 'Cada mensagem iniciada custa '+fmtR(cpaMeta)+'.' : 'Sem mensagens no período.'});
+  ins.push({ic:'⚖️', ti:'Mix de mídia', tx:'Meta '+shareMeta.toFixed(0)+'% / Google '+(100-shareMeta).toFixed(0)+'% do total de '+fmtR(totalInvest)+'.'});
+  ins.push({ic:'🚁', ti:'Custo por reserva', tx: cpr ? 'Investimento total / reservas = '+fmtR(cpr)+' por reserva.' : 'Sem reservas no período.'});
   document.getElementById('vgInsights').innerHTML = ins.map(i=>insightHTML(i)).join('');
 }
 

@@ -493,19 +493,20 @@
 /* ═════════════════════ DADOS (substituídos via regex pelos scripts Python) ═════════════════════ */
 const DADOS_REZDY_LIVE = {
   "resumo": {
-    "total_reservas": 6000,
-    "receita_total": 18633337.98,
-    "total_pago": 9102938.83,
-    "total_a_pagar": 9530399.15,
+    "total_reservas": 2696,
+    "total_reservas_todas": 6000,
+    "receita_total": 8969660.34,
+    "total_pago": 9096464.03,
+    "total_a_pagar": 9535375.15,
     "contagem_status": {
+      "PENDING_CUSTOMER": 5,
       "CONFIRMED": 2696,
       "ABANDONED_CART": 3096,
-      "ON_HOLD": 10,
-      "PENDING_CUSTOMER": 4,
-      "CANCELLED": 194
+      "ON_HOLD": 8,
+      "CANCELLED": 195
     },
     "receita_por_produto": {
-      "Doors off | 30min": 15652806.53,
+      "Doors off | 30min": 15651156.53,
       "No-Show Fee": 74100.0,
       "Doors off | 30min (GYG)": 110670.0,
       "Doors off | 45min": 944860.0,
@@ -543,9 +544,77 @@ const DADOS_REZDY_LIVE = {
       "2026-05-26": 17,
       "2026-05-27": 31,
       "2026-05-28": 11,
-      "2026-05-29": 9
+      "2026-05-29": 13
     },
     "tabela": [
+      {
+        "numeroPedido": "VRVCJZJ0",
+        "status": "PENDING_CUSTOMER",
+        "source": "INTERNAL",
+        "agente": "Tayane Novaes",
+        "nomeCliente": "Myrna Maria Oliveras Aguilar",
+        "emailCliente": "myrna_oliveras@hotmail.com",
+        "produto": "Doors off | 30min",
+        "quantidade": 2,
+        "dataCriacao": "2026-05-29",
+        "dataFulfillment": "2026-05-31",
+        "horaFulfillment": "14:00",
+        "valorTotal": 3400.0,
+        "valorPago": 220.0,
+        "valorAPagar": 3180.0,
+        "moeda": "BRL"
+      },
+      {
+        "numeroPedido": "VRFEC3PM",
+        "status": "CONFIRMED",
+        "source": "ONLINE",
+        "agente": "-",
+        "nomeCliente": "Sydney Pohl",
+        "emailCliente": "sydneypohl2@gmail.com",
+        "produto": "Doors off | 30min",
+        "quantidade": 1,
+        "dataCriacao": "2026-05-29",
+        "dataFulfillment": "2026-05-31",
+        "horaFulfillment": "08:30",
+        "valorTotal": 1417.8,
+        "valorPago": 1417.0,
+        "valorAPagar": 0.8000488,
+        "moeda": "BRL"
+      },
+      {
+        "numeroPedido": "VR03REZB",
+        "status": "ABANDONED_CART",
+        "source": "ONLINE",
+        "agente": "-",
+        "nomeCliente": "Sydney Pohl",
+        "emailCliente": "sydneypohl2@gmail.com",
+        "produto": "Doors off | 30min",
+        "quantidade": 1,
+        "dataCriacao": "2026-05-29",
+        "dataFulfillment": "",
+        "horaFulfillment": "",
+        "valorTotal": 1417.8,
+        "valorPago": 0.0,
+        "valorAPagar": 1417.8,
+        "moeda": "BRL"
+      },
+      {
+        "numeroPedido": "VR3GP1WP",
+        "status": "ABANDONED_CART",
+        "source": "ONLINE",
+        "agente": "-",
+        "nomeCliente": "Sydney Pohl",
+        "emailCliente": "sydneypohl2@gmail.com",
+        "produto": "Doors off | 30min",
+        "quantidade": 1,
+        "dataCriacao": "2026-05-29",
+        "dataFulfillment": "",
+        "horaFulfillment": "",
+        "valorTotal": 1417.8,
+        "valorPago": 0.0,
+        "valorAPagar": 1417.8,
+        "moeda": "BRL"
+      },
       {
         "numeroPedido": "VRZC6AJR",
         "status": "CONFIRMED",
@@ -2690,7 +2759,7 @@ const DADOS_REZDY_LIVE = {
       },
       {
         "numeroPedido": "VRAEP1K4",
-        "status": "ON_HOLD",
+        "status": "CONFIRMED",
         "source": "ONLINE",
         "agente": "-",
         "nomeCliente": "Christian Rejbrand",
@@ -2698,7 +2767,7 @@ const DADOS_REZDY_LIVE = {
         "produto": "Doors off | 30min",
         "quantidade": 1,
         "dataCriacao": "2026-05-22",
-        "dataFulfillment": "2026-05-29",
+        "dataFulfillment": "2026-05-30",
         "horaFulfillment": "11:00",
         "valorTotal": 2284.8,
         "valorPago": 2284.8,
@@ -4407,7 +4476,7 @@ const DADOS_REZDY_LIVE = {
       },
       {
         "numeroPedido": "VRPKVXYX",
-        "status": "ON_HOLD",
+        "status": "CANCELLED",
         "source": "INTERNAL",
         "agente": "Gustavo Oliveira",
         "nomeCliente": "Armen BABAYAN",
@@ -4418,8 +4487,8 @@ const DADOS_REZDY_LIVE = {
         "dataFulfillment": "2026-05-17",
         "horaFulfillment": "12:00",
         "valorTotal": 5300.0,
-        "valorPago": 5300.0,
-        "valorAPagar": 0.0,
+        "valorPago": 3260.0,
+        "valorAPagar": 2040.0,
         "moeda": "BRL"
       },
       {
@@ -102477,74 +102546,6 @@ const DADOS_REZDY_LIVE = {
         "valorPago": 4460.0,
         "valorAPagar": 0.0,
         "moeda": "BRL"
-      },
-      {
-        "numeroPedido": "VRT0QS10",
-        "status": "CONFIRMED",
-        "source": "ONLINE",
-        "agente": "-",
-        "nomeCliente": "Tracey Parker",
-        "emailCliente": "parkerte1972@gmail.com",
-        "produto": "Doors off | 30min",
-        "quantidade": 3,
-        "dataCriacao": "2025-10-24",
-        "dataFulfillment": "2025-12-16",
-        "horaFulfillment": "11:30",
-        "valorTotal": 4681.8,
-        "valorPago": 4681.8,
-        "valorAPagar": 0.0,
-        "moeda": "BRL"
-      },
-      {
-        "numeroPedido": "VRDKS12A",
-        "status": "ABANDONED_CART",
-        "source": "ONLINE",
-        "agente": "-",
-        "nomeCliente": "Natalie Munoz",
-        "emailCliente": "Munoz.nat45@gmail.com",
-        "produto": "Doors off | 30min",
-        "quantidade": 1,
-        "dataCriacao": "2025-10-24",
-        "dataFulfillment": "",
-        "horaFulfillment": "",
-        "valorTotal": 1662.6,
-        "valorPago": 0.0,
-        "valorAPagar": 1662.6,
-        "moeda": "BRL"
-      },
-      {
-        "numeroPedido": "VRBD1F7R",
-        "status": "CONFIRMED",
-        "source": "INTERNAL",
-        "agente": "Thomás Marinho",
-        "nomeCliente": "Kênya Lopes Bassanesi Seno",
-        "emailCliente": "solke@hotmail.com",
-        "produto": "Doors off | 30min",
-        "quantidade": 1,
-        "dataCriacao": "2025-10-24",
-        "dataFulfillment": "2025-10-25",
-        "horaFulfillment": "11:30",
-        "valorTotal": 1390.0,
-        "valorPago": 1390.0,
-        "valorAPagar": 0.0,
-        "moeda": "BRL"
-      },
-      {
-        "numeroPedido": "VRDYG0VV",
-        "status": "ABANDONED_CART",
-        "source": "ONLINE",
-        "agente": "-",
-        "nomeCliente": "enzo basilio",
-        "emailCliente": "isabella.izabel@hyperpostbr.com",
-        "produto": "Doors off | 30min",
-        "quantidade": 1,
-        "dataCriacao": "2025-10-24",
-        "dataFulfillment": "",
-        "horaFulfillment": "",
-        "valorTotal": 1417.8,
-        "valorPago": 0.0,
-        "valorAPagar": 1417.8,
-        "moeda": "BRL"
       }
     ]
   },
@@ -102552,17 +102553,17 @@ const DADOS_REZDY_LIVE = {
     {
       "mes": "2025-10",
       "label": "Out/2025",
-      "ordens": 153,
-      "receitaTotal": 459104.72,
-      "receitaProdutos": 410630.0,
-      "pago": 238424.03,
+      "ordens": 149,
+      "receitaTotal": 449952.52,
+      "receitaProdutos": 402110.0,
+      "pago": 232352.23,
       "porFonte": {
-        "ONLINE": 113,
-        "INTERNAL": 40
+        "ONLINE": 110,
+        "INTERNAL": 39
       },
       "porStatus": {
-        "CONFIRMED": 66,
-        "ABANDONED_CART": 80,
+        "CONFIRMED": 64,
+        "ABANDONED_CART": 78,
         "CANCELLED": 7
       }
     },
@@ -102678,36 +102679,36 @@ const DADOS_REZDY_LIVE = {
     {
       "mes": "2026-05",
       "label": "Mai/2026",
-      "ordens": 566,
-      "receitaTotal": 1693927.28,
-      "receitaProdutos": 1522195.7,
-      "pago": 836709.29,
+      "ordens": 570,
+      "receitaTotal": 1701580.68,
+      "receitaProdutos": 1529065.7,
+      "pago": 836306.29,
       "porFonte": {
-        "INTERNAL": 174,
-        "ONLINE": 385,
+        "INTERNAL": 175,
+        "ONLINE": 388,
         "MARKETPLACE_PREF_RATE": 7
       },
       "porStatus": {
-        "CONFIRMED": 254,
-        "ABANDONED_CART": 288,
-        "ON_HOLD": 6,
-        "PENDING_CUSTOMER": 4,
-        "CANCELLED": 14
+        "PENDING_CUSTOMER": 5,
+        "CONFIRMED": 256,
+        "ABANDONED_CART": 290,
+        "ON_HOLD": 4,
+        "CANCELLED": 15
       }
     }
   ],
   "porFonte": {
     "INTERNAL": {
       "ordens": 1416,
-      "receita": 4842314.7,
-      "confirmadas": 1163,
-      "pax": 2596
+      "receita": 4844324.7,
+      "confirmadas": 1162,
+      "pax": 2595
     },
     "ONLINE": {
       "ordens": 4547,
-      "receita": 13674620.5,
-      "confirmadas": 1502,
-      "pax": 3030
+      "receita": 13671111.7,
+      "confirmadas": 1503,
+      "pax": 3029
     },
     "MARKETPLACE_PREF_RATE": {
       "ordens": 37,
@@ -102749,7 +102750,7 @@ const DADOS_REZDY_LIVE = {
       "dia": "Sexta",
       "indice": 4,
       "ordens": 854,
-      "receita": 2780066.09,
+      "receita": 2778567.29,
       "confirmadas": 400
     },
     {
@@ -102778,9 +102779,9 @@ const DADOS_REZDY_LIVE = {
     {
       "dia": "Terca",
       "indice": 1,
-      "ordens": 366,
-      "receita": 1015523.0,
-      "confirmadas": 366
+      "ordens": 365,
+      "receita": 1011173.0,
+      "confirmadas": 365
     },
     {
       "dia": "Quarta",
@@ -102813,9 +102814,9 @@ const DADOS_REZDY_LIVE = {
     {
       "dia": "Domingo",
       "indice": 6,
-      "ordens": 412,
-      "receita": 1247031.78,
-      "confirmadas": 412
+      "ordens": 413,
+      "receita": 1248421.78,
+      "confirmadas": 413
     }
   ],
   "porSemana": [
@@ -102879,9 +102880,9 @@ const DADOS_REZDY_LIVE = {
       "inicio": "2026-05-25",
       "fim": "2026-05-31",
       "label": "25/05",
-      "booked": 74,
-      "fulfilled": 66,
-      "receitaBooked": 213688.9
+      "booked": 78,
+      "fulfilled": 68,
+      "receitaBooked": 221342.3
     }
   ],
   "leadTimeHeatmap": {
@@ -102916,9 +102917,9 @@ const DADOS_REZDY_LIVE = {
     ],
     "dados": {
       "2026-05": {
+        "2026-05": 238,
         "2026-06": 19,
         "2026-08": 8,
-        "2026-05": 236,
         "2026-07": 8,
         "2026-09": 2,
         "2026-11": 1
@@ -102986,9 +102987,9 @@ const DADOS_REZDY_LIVE = {
       },
       "2025-10": {
         "2025-11": 28,
-        "2025-12": 15,
+        "2025-12": 14,
         "2026-01": 5,
-        "2025-10": 20,
+        "2025-10": 19,
         "2026-02": 3
       }
     }
@@ -103086,13 +103087,13 @@ const DADOS_REZDY_LIVE = {
       "imagem": ""
     }
   ],
-  "dataAtualizacao": "29/05/2026 12:03:31"
+  "dataAtualizacao": "29/05/2026 12:41:51"
 };
 const DADOS_META = {
   "perfil": {
-    "igFollowers": 138737,
+    "igFollowers": 139021,
     "igMedia": 912,
-    "fbFollowers": 2079,
+    "fbFollowers": 2077,
     "fbNome": "Vertical.Rio",
     "variacoes": {
       "d7": {
@@ -103114,377 +103115,377 @@ const DADOS_META = {
     }
   },
   "d7": {
-    "totalGasto": 3237.53,
-    "totalImpressoes": 282185,
-    "totalCliques": 13268,
-    "cpcMedio": 0.244,
+    "totalGasto": 3606.98,
+    "totalImpressoes": 290731,
+    "totalCliques": 13177,
+    "cpcMedio": 0.274,
     "campanhas": [
       {
         "id": "120214656968890437",
         "nome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
         "objetivo": "OUTCOME_TRAFFIC",
-        "gasto": 1129.82,
-        "impressoes": 94747,
-        "cliques": 3435,
-        "cpc": 0.33,
-        "ctr": 3.63,
-        "cpm": 11.92,
-        "alcance": 82555,
+        "gasto": 1423.16,
+        "impressoes": 101127,
+        "cliques": 3503,
+        "cpc": 0.41,
+        "ctr": 3.46,
+        "cpm": 14.07,
+        "alcance": 89152,
         "conv": null
       },
       {
         "id": "120247060568150437",
         "nome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO] [TESTE]",
         "objetivo": "OUTCOME_TRAFFIC",
-        "gasto": 814.34,
-        "impressoes": 52409,
-        "cliques": 3754,
-        "cpc": 0.22,
-        "ctr": 7.16,
-        "cpm": 15.54,
-        "alcance": 44673,
+        "gasto": 874.58,
+        "impressoes": 61287,
+        "cliques": 4102,
+        "cpc": 0.21,
+        "ctr": 6.69,
+        "cpm": 14.27,
+        "alcance": 52870,
         "conv": null
       },
       {
         "id": "120226714217400437",
         "nome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO]",
         "objetivo": "OUTCOME_TRAFFIC",
-        "gasto": 722.74,
-        "impressoes": 91802,
-        "cliques": 5730,
+        "gasto": 668.89,
+        "impressoes": 79124,
+        "cliques": 5173,
         "cpc": 0.13,
-        "ctr": 6.24,
-        "cpm": 7.87,
-        "alcance": 80053,
+        "ctr": 6.54,
+        "cpm": 8.45,
+        "alcance": 69493,
         "conv": null
       },
       {
         "id": "120243998081540437",
         "nome": "[MSG][GRINGO][RJ][NUVENS-ORG]",
         "objetivo": "OUTCOME_SALES",
-        "gasto": 570.63,
-        "impressoes": 43227,
-        "cliques": 349,
-        "cpc": 1.64,
+        "gasto": 640.35,
+        "impressoes": 49193,
+        "cliques": 399,
+        "cpc": 1.6,
         "ctr": 0.81,
-        "cpm": 13.2,
-        "alcance": 29183,
+        "cpm": 13.02,
+        "alcance": 32354,
         "conv": null
       }
     ],
     "idades": [
       {
         "faixa": "18-24",
-        "gasto": 236.89,
-        "impressoes": 37859,
-        "cliques": 1183
+        "gasto": 246.69,
+        "impressoes": 37627,
+        "cliques": 1161
       },
       {
         "faixa": "25-34",
-        "gasto": 1429.27,
-        "impressoes": 146431,
-        "cliques": 5854
+        "gasto": 1544.58,
+        "impressoes": 155045,
+        "cliques": 5922
       },
       {
         "faixa": "35-44",
-        "gasto": 655.5,
-        "impressoes": 49396,
-        "cliques": 2479
+        "gasto": 735.14,
+        "impressoes": 49913,
+        "cliques": 2404
       },
       {
         "faixa": "45-54",
-        "gasto": 431.44,
-        "impressoes": 25034,
-        "cliques": 1621
+        "gasto": 513.99,
+        "impressoes": 25158,
+        "cliques": 1585
       },
       {
         "faixa": "55-64",
-        "gasto": 286.2,
-        "impressoes": 14171,
-        "cliques": 1247
+        "gasto": 341.74,
+        "impressoes": 13901,
+        "cliques": 1223
       },
       {
         "faixa": "65+",
-        "gasto": 198.13,
-        "impressoes": 9289,
-        "cliques": 884
+        "gasto": 224.8,
+        "impressoes": 9084,
+        "cliques": 882
       }
     ],
     "geos": [
       {
         "local": "Brasil",
-        "gasto": 1553.02,
-        "impressoes": 147654,
-        "cliques": 5866
+        "gasto": 1755.15,
+        "impressoes": 152150,
+        "cliques": 5823
       },
       {
         "local": "EUA",
-        "gasto": 733.59,
-        "impressoes": 19783,
-        "cliques": 1542
+        "gasto": 803.26,
+        "impressoes": 18949,
+        "cliques": 1417
       },
       {
         "local": "AE",
-        "gasto": 124.89,
-        "impressoes": 15390,
-        "cliques": 844
+        "gasto": 138.47,
+        "impressoes": 16906,
+        "cliques": 932
+      },
+      {
+        "local": "Mexico",
+        "gasto": 123.3,
+        "impressoes": 15090,
+        "cliques": 492
       },
       {
         "local": "Franca",
-        "gasto": 118.81,
-        "impressoes": 10581,
-        "cliques": 708
+        "gasto": 115.15,
+        "impressoes": 10021,
+        "cliques": 688
       },
       {
         "local": "Portugal",
-        "gasto": 102.08,
-        "impressoes": 13588,
-        "cliques": 528
+        "gasto": 110.25,
+        "impressoes": 14022,
+        "cliques": 545
       },
       {
         "local": "Argentina",
-        "gasto": 89.03,
-        "impressoes": 9424,
-        "cliques": 672
-      },
-      {
-        "local": "Equador",
-        "gasto": 76.8,
-        "impressoes": 11541,
-        "cliques": 552
+        "gasto": 81.48,
+        "impressoes": 8094,
+        "cliques": 604
       }
     ],
     "mensagens": {
-      "conexoes": 78,
-      "firstReply": 74,
-      "conversas": 78,
-      "bloqueios": 6
+      "conexoes": 95,
+      "firstReply": 91,
+      "conversas": 94,
+      "bloqueios": 10
     },
     "anterior": {
-      "gasto": 3627.89,
-      "impressoes": 437087,
-      "cliques": 19637,
+      "gasto": 3643.58,
+      "impressoes": 424893,
+      "cliques": 19180,
       "mensagens": {
-        "conexoes": 40,
-        "firstReply": 40,
-        "conversas": 41
+        "conexoes": 41,
+        "firstReply": 41,
+        "conversas": 42
       }
     }
   },
   "d14": {
-    "totalGasto": 6393.1,
-    "totalImpressoes": 667163,
-    "totalCliques": 30506,
-    "cpcMedio": 0.21,
+    "totalGasto": 6820.94,
+    "totalImpressoes": 672686,
+    "totalCliques": 30438,
+    "cpcMedio": 0.224,
     "campanhas": [
       {
         "id": "120214656968890437",
         "nome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
         "objetivo": "OUTCOME_TRAFFIC",
-        "gasto": 2532.02,
-        "impressoes": 262377,
-        "cliques": 9029,
-        "cpc": 0.28,
+        "gasto": 2819.49,
+        "impressoes": 265768,
+        "cliques": 9151,
+        "cpc": 0.31,
         "ctr": 3.44,
-        "cpm": 9.65,
-        "alcance": 216252,
+        "cpm": 10.61,
+        "alcance": 220983,
         "conv": null
       },
       {
         "id": "120226714217400437",
         "nome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO]",
         "objetivo": "OUTCOME_TRAFFIC",
-        "gasto": 1658.64,
-        "impressoes": 249268,
-        "cliques": 13721,
+        "gasto": 1598.89,
+        "impressoes": 232399,
+        "cliques": 13110,
         "cpc": 0.12,
-        "ctr": 5.5,
-        "cpm": 6.65,
-        "alcance": 189949,
+        "ctr": 5.64,
+        "cpm": 6.88,
+        "alcance": 182446,
         "conv": null
       },
       {
         "id": "120247060568150437",
         "nome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO] [TESTE]",
         "objetivo": "OUTCOME_TRAFFIC",
-        "gasto": 1455.94,
-        "impressoes": 100787,
-        "cliques": 7296,
+        "gasto": 1537.85,
+        "impressoes": 109776,
+        "cliques": 7636,
         "cpc": 0.2,
-        "ctr": 7.24,
-        "cpm": 14.45,
-        "alcance": 76588,
+        "ctr": 6.96,
+        "cpm": 14.01,
+        "alcance": 86737,
         "conv": null
       },
       {
         "id": "120243998081540437",
         "nome": "[MSG][GRINGO][RJ][NUVENS-ORG]",
         "objetivo": "OUTCOME_SALES",
-        "gasto": 746.5,
-        "impressoes": 54731,
-        "cliques": 460,
-        "cpc": 1.62,
+        "gasto": 864.71,
+        "impressoes": 64743,
+        "cliques": 541,
+        "cpc": 1.6,
         "ctr": 0.84,
-        "cpm": 13.64,
-        "alcance": 34511,
+        "cpm": 13.36,
+        "alcance": 38979,
         "conv": null
       }
     ],
     "idades": [
       {
         "faixa": "18-24",
-        "gasto": 508.75,
-        "impressoes": 90228,
-        "cliques": 2922
+        "gasto": 519.37,
+        "impressoes": 89493,
+        "cliques": 2854
       },
       {
         "faixa": "25-34",
-        "gasto": 2914.92,
-        "impressoes": 353620,
-        "cliques": 13986
+        "gasto": 3056.31,
+        "impressoes": 358415,
+        "cliques": 13959
       },
       {
         "faixa": "35-44",
-        "gasto": 1274.55,
-        "impressoes": 114759,
-        "cliques": 5632
+        "gasto": 1372.9,
+        "impressoes": 116059,
+        "cliques": 5666
       },
       {
         "faixa": "45-54",
-        "gasto": 797.05,
-        "impressoes": 54409,
-        "cliques": 3415
+        "gasto": 891.89,
+        "impressoes": 55412,
+        "cliques": 3457
       },
       {
         "faixa": "55-64",
-        "gasto": 521.0,
-        "impressoes": 31835,
-        "cliques": 2550
+        "gasto": 579.25,
+        "impressoes": 31512,
+        "cliques": 2539
       },
       {
         "faixa": "65+",
-        "gasto": 376.7,
-        "impressoes": 22301,
-        "cliques": 2001
+        "gasto": 401.1,
+        "impressoes": 21786,
+        "cliques": 1963
       }
     ],
     "geos": [
       {
         "local": "Brasil",
-        "gasto": 2906.68,
-        "impressoes": 329051,
-        "cliques": 13667
+        "gasto": 3154.1,
+        "impressoes": 336509,
+        "cliques": 13697
       },
       {
         "local": "EUA",
-        "gasto": 1359.59,
-        "impressoes": 40499,
-        "cliques": 3093
+        "gasto": 1454.85,
+        "impressoes": 40735,
+        "cliques": 3062
       },
       {
         "local": "Franca",
-        "gasto": 251.47,
-        "impressoes": 25273,
-        "cliques": 1586
+        "gasto": 240.9,
+        "impressoes": 23661,
+        "cliques": 1506
       },
       {
         "local": "AE",
-        "gasto": 198.58,
-        "impressoes": 26280,
-        "cliques": 1426
+        "gasto": 215.56,
+        "impressoes": 28244,
+        "cliques": 1533
       },
       {
         "local": "Portugal",
-        "gasto": 193.3,
-        "impressoes": 29562,
-        "cliques": 1080
+        "gasto": 203.35,
+        "impressoes": 30024,
+        "cliques": 1094
+      },
+      {
+        "local": "Mexico",
+        "gasto": 179.31,
+        "impressoes": 24205,
+        "cliques": 909
       },
       {
         "local": "Equador",
-        "gasto": 191.44,
-        "impressoes": 33181,
-        "cliques": 1442
-      },
-      {
-        "local": "Colombia",
-        "gasto": 182.46,
-        "impressoes": 29346,
-        "cliques": 1324
+        "gasto": 179.04,
+        "impressoes": 30063,
+        "cliques": 1331
       }
     ],
     "mensagens": {
-      "conexoes": 109,
-      "firstReply": 106,
-      "conversas": 110,
-      "bloqueios": 14
+      "conexoes": 134,
+      "firstReply": 130,
+      "conversas": 134,
+      "bloqueios": 18
     },
     "anterior": {
-      "gasto": 17744.4,
-      "impressoes": 2568830,
-      "cliques": 94038,
+      "gasto": 16493.36,
+      "impressoes": 2359895,
+      "cliques": 87769,
       "mensagens": {
-        "conexoes": 22,
-        "firstReply": 27,
-        "conversas": 29
+        "conexoes": 20,
+        "firstReply": 25,
+        "conversas": 26
       }
     }
   },
   "d30": {
-    "totalGasto": 26417.34,
-    "totalImpressoes": 3578417,
-    "totalCliques": 136229,
-    "cpcMedio": 0.194,
+    "totalGasto": 25865.6,
+    "totalImpressoes": 3442800,
+    "totalCliques": 131222,
+    "cpcMedio": 0.197,
     "campanhas": [
       {
         "id": "120214656968890437",
         "nome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
         "objetivo": "OUTCOME_TRAFFIC",
-        "gasto": 11628.86,
-        "impressoes": 1584976,
-        "cliques": 41815,
+        "gasto": 11519.89,
+        "impressoes": 1513746,
+        "cliques": 40571,
         "cpc": 0.28,
-        "ctr": 2.64,
-        "cpm": 7.34,
-        "alcance": 1007030,
+        "ctr": 2.68,
+        "cpm": 7.61,
+        "alcance": 973967,
         "conv": 2.0
       },
       {
         "id": "120226714217400437",
         "nome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO]",
         "objetivo": "OUTCOME_TRAFFIC",
-        "gasto": 10252.65,
-        "impressoes": 1666926,
-        "cliques": 75996,
+        "gasto": 9523.59,
+        "impressoes": 1576811,
+        "cliques": 71312,
         "cpc": 0.13,
-        "ctr": 4.56,
-        "cpm": 6.15,
-        "alcance": 929011,
+        "ctr": 4.52,
+        "cpm": 6.04,
+        "alcance": 895469,
         "conv": null
       },
       {
         "id": "120247060568150437",
         "nome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO] [TESTE]",
         "objetivo": "OUTCOME_TRAFFIC",
-        "gasto": 3716.87,
-        "impressoes": 266771,
-        "cliques": 17906,
+        "gasto": 3884.95,
+        "impressoes": 282487,
+        "cliques": 18746,
         "cpc": 0.21,
-        "ctr": 6.71,
-        "cpm": 13.93,
-        "alcance": 173176,
+        "ctr": 6.64,
+        "cpm": 13.75,
+        "alcance": 186088,
         "conv": null
       },
       {
         "id": "120243998081540437",
         "nome": "[MSG][GRINGO][RJ][NUVENS-ORG]",
         "objetivo": "OUTCOME_SALES",
-        "gasto": 748.3,
-        "impressoes": 54861,
-        "cliques": 461,
-        "cpc": 1.62,
+        "gasto": 866.51,
+        "impressoes": 64873,
+        "cliques": 542,
+        "cpc": 1.6,
         "ctr": 0.84,
-        "cpm": 13.64,
-        "alcance": 34738,
+        "cpm": 13.36,
+        "alcance": 39157,
         "conv": null
       },
       {
@@ -103504,171 +103505,171 @@ const DADOS_META = {
     "idades": [
       {
         "faixa": "18-24",
-        "gasto": 2304.97,
-        "impressoes": 506148,
-        "cliques": 12512
+        "gasto": 2236.14,
+        "impressoes": 484044,
+        "cliques": 12168
       },
       {
         "faixa": "25-34",
-        "gasto": 11779.02,
-        "impressoes": 1911555,
-        "cliques": 60214
+        "gasto": 11485.42,
+        "impressoes": 1841107,
+        "cliques": 58139
       },
       {
         "faixa": "35-44",
-        "gasto": 5140.44,
-        "impressoes": 586276,
-        "cliques": 24368
+        "gasto": 4993.09,
+        "impressoes": 561595,
+        "cliques": 23215
       },
       {
         "faixa": "45-54",
-        "gasto": 2989.07,
-        "impressoes": 256298,
-        "cliques": 14135
+        "gasto": 2980.61,
+        "impressoes": 248274,
+        "cliques": 13651
       },
       {
         "faixa": "55-64",
-        "gasto": 2182.18,
-        "impressoes": 171138,
-        "cliques": 12432
+        "gasto": 2186.23,
+        "impressoes": 166046,
+        "cliques": 12020
       },
       {
         "faixa": "65+",
-        "gasto": 2021.19,
-        "impressoes": 146943,
-        "cliques": 12567
+        "gasto": 1983.65,
+        "impressoes": 141677,
+        "cliques": 12028
       }
     ],
     "geos": [
       {
         "local": "Brasil",
-        "gasto": 15428.43,
-        "impressoes": 2234679,
-        "cliques": 80058
+        "gasto": 14815.58,
+        "impressoes": 2119397,
+        "cliques": 75883
       },
       {
         "local": "EUA",
-        "gasto": 2690.5,
-        "impressoes": 90047,
-        "cliques": 6283
+        "gasto": 2864.53,
+        "impressoes": 92496,
+        "cliques": 6433
       },
       {
         "local": "Portugal",
-        "gasto": 1014.18,
-        "impressoes": 136442,
-        "cliques": 4982
+        "gasto": 1006.12,
+        "impressoes": 134390,
+        "cliques": 4968
       },
       {
         "local": "Colombia",
-        "gasto": 812.14,
-        "impressoes": 144886,
-        "cliques": 5535
+        "gasto": 758.41,
+        "impressoes": 138290,
+        "cliques": 5231
       },
       {
         "local": "Equador",
-        "gasto": 782.81,
-        "impressoes": 153866,
-        "cliques": 5727
-      },
-      {
-        "local": "Peru",
-        "gasto": 739.31,
-        "impressoes": 119857,
-        "cliques": 5263
+        "gasto": 732.19,
+        "impressoes": 146887,
+        "cliques": 5363
       },
       {
         "local": "Franca",
-        "gasto": 710.34,
-        "impressoes": 71330,
-        "cliques": 4033
+        "gasto": 709.66,
+        "impressoes": 71027,
+        "cliques": 4062
+      },
+      {
+        "local": "Peru",
+        "gasto": 703.71,
+        "impressoes": 115232,
+        "cliques": 5029
       }
     ],
     "mensagens": {
-      "conexoes": 135,
-      "firstReply": 138,
-      "conversas": 145,
-      "bloqueios": 58
+      "conexoes": 158,
+      "firstReply": 159,
+      "conversas": 165,
+      "bloqueios": 62
     },
     "anterior": {
-      "gasto": 16734.87,
-      "impressoes": 2877916,
-      "cliques": 89294,
+      "gasto": 17882.51,
+      "impressoes": 3054708,
+      "cliques": 95355,
       "mensagens": {
-        "conexoes": 681,
-        "firstReply": 656,
-        "conversas": 698
+        "conexoes": 670,
+        "firstReply": 645,
+        "conversas": 686
       }
     }
   },
   "d90": {
-    "totalGasto": 47604.99,
-    "totalImpressoes": 7120308,
-    "totalCliques": 239519,
-    "cpcMedio": 0.199,
+    "totalGasto": 48111.39,
+    "totalImpressoes": 7136976,
+    "totalCliques": 240669,
+    "cpcMedio": 0.2,
     "campanhas": [
       {
         "id": "120214656968890437",
         "nome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
         "objetivo": "OUTCOME_TRAFFIC",
-        "gasto": 20615.57,
-        "impressoes": 3409179,
-        "cliques": 82754,
+        "gasto": 21023.59,
+        "impressoes": 3422397,
+        "cliques": 83210,
         "cpc": 0.25,
         "ctr": 2.43,
-        "cpm": 6.05,
-        "alcance": 1654553,
+        "cpm": 6.14,
+        "alcance": 1667087,
         "conv": 2.0
       },
       {
         "id": "120226714217400437",
         "nome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO]",
         "objetivo": "OUTCOME_TRAFFIC",
-        "gasto": 17026.44,
-        "impressoes": 2898308,
-        "cliques": 130310,
+        "gasto": 17060.78,
+        "impressoes": 2895389,
+        "cliques": 130557,
         "cpc": 0.13,
-        "ctr": 4.5,
-        "cpm": 5.87,
-        "alcance": 1275429,
+        "ctr": 4.51,
+        "cpm": 5.89,
+        "alcance": 1272579,
         "conv": null
       },
       {
         "id": "120243998081540437",
         "nome": "[MSG][GRINGO][RJ][NUVENS-ORG]",
         "objetivo": "OUTCOME_SALES",
-        "gasto": 3920.65,
-        "impressoes": 371303,
-        "cliques": 5631,
-        "cpc": 0.7,
-        "ctr": 1.52,
-        "cpm": 10.56,
-        "alcance": 225940,
+        "gasto": 4038.86,
+        "impressoes": 381315,
+        "cliques": 5712,
+        "cpc": 0.71,
+        "ctr": 1.5,
+        "cpm": 10.59,
+        "alcance": 230541,
         "conv": 1.0
       },
       {
         "id": "120247060568150437",
         "nome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO] [TESTE]",
         "objetivo": "OUTCOME_TRAFFIC",
-        "gasto": 3716.87,
-        "impressoes": 266771,
-        "cliques": 17906,
+        "gasto": 3884.95,
+        "impressoes": 282487,
+        "cliques": 18746,
         "cpc": 0.21,
-        "ctr": 6.71,
-        "cpm": 13.93,
-        "alcance": 173176,
+        "ctr": 6.64,
+        "cpm": 13.75,
+        "alcance": 186088,
         "conv": null
       },
       {
         "id": "120242268312180437",
         "nome": "[LX] [MENSAGEM] [ADV] [TESTE]",
         "objetivo": "OUTCOME_ENGAGEMENT",
-        "gasto": 1886.47,
-        "impressoes": 115673,
-        "cliques": 2000,
-        "cpc": 0.94,
-        "ctr": 1.73,
-        "cpm": 16.31,
-        "alcance": 65625,
+        "gasto": 1664.22,
+        "impressoes": 96314,
+        "cliques": 1526,
+        "cpc": 1.09,
+        "ctr": 1.58,
+        "cpm": 17.28,
+        "alcance": 50542,
         "conv": 2.0
       },
       {
@@ -103701,132 +103702,132 @@ const DADOS_META = {
     "idades": [
       {
         "faixa": "18-24",
-        "gasto": 4922.91,
-        "impressoes": 1134716,
-        "cliques": 25658
+        "gasto": 4911.82,
+        "impressoes": 1130088,
+        "cliques": 25603
       },
       {
         "faixa": "25-34",
-        "gasto": 21653.47,
-        "impressoes": 3904123,
-        "cliques": 111731
+        "gasto": 21887.93,
+        "impressoes": 3923157,
+        "cliques": 112489
       },
       {
         "faixa": "35-44",
-        "gasto": 9888.07,
-        "impressoes": 1174496,
-        "cliques": 44456
+        "gasto": 9989.01,
+        "impressoes": 1177475,
+        "cliques": 44655
       },
       {
         "faixa": "45-54",
-        "gasto": 5085.04,
-        "impressoes": 442426,
-        "cliques": 22278
+        "gasto": 5165.94,
+        "impressoes": 441703,
+        "cliques": 22352
       },
       {
         "faixa": "55-64",
-        "gasto": 3234.24,
-        "impressoes": 254715,
-        "cliques": 17732
+        "gasto": 3293.02,
+        "impressoes": 254073,
+        "cliques": 17796
       },
       {
         "faixa": "65+",
-        "gasto": 2819.92,
-        "impressoes": 209664,
-        "cliques": 17658
+        "gasto": 2862.35,
+        "impressoes": 210316,
+        "cliques": 17768
       }
     ],
     "geos": [
       {
         "local": "Brasil",
-        "gasto": 30496.44,
-        "impressoes": 4619167,
-        "cliques": 146160
+        "gasto": 30625.82,
+        "impressoes": 4616439,
+        "cliques": 146403
       },
       {
         "local": "EUA",
-        "gasto": 2705.49,
-        "impressoes": 100569,
-        "cliques": 6368
+        "gasto": 2879.41,
+        "impressoes": 103226,
+        "cliques": 6518
       },
       {
         "local": "Colombia",
-        "gasto": 1552.57,
-        "impressoes": 287750,
-        "cliques": 10616
+        "gasto": 1554.3,
+        "impressoes": 287290,
+        "cliques": 10629
       },
       {
         "local": "Equador",
-        "gasto": 1492.13,
-        "impressoes": 300965,
-        "cliques": 10679
+        "gasto": 1491.23,
+        "impressoes": 300352,
+        "cliques": 10670
       },
       {
         "local": "Portugal",
-        "gasto": 1467.67,
-        "impressoes": 215213,
-        "cliques": 6803
+        "gasto": 1484.64,
+        "impressoes": 216879,
+        "cliques": 6871
       },
       {
         "local": "Argentina",
-        "gasto": 1391.16,
-        "impressoes": 246052,
-        "cliques": 9525
+        "gasto": 1395.19,
+        "impressoes": 245355,
+        "cliques": 9564
       },
       {
-        "local": "Chile",
-        "gasto": 1331.88,
-        "impressoes": 246754,
-        "cliques": 9191
+        "local": "Peru",
+        "gasto": 1328.7,
+        "impressoes": 219196,
+        "cliques": 9441
       }
     ],
     "mensagens": {
-      "conexoes": 1577,
-      "firstReply": 1513,
-      "conversas": 1591,
-      "bloqueios": 111
+      "conexoes": 1531,
+      "firstReply": 1465,
+      "conversas": 1543,
+      "bloqueios": 114
     },
     "anterior": {
-      "gasto": 50001.41,
-      "impressoes": 7469583,
-      "cliques": 206187,
+      "gasto": 49538.92,
+      "impressoes": 7449514,
+      "cliques": 205254,
       "mensagens": {
-        "conexoes": 1694,
-        "firstReply": 1625,
-        "conversas": 1743
+        "conexoes": 1721,
+        "firstReply": 1651,
+        "conversas": 1771
       }
     }
   },
   "max": {
-    "totalGasto": 434161.58,
-    "totalImpressoes": 76488713,
-    "totalCliques": 1522988,
+    "totalGasto": 435057.82,
+    "totalImpressoes": 76559810,
+    "totalCliques": 1525987,
     "cpcMedio": 0.285,
     "campanhas": [
       {
         "id": "120214656968890437",
         "nome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
         "objetivo": "OUTCOME_TRAFFIC",
-        "gasto": 93890.79,
-        "impressoes": 17587115,
-        "cliques": 398727,
+        "gasto": 94460.9,
+        "impressoes": 17625836,
+        "cliques": 400126,
         "cpc": 0.24,
         "ctr": 2.27,
-        "cpm": 5.34,
-        "alcance": 6425378,
+        "cpm": 5.36,
+        "alcance": 6456413,
         "conv": null
       },
       {
         "id": "120226714217400437",
         "nome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO]",
         "objetivo": "OUTCOME_TRAFFIC",
-        "gasto": 57398.34,
-        "impressoes": 9247910,
-        "cliques": 430076,
+        "gasto": 57445.8,
+        "impressoes": 9251835,
+        "cliques": 430401,
         "cpc": 0.13,
         "ctr": 4.65,
         "cpm": 6.21,
-        "alcance": 3555098,
+        "alcance": 3555084,
         "conv": 1.0
       },
       {
@@ -104002,26 +104003,26 @@ const DADOS_META = {
         "id": "120243998081540437",
         "nome": "[MSG][GRINGO][RJ][NUVENS-ORG]",
         "objetivo": "OUTCOME_SALES",
-        "gasto": 4009.69,
-        "impressoes": 378832,
-        "cliques": 5685,
+        "gasto": 4076.47,
+        "impressoes": 383927,
+        "cliques": 5733,
         "cpc": 0.71,
-        "ctr": 1.5,
-        "cpm": 10.58,
-        "alcance": 222332,
+        "ctr": 1.49,
+        "cpm": 10.62,
+        "alcance": 224283,
         "conv": 1.0
       },
       {
         "id": "120247060568150437",
         "nome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO] [TESTE]",
         "objetivo": "OUTCOME_TRAFFIC",
-        "gasto": 3787.21,
-        "impressoes": 271906,
-        "cliques": 18234,
+        "gasto": 3999.1,
+        "impressoes": 295262,
+        "cliques": 19461,
         "cpc": 0.21,
-        "ctr": 6.71,
-        "cpm": 13.93,
-        "alcance": 171143,
+        "ctr": 6.59,
+        "cpm": 13.54,
+        "alcance": 191423,
         "conv": null
       },
       {
@@ -104697,104 +104698,93 @@ const DADOS_META = {
       },
       {
         "faixa": "18-24",
-        "gasto": 89601.74,
-        "impressoes": 22858362,
-        "cliques": 363768
+        "gasto": 89661.63,
+        "impressoes": 22866698,
+        "cliques": 364072
       },
       {
         "faixa": "25-34",
-        "gasto": 199163.5,
-        "impressoes": 35638797,
-        "cliques": 647461
+        "gasto": 199558.8,
+        "impressoes": 35682863,
+        "cliques": 649084
       },
       {
         "faixa": "35-44",
-        "gasto": 83965.01,
-        "impressoes": 11367606,
-        "cliques": 239506
+        "gasto": 84152.45,
+        "impressoes": 11378538,
+        "cliques": 240046
       },
       {
         "faixa": "45-54",
-        "gasto": 31511.15,
-        "impressoes": 3207736,
-        "cliques": 119801
+        "gasto": 31633.3,
+        "impressoes": 3212131,
+        "cliques": 120050
       },
       {
         "faixa": "55-64",
-        "gasto": 17371.86,
-        "impressoes": 1894888,
-        "cliques": 85251
+        "gasto": 17449.21,
+        "impressoes": 1896865,
+        "cliques": 85396
       },
       {
         "faixa": "65+",
-        "gasto": 12545.85,
-        "impressoes": 1520998,
-        "cliques": 67192
+        "gasto": 12599.96,
+        "impressoes": 1522389,
+        "cliques": 67330
       }
     ],
     "geos": [
       {
         "local": "Brasil",
-        "gasto": 264208.02,
-        "impressoes": 43395408,
-        "cliques": 697084
+        "gasto": 264602.93,
+        "impressoes": 43423428,
+        "cliques": 698294
       },
       {
         "local": "Colombia",
-        "gasto": 13894.89,
-        "impressoes": 2531065,
-        "cliques": 115109
+        "gasto": 13898.29,
+        "impressoes": 2531279,
+        "cliques": 115131
       },
       {
         "local": "Chile",
-        "gasto": 10875.24,
-        "impressoes": 1932233,
-        "cliques": 52716
+        "gasto": 10876.15,
+        "impressoes": 1932286,
+        "cliques": 52720
       },
       {
         "local": "Argentina",
-        "gasto": 6943.75,
-        "impressoes": 1339549,
-        "cliques": 37581
+        "gasto": 6948.61,
+        "impressoes": 1339872,
+        "cliques": 37611
       },
       {
         "local": "Canada",
-        "gasto": 3284.98,
-        "impressoes": 159750,
-        "cliques": 2786
+        "gasto": 3320.56,
+        "impressoes": 161420,
+        "cliques": 2920
       },
       {
         "local": "CR",
-        "gasto": 964.12,
-        "impressoes": 120070,
+        "gasto": 964.07,
+        "impressoes": 120067,
         "cliques": 2073
       },
       {
         "local": "BE",
-        "gasto": 774.6,
-        "impressoes": 120086,
+        "gasto": 774.56,
+        "impressoes": 120083,
         "cliques": 1812
       }
     ],
     "mensagens": {
-      "conexoes": 12052,
-      "firstReply": 11497,
-      "conversas": 14300,
+      "conexoes": 12062,
+      "firstReply": 11507,
+      "conversas": 14310,
       "bloqueios": 129
     }
   },
   "diario": [
-    {
-      "data": "2025-05-28",
-      "gasto": 450.52,
-      "impressoes": 71953,
-      "cliques": 3264,
-      "mensagens": {
-        "conexoes": 20,
-        "firstReply": 17,
-        "conversas": 18
-      }
-    },
     {
       "data": "2025-05-29",
       "gasto": 409.83,
@@ -108735,8 +108725,8 @@ const DADOS_META = {
     },
     {
       "data": "2026-05-27",
-      "gasto": 451.02,
-      "impressoes": 30518,
+      "gasto": 451.09,
+      "impressoes": 30526,
       "cliques": 1351,
       "mensagens": {
         "conexoes": 17,
@@ -108746,13 +108736,24 @@ const DADOS_META = {
     },
     {
       "data": "2026-05-28",
-      "gasto": 424.93,
-      "impressoes": 27592,
-      "cliques": 979,
+      "gasto": 841.7,
+      "impressoes": 60647,
+      "cliques": 2308,
       "mensagens": {
-        "conexoes": 18,
-        "firstReply": 17,
-        "conversas": 17
+        "conexoes": 26,
+        "firstReply": 25,
+        "conversas": 25
+      }
+    },
+    {
+      "data": "2026-05-29",
+      "gasto": 479.4,
+      "impressoes": 38034,
+      "cliques": 1670,
+      "mensagens": {
+        "conexoes": 5,
+        "firstReply": 5,
+        "conversas": 5
       }
     }
   ],
@@ -108768,14 +108769,14 @@ const DADOS_META = {
         "adsetId": "120241679927520437",
         "adsetNome": "🟢[LAL-LISTA-COMPRADORES][RJ]",
         "campNome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
-        "spend": 1804.23,
-        "impressoes": 178809,
-        "cliques": 6628,
-        "ctr": 3.707,
-        "cpc": 0.272,
-        "cpm": 10.09,
-        "alcance": 135828,
-        "thumbnail": "https://scontent.fgig20-1.fna.fbcdn.net/v/t15.5256-10/689789943_1543137207598270_2379855030338845825_n.jpg?_nc_cat=101&ccb=1-7&_nc_ohc=fBsdLSsR6FoQ7kNvwEz90ji&_nc_oc=AdoVeZkoTYT2oUAJA4w54wegBQUuAGIOHiwZpmPPh1A7ySCGcVON2sUH4UmbYzl91EF8EslDbBElK5YhrrVTgfBI&_nc_zt=23&_nc_ht=scontent.fgig20-1.fna&edm=AAwGEdEEAAAA&_nc_gid=eSYlTfGgECOc5V5Afdddbg&_nc_tpa=Q5bMBQEubi9CySehCUz0U0eC2P37veZe-2GyIOzY_AdMIbqCyi4fjd0z-6o5pmSdKzfSEvcHT2hZoYe_7Q&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Af4QIBPsysrUCvtptSebJquh8UlzW6LSUJ3TfHUeueBJfQ&oe=6A1E8B3D"
+        "spend": 1887.17,
+        "impressoes": 182502,
+        "cliques": 6839,
+        "ctr": 3.747,
+        "cpc": 0.276,
+        "cpm": 10.341,
+        "alcance": 137865,
+        "thumbnail": "https://scontent.fsdu36-1.fna.fbcdn.net/v/t15.5256-10/689789943_1543137207598270_2379855030338845825_n.jpg?_nc_cat=101&ccb=1-7&_nc_ohc=fBsdLSsR6FoQ7kNvwFKlkFo&_nc_oc=AdoniRrj9ik84_VEBf_jUnB84ImjnXD-2lko-RrRVj2Q8u1CtSTEfUTeP3rhLqn5PkypMq0TpeeM4hxGqyD9Ke2t&_nc_zt=23&_nc_ht=scontent.fsdu36-1.fna&edm=AAwGEdEEAAAA&_nc_gid=6yWoOdclmgJhE2t2xfG_7Q&_nc_tpa=Q5bMBQFTw-qUJDQ1ZcTLOOsdI3WaNFJXNRMUbKh8Q29riVRzSu8lio3tyA6VnhNwRkgagUqeJjp9gZpuwA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Af5mfvlm25ZH92r9SubAAB4uwZCtvOmz_9jecuv_rlTvPA&oe=6A1F6C3D"
       },
       "b": {
         "adId": "120241679927550437",
@@ -108783,14 +108784,14 @@ const DADOS_META = {
         "adsetId": "120241679927520437",
         "adsetNome": "🟢[LAL-LISTA-COMPRADORES][RJ]",
         "campNome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
-        "spend": 1227.27,
-        "impressoes": 301106,
-        "cliques": 4275,
-        "ctr": 1.42,
-        "cpc": 0.287,
-        "cpm": 4.076,
-        "alcance": 180646,
-        "thumbnail": "https://scontent.fgig20-1.fna.fbcdn.net/v/t15.5256-10/597385240_1368185495089184_2796060675907438818_n.jpg?_nc_cat=104&ccb=1-7&_nc_ohc=jQ08SNjkc4gQ7kNvwFScVlY&_nc_oc=Adrw7yQna2ths0UEtOwzCHbZL6s7qOrLJjtxapotvuLPCj_CHnzZX4x_vtYU7TsFZO7fuagRaNao-7qTJXzxQ7Yl&_nc_zt=23&_nc_ht=scontent.fgig20-1.fna&edm=AAwGEdEEAAAA&_nc_gid=eSYlTfGgECOc5V5Afdddbg&_nc_tpa=Q5bMBQGnFe2njyqAoeyS23ds_lFl1PuLD31RCzv8IeXpZuakarS-1ZKOyfC9I7MqbME9BfuiN6Oo3mwmYA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Af6XFH3LxdVLMyvt-ixwE7kd8630E-d35q2HA-vDha_foA&oe=6A1E91CE"
+        "spend": 1079.93,
+        "impressoes": 265538,
+        "cliques": 3732,
+        "ctr": 1.405,
+        "cpc": 0.289,
+        "cpm": 4.067,
+        "alcance": 163281,
+        "thumbnail": "https://scontent.fsdu36-1.fna.fbcdn.net/v/t15.5256-10/597385240_1368185495089184_2796060675907438818_n.jpg?_nc_cat=104&ccb=1-7&_nc_ohc=v7JMsjWBGLsQ7kNvwEOqz6w&_nc_oc=AdoYpOvecWk31Ue6zzJD7lGrYm4ctp_9VPeHnjrIr7xPmt0IatkLzJejohcUCyy8GDHPZsJluCyiC9ZO5jS5t6rA&_nc_zt=23&_nc_ht=scontent.fsdu36-1.fna&edm=AAwGEdEEAAAA&_nc_gid=6yWoOdclmgJhE2t2xfG_7Q&_nc_tpa=Q5bMBQFCOts8n2F-dYU4Mp6qCUsGDhquYhyLjZTeLh9-9k2jZufgzySEHJ1EK5-yBws8j4L7dEhbZEj9Kg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Af4GNSINKjrH73wd019uy_IvkCFeYnnVaYMXhTf8sJZd7Q&oe=6A1F72CE"
       },
       "vencedorCtr": "a",
       "vencedorCpc": "a",
@@ -108807,14 +108808,14 @@ const DADOS_META = {
         "adsetId": "120239848415130437",
         "adsetNome": "[VIDEOVIEW] [TOP ESTADOS] [RJ]",
         "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO]",
-        "spend": 2966.31,
-        "impressoes": 554132,
-        "cliques": 28112,
-        "ctr": 5.073,
+        "spend": 2899.71,
+        "impressoes": 540653,
+        "cliques": 27451,
+        "ctr": 5.077,
         "cpc": 0.106,
-        "cpm": 5.353,
-        "alcance": 398351,
-        "thumbnail": "https://scontent.fgig20-1.fna.fbcdn.net/v/t15.5256-10/663307979_1318845760088758_4444161616552990535_n.jpg?_nc_cat=110&ccb=1-7&_nc_ohc=0e70MZ3o-cUQ7kNvwEGAR44&_nc_oc=AdoimEKhL98lyXK85VMlsIJDPXZPoJXKpmZmeoFujMimIdlFh77gLFYIRyWjUkUxmtCpX3JErRloshWCiMjJw1Zd&_nc_zt=23&_nc_ht=scontent.fgig20-1.fna&edm=AAwGEdEEAAAA&_nc_gid=eSYlTfGgECOc5V5Afdddbg&_nc_tpa=Q5bMBQFutGQzZxLqxRs9jGYaw2Lypb6n-EWwR5QA3TC8xqnUoc-uv8TUN2PaNRcwbxCrNqygoEkR4OeZhg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Af63D93Dxzbd79fFRwhdAk-QunE59WYOkCbLJgwKPhIY6w&oe=6A1E864E"
+        "cpm": 5.363,
+        "alcance": 392616,
+        "thumbnail": "https://scontent.fsdu36-1.fna.fbcdn.net/v/t15.5256-10/663307979_1318845760088758_4444161616552990535_n.jpg?_nc_cat=110&ccb=1-7&_nc_ohc=0e70MZ3o-cUQ7kNvwGr8ANc&_nc_oc=AdoN3g0VeWnrpLuTet7ki0ZFkcDtlLuj26QohtUijgrsJBNH0rFJFaxDmBqMgJVlARoFnEOX3EeXOpU7Tt6dRRM6&_nc_zt=23&_nc_ht=scontent.fsdu36-1.fna&edm=AAwGEdEEAAAA&_nc_gid=6yWoOdclmgJhE2t2xfG_7Q&_nc_tpa=Q5bMBQE90Wo9n9PBphGBVy31hjic3uHTaAWVPgorH_vgOHgM7n6xfS6BUrF0D2VbOcT_XRkfANp0vhONsw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Af4udIJG044P0Uckxcci3OUYCmch8jLFeUllKua4tmMRBg&oe=6A1F9F8E"
       },
       "b": {
         "adId": "120246140363610437",
@@ -108822,14 +108823,14 @@ const DADOS_META = {
         "adsetId": "120239848415130437",
         "adsetNome": "[VIDEOVIEW] [TOP ESTADOS] [RJ]",
         "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO]",
-        "spend": 433.06,
-        "impressoes": 35648,
-        "cliques": 3332,
-        "ctr": 9.347,
-        "cpc": 0.13,
-        "cpm": 12.148,
-        "alcance": 29946,
-        "thumbnail": "https://scontent.fgig20-1.fna.fbcdn.net/v/t15.5256-10/679029218_1673758610417851_8744186241405712238_n.jpg?_nc_cat=105&ccb=1-7&_nc_ohc=LJwttY4mGKcQ7kNvwEkpo78&_nc_oc=AdpAfkGH3IZUU3Dkya1mefQxKhwzZZjUjxHz1aZNDzgUnNaqnxqi66uonuan-sIkghRxnBalLx7NU1sxCx0ATGkH&_nc_zt=23&_nc_ht=scontent.fgig20-1.fna&edm=AAwGEdEEAAAA&_nc_gid=eSYlTfGgECOc5V5Afdddbg&_nc_tpa=Q5bMBQGbaZ_bTfnY-4WOyUmcE-Lj-VirSS2eCzkdhhEpJMKI6W67Sf78SvJL93cVSR3TnD_StAedzdQHdw&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Af5E0hlMPThO51K38Cxl6oGNUt6hLvb3UQslmSBS3sIYIQ&oe=6A1E7433"
+        "spend": 327.24,
+        "impressoes": 26364,
+        "cliques": 2498,
+        "ctr": 9.475,
+        "cpc": 0.131,
+        "cpm": 12.412,
+        "alcance": 22303,
+        "thumbnail": "https://scontent.fsdu36-1.fna.fbcdn.net/v/t15.5256-10/679029218_1673758610417851_8744186241405712238_n.jpg?_nc_cat=105&ccb=1-7&_nc_ohc=LJwttY4mGKcQ7kNvwHP39J2&_nc_oc=AdqdYsfFCUdYT_iP7zezebYjqOyLydrrFXc3xg4z6muV_f4srbHsT8K1BYwmtmQmIMqNFGj2tsI4OnvlRWuX-LJd&_nc_zt=23&_nc_ht=scontent.fsdu36-1.fna&edm=AAwGEdEEAAAA&_nc_gid=6yWoOdclmgJhE2t2xfG_7Q&_nc_tpa=Q5bMBQF9LpWgxgCVlUTbTY8vejWAvL4H0QaIYTyu0MCcUp-wXkHJSEdtdHCbv9E4uRANnL0rWreiIEnFQA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_Af4a9gEdFyHy4sqon0--KUVjZD3pYWG0c-yHuo1z4Y51zQ&oe=6A1F8D73"
       },
       "vencedorCtr": "b",
       "vencedorCpc": "a",
@@ -108844,16 +108845,16 @@ const DADOS_META = {
       "adsetNome": "[VIDEOVIEW] [TOP ESTADOS] [RJ]",
       "campId": "120226714217400437",
       "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO]",
-      "gasto": 2966.31,
-      "impressoes": 554132,
-      "cliques": 28112,
-      "ctr": 5.073,
+      "gasto": 2899.71,
+      "impressoes": 540653,
+      "cliques": 27451,
+      "ctr": 5.077,
       "cpc": 0.106,
-      "alcance": 398351,
+      "alcance": 392616,
       "mensagens": {
-        "conexoes": 2,
-        "firstReply": 2,
-        "conversas": 2
+        "conexoes": 3,
+        "firstReply": 3,
+        "conversas": 3
       }
     },
     {
@@ -108863,12 +108864,12 @@ const DADOS_META = {
       "adsetNome": "🟢[LAL-LISTA-COMPRADORES][RJ]",
       "campId": "120214656968890437",
       "campNome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
-      "gasto": 1804.23,
-      "impressoes": 178809,
-      "cliques": 6628,
-      "ctr": 3.707,
-      "cpc": 0.272,
-      "alcance": 135828,
+      "gasto": 1887.17,
+      "impressoes": 182502,
+      "cliques": 6839,
+      "ctr": 3.747,
+      "cpc": 0.276,
+      "alcance": 137865,
       "mensagens": {
         "conexoes": 3,
         "firstReply": 3,
@@ -108882,12 +108883,12 @@ const DADOS_META = {
       "adsetNome": "[TESTE] [AEROPORTO USA] [LAL BASE COMPRADORES]",
       "campId": "120247060568150437",
       "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO] [TESTE]",
-      "gasto": 1627.11,
-      "impressoes": 61365,
-      "cliques": 5002,
-      "ctr": 8.151,
-      "cpc": 0.325,
-      "alcance": 43223,
+      "gasto": 1729.55,
+      "impressoes": 70758,
+      "cliques": 5475,
+      "ctr": 7.738,
+      "cpc": 0.316,
+      "alcance": 52074,
       "mensagens": {
         "conexoes": 0,
         "firstReply": 0,
@@ -108901,35 +108902,16 @@ const DADOS_META = {
       "adsetNome": "[TESTE] [AEROPORTO DEMAIS PAISES] [LAL BASE COMPRADORES]",
       "campId": "120247060568150437",
       "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO] [TESTE]",
-      "gasto": 1433.56,
-      "impressoes": 160068,
-      "cliques": 9945,
-      "ctr": 6.213,
-      "cpc": 0.144,
-      "alcance": 97710,
+      "gasto": 1486.01,
+      "impressoes": 165835,
+      "cliques": 10273,
+      "ctr": 6.195,
+      "cpc": 0.145,
+      "alcance": 99865,
       "mensagens": {
         "conexoes": 0,
         "firstReply": 0,
         "conversas": 0
-      }
-    },
-    {
-      "adId": "120237000517410437",
-      "nome": "martideviaje - La mejor experiencia en Río 🇧🇷",
-      "adsetId": "120214657056280437",
-      "adsetNome": "[LAL-LISTA-COMPRADORES][LATAM]",
-      "campId": "120214656968890437",
-      "campNome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
-      "gasto": 1348.45,
-      "impressoes": 248869,
-      "cliques": 10128,
-      "ctr": 4.07,
-      "cpc": 0.133,
-      "alcance": 198615,
-      "mensagens": {
-        "conexoes": 0,
-        "firstReply": 8,
-        "conversas": 8
       }
     },
     {
@@ -108939,12 +108921,12 @@ const DADOS_META = {
       "adsetNome": "[LAL ENVOLVIMENTO 180D] [LATAM] [PAGE VIEW]",
       "campId": "120226714217400437",
       "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO]",
-      "gasto": 1338.95,
-      "impressoes": 297525,
-      "cliques": 9020,
-      "ctr": 3.032,
+      "gasto": 1294.07,
+      "impressoes": 288754,
+      "cliques": 8748,
+      "ctr": 3.03,
       "cpc": 0.148,
-      "alcance": 166762,
+      "alcance": 163105,
       "mensagens": {
         "conexoes": 2,
         "firstReply": 2,
@@ -108952,22 +108934,22 @@ const DADOS_META = {
       }
     },
     {
-      "adId": "120241679927550437",
-      "nome": "A MUST-DO for your Rio bucket list🇧🇷🚁",
-      "adsetId": "120241679927520437",
-      "adsetNome": "🟢[LAL-LISTA-COMPRADORES][RJ]",
+      "adId": "120237000517410437",
+      "nome": "martideviaje - La mejor experiencia en Río 🇧🇷",
+      "adsetId": "120214657056280437",
+      "adsetNome": "[LAL-LISTA-COMPRADORES][LATAM]",
       "campId": "120214656968890437",
       "campNome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
-      "gasto": 1227.27,
-      "impressoes": 301106,
-      "cliques": 4275,
-      "ctr": 1.42,
-      "cpc": 0.287,
-      "alcance": 180646,
+      "gasto": 1266.29,
+      "impressoes": 233818,
+      "cliques": 9549,
+      "ctr": 4.084,
+      "cpc": 0.133,
+      "alcance": 187143,
       "mensagens": {
-        "conexoes": 1,
-        "firstReply": 1,
-        "conversas": 1
+        "conexoes": 0,
+        "firstReply": 7,
+        "conversas": 7
       }
     },
     {
@@ -108977,16 +108959,54 @@ const DADOS_META = {
       "adsetNome": "[LAL] [BASE COMPRADORES]",
       "campId": "120226714217400437",
       "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO]",
-      "gasto": 1112.89,
-      "impressoes": 147054,
-      "cliques": 7574,
-      "ctr": 5.15,
-      "cpc": 0.147,
-      "alcance": 85651,
+      "gasto": 1133.95,
+      "impressoes": 147970,
+      "cliques": 7669,
+      "ctr": 5.183,
+      "cpc": 0.148,
+      "alcance": 86186,
       "mensagens": {
         "conexoes": 0,
         "firstReply": 0,
         "conversas": 0
+      }
+    },
+    {
+      "adId": "120246945057350437",
+      "nome": "vertical.rio e cristoredentoroficial",
+      "adsetId": "120236493853490437",
+      "adsetNome": "🟢[LAL-LISTA-COMPRADORES][BRASIL]",
+      "campId": "120214656968890437",
+      "campNome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
+      "gasto": 1111.6,
+      "impressoes": 118439,
+      "cliques": 3301,
+      "ctr": 2.787,
+      "cpc": 0.337,
+      "alcance": 90370,
+      "mensagens": {
+        "conexoes": 4,
+        "firstReply": 4,
+        "conversas": 5
+      }
+    },
+    {
+      "adId": "120241679927550437",
+      "nome": "A MUST-DO for your Rio bucket list🇧🇷🚁",
+      "adsetId": "120241679927520437",
+      "adsetNome": "🟢[LAL-LISTA-COMPRADORES][RJ]",
+      "campId": "120214656968890437",
+      "campNome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
+      "gasto": 1079.93,
+      "impressoes": 265538,
+      "cliques": 3732,
+      "ctr": 1.405,
+      "cpc": 0.289,
+      "alcance": 163281,
+      "mensagens": {
+        "conexoes": 1,
+        "firstReply": 1,
+        "conversas": 1
       }
     },
     {
@@ -108996,12 +109016,12 @@ const DADOS_META = {
       "adsetNome": "[LAL ENVOLVIMENTO 180D] [LATAM] [PAGE VIEW]",
       "campId": "120226714217400437",
       "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO]",
-      "gasto": 1094.79,
-      "impressoes": 110432,
-      "cliques": 7366,
-      "ctr": 6.67,
-      "cpc": 0.149,
-      "alcance": 74625,
+      "gasto": 973.85,
+      "impressoes": 99545,
+      "cliques": 6628,
+      "ctr": 6.658,
+      "cpc": 0.147,
+      "alcance": 66606,
       "mensagens": {
         "conexoes": 0,
         "firstReply": 0,
@@ -109015,35 +109035,16 @@ const DADOS_META = {
       "adsetNome": "[LAL] [BASE COMPRADORES]",
       "campId": "120226714217400437",
       "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO]",
-      "gasto": 1071.67,
-      "impressoes": 102660,
-      "cliques": 6909,
-      "ctr": 6.73,
-      "cpc": 0.155,
-      "alcance": 81688,
+      "gasto": 937.84,
+      "impressoes": 85433,
+      "cliques": 5974,
+      "ctr": 6.993,
+      "cpc": 0.157,
+      "alcance": 69746,
       "mensagens": {
-        "conexoes": 1,
-        "firstReply": 1,
-        "conversas": 1
-      }
-    },
-    {
-      "adId": "120246945057350437",
-      "nome": "vertical.rio e cristoredentoroficial",
-      "adsetId": "120236493853490437",
-      "adsetNome": "🟢[LAL-LISTA-COMPRADORES][BRASIL]",
-      "campId": "120214656968890437",
-      "campNome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
-      "gasto": 1020.89,
-      "impressoes": 113109,
-      "cliques": 3158,
-      "ctr": 2.792,
-      "cpc": 0.323,
-      "alcance": 86238,
-      "mensagens": {
-        "conexoes": 2,
-        "firstReply": 2,
-        "conversas": 3
+        "conexoes": 0,
+        "firstReply": 0,
+        "conversas": 0
       }
     },
     {
@@ -109066,41 +109067,41 @@ const DADOS_META = {
       }
     },
     {
-      "adId": "120246253095760437",
-      "nome": "SHAKIRA PT",
-      "adsetId": "120246252976020437",
-      "adsetNome": "🟢[LAL-LISTA-COMPRADORES][RJ] [SHAKIRA]",
-      "campId": "120214656968890437",
-      "campNome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
-      "gasto": 832.51,
-      "impressoes": 106643,
-      "cliques": 1734,
-      "ctr": 1.626,
-      "cpc": 0.48,
-      "alcance": 81594,
-      "mensagens": {
-        "conexoes": 4,
-        "firstReply": 4,
-        "conversas": 5
-      }
-    },
-    {
       "adId": "120246139277700437",
       "nome": "Casal 02",
       "adsetId": "120246139277530437",
       "adsetNome": "[LAL] [BASE COMPRADORES]",
       "campId": "120226714217400437",
       "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO]",
-      "gasto": 753.47,
-      "impressoes": 158050,
-      "cliques": 6149,
-      "ctr": 3.891,
-      "cpc": 0.123,
-      "alcance": 131374,
+      "gasto": 710.04,
+      "impressoes": 149155,
+      "cliques": 5827,
+      "ctr": 3.907,
+      "cpc": 0.122,
+      "alcance": 125612,
       "mensagens": {
         "conexoes": 1,
         "firstReply": 1,
         "conversas": 2
+      }
+    },
+    {
+      "adId": "120246253095760437",
+      "nome": "SHAKIRA PT",
+      "adsetId": "120246252976020437",
+      "adsetNome": "🟢[LAL-LISTA-COMPRADORES][RJ] [SHAKIRA]",
+      "campId": "120214656968890437",
+      "campNome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
+      "gasto": 692.55,
+      "impressoes": 92485,
+      "cliques": 1492,
+      "ctr": 1.613,
+      "cpc": 0.464,
+      "alcance": 73103,
+      "mensagens": {
+        "conexoes": 3,
+        "firstReply": 3,
+        "conversas": 3
       }
     },
     {
@@ -109110,12 +109111,12 @@ const DADOS_META = {
       "adsetNome": "🟢[LAL-LISTA-COMPRADORES][EUROPA/EUA]",
       "campId": "120214656968890437",
       "campNome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
-      "gasto": 679.46,
-      "impressoes": 86645,
-      "cliques": 2387,
-      "ctr": 2.755,
+      "gasto": 654.28,
+      "impressoes": 82678,
+      "cliques": 2299,
+      "ctr": 2.781,
       "cpc": 0.285,
-      "alcance": 71524,
+      "alcance": 69353,
       "mensagens": {
         "conexoes": 0,
         "firstReply": 0,
@@ -109129,35 +109130,16 @@ const DADOS_META = {
       "adsetNome": "[MSG][GRINGO][RJ][RMKT-7D]",
       "campId": "120243998081540437",
       "campNome": "[MSG][GRINGO][RJ][NUVENS-ORG]",
-      "gasto": 573.52,
-      "impressoes": 43182,
-      "cliques": 384,
-      "ctr": 0.889,
-      "cpc": 1.494,
-      "alcance": 29972,
+      "gasto": 622.31,
+      "impressoes": 47723,
+      "cliques": 427,
+      "ctr": 0.895,
+      "cpc": 1.457,
+      "alcance": 32977,
       "mensagens": {
-        "conexoes": 85,
-        "firstReply": 81,
-        "conversas": 84
-      }
-    },
-    {
-      "adId": "120240062442190437",
-      "nome": "🤍🇧🇷😝 #fyp #explore #brazil #travel #rio #summer #reels",
-      "adsetId": "120236493853490437",
-      "adsetNome": "🟢[LAL-LISTA-COMPRADORES][BRASIL]",
-      "campId": "120214656968890437",
-      "campNome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
-      "gasto": 537.85,
-      "impressoes": 67470,
-      "cliques": 1811,
-      "ctr": 2.684,
-      "cpc": 0.297,
-      "alcance": 57533,
-      "mensagens": {
-        "conexoes": 0,
-        "firstReply": 0,
-        "conversas": 0
+        "conexoes": 95,
+        "firstReply": 91,
+        "conversas": 94
       }
     },
     {
@@ -109167,12 +109149,12 @@ const DADOS_META = {
       "adsetNome": "[TESTE] [AEROPORTO USA] [LAL BASE COMPRADORES]",
       "campId": "120214656968890437",
       "campNome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
-      "gasto": 473.02,
-      "impressoes": 8313,
-      "cliques": 423,
-      "ctr": 5.088,
-      "cpc": 1.118,
-      "alcance": 6770,
+      "gasto": 595.46,
+      "impressoes": 9522,
+      "cliques": 495,
+      "ctr": 5.198,
+      "cpc": 1.203,
+      "alcance": 7640,
       "mensagens": {
         "conexoes": 0,
         "firstReply": 0,
@@ -109180,41 +109162,22 @@ const DADOS_META = {
       }
     },
     {
-      "adId": "120246250923530437",
-      "nome": "SHAKIRA ES",
-      "adsetId": "120246250502820437",
-      "adsetNome": "[LAL] [BASE COMPRADORES] [SHAKIRA]",
-      "campId": "120226714217400437",
-      "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO]",
-      "gasto": 447.08,
-      "impressoes": 59081,
-      "cliques": 1600,
-      "ctr": 2.708,
-      "cpc": 0.279,
-      "alcance": 39901,
+      "adId": "120240062442190437",
+      "nome": "🤍🇧🇷😝 #fyp #explore #brazil #travel #rio #summer #reels",
+      "adsetId": "120236493853490437",
+      "adsetNome": "🟢[LAL-LISTA-COMPRADORES][BRASIL]",
+      "campId": "120214656968890437",
+      "campNome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
+      "gasto": 528.24,
+      "impressoes": 66197,
+      "cliques": 1781,
+      "ctr": 2.69,
+      "cpc": 0.297,
+      "alcance": 56427,
       "mensagens": {
-        "conexoes": 1,
-        "firstReply": 1,
-        "conversas": 1
-      }
-    },
-    {
-      "adId": "120246140363610437",
-      "nome": "Juliahorta01",
-      "adsetId": "120239848415130437",
-      "adsetNome": "[VIDEOVIEW] [TOP ESTADOS] [RJ]",
-      "campId": "120226714217400437",
-      "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO]",
-      "gasto": 433.06,
-      "impressoes": 35648,
-      "cliques": 3332,
-      "ctr": 9.347,
-      "cpc": 0.13,
-      "alcance": 29946,
-      "mensagens": {
-        "conexoes": 1,
-        "firstReply": 1,
-        "conversas": 1
+        "conexoes": 0,
+        "firstReply": 0,
+        "conversas": 0
       }
     },
     {
@@ -109224,12 +109187,31 @@ const DADOS_META = {
       "adsetNome": "🟢[LAL-LISTA-COMPRADORES][EUROPA/EUA]",
       "campId": "120214656968890437",
       "campNome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
-      "gasto": 405.89,
-      "impressoes": 50498,
-      "cliques": 1403,
-      "ctr": 2.778,
-      "cpc": 0.289,
-      "alcance": 43668,
+      "gasto": 348.39,
+      "impressoes": 43370,
+      "cliques": 1215,
+      "ctr": 2.801,
+      "cpc": 0.287,
+      "alcance": 37524,
+      "mensagens": {
+        "conexoes": 0,
+        "firstReply": 0,
+        "conversas": 0
+      }
+    },
+    {
+      "adId": "120246140363610437",
+      "nome": "Juliahorta01",
+      "adsetId": "120239848415130437",
+      "adsetNome": "[VIDEOVIEW] [TOP ESTADOS] [RJ]",
+      "campId": "120226714217400437",
+      "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO]",
+      "gasto": 327.24,
+      "impressoes": 26364,
+      "cliques": 2498,
+      "ctr": 9.475,
+      "cpc": 0.131,
+      "alcance": 22303,
       "mensagens": {
         "conexoes": 0,
         "firstReply": 0,
@@ -109243,12 +109225,12 @@ const DADOS_META = {
       "adsetNome": "🟢[LAL-LISTA-COMPRADORES][BRASIL]",
       "campId": "120214656968890437",
       "campNome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
-      "gasto": 395.94,
-      "impressoes": 59384,
-      "cliques": 1276,
-      "ctr": 2.149,
-      "cpc": 0.31,
-      "alcance": 49739,
+      "gasto": 309.47,
+      "impressoes": 45801,
+      "cliques": 993,
+      "ctr": 2.168,
+      "cpc": 0.312,
+      "alcance": 38539,
       "mensagens": {
         "conexoes": 2,
         "firstReply": 2,
@@ -109262,12 +109244,31 @@ const DADOS_META = {
       "adsetNome": "🟢[LAL-LISTA-COMPRADORES][RJ]",
       "campId": "120214656968890437",
       "campNome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
-      "gasto": 260.26,
-      "impressoes": 36899,
+      "gasto": 260.23,
+      "impressoes": 36895,
       "cliques": 640,
-      "ctr": 1.734,
+      "ctr": 1.735,
       "cpc": 0.407,
       "alcance": 31745,
+      "mensagens": {
+        "conexoes": 1,
+        "firstReply": 1,
+        "conversas": 1
+      }
+    },
+    {
+      "adId": "120246250923530437",
+      "nome": "SHAKIRA ES",
+      "adsetId": "120246250502820437",
+      "adsetNome": "[LAL] [BASE COMPRADORES] [SHAKIRA]",
+      "campId": "120226714217400437",
+      "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO]",
+      "gasto": 241.96,
+      "impressoes": 41215,
+      "cliques": 732,
+      "ctr": 1.776,
+      "cpc": 0.331,
+      "alcance": 28315,
       "mensagens": {
         "conexoes": 1,
         "firstReply": 1,
@@ -109281,12 +109282,12 @@ const DADOS_META = {
       "adsetNome": "[LAL] [BASE COMPRADORES] [SHAKIRA]",
       "campId": "120226714217400437",
       "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO]",
-      "gasto": 244.53,
-      "impressoes": 52462,
-      "cliques": 895,
-      "ctr": 1.706,
-      "cpc": 0.273,
-      "alcance": 35700,
+      "gasto": 228.6,
+      "impressoes": 50372,
+      "cliques": 842,
+      "ctr": 1.672,
+      "cpc": 0.271,
+      "alcance": 34226,
       "mensagens": {
         "conexoes": 1,
         "firstReply": 1,
@@ -109300,12 +109301,12 @@ const DADOS_META = {
       "adsetNome": "🟢[LAL-LISTA-COMPRADORES][RJ]",
       "campId": "120214656968890437",
       "campNome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
-      "gasto": 220.02,
-      "impressoes": 21163,
-      "cliques": 662,
-      "ctr": 3.128,
-      "cpc": 0.332,
-      "alcance": 19084,
+      "gasto": 221.28,
+      "impressoes": 21252,
+      "cliques": 665,
+      "ctr": 3.129,
+      "cpc": 0.333,
+      "alcance": 19110,
       "mensagens": {
         "conexoes": 0,
         "firstReply": 0,
@@ -109319,12 +109320,12 @@ const DADOS_META = {
       "adsetNome": "[TESTE] [AEROPORTO DEMAIS PAISES] [LAL BASE COMPRADORES]",
       "campId": "120247060568150437",
       "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO] [TESTE]",
-      "gasto": 214.01,
-      "impressoes": 15012,
-      "cliques": 1376,
-      "ctr": 9.166,
+      "gasto": 219.53,
+      "impressoes": 15242,
+      "cliques": 1406,
+      "ctr": 9.225,
       "cpc": 0.156,
-      "alcance": 12212,
+      "alcance": 12432,
       "mensagens": {
         "conexoes": 0,
         "firstReply": 0,
@@ -109338,12 +109339,12 @@ const DADOS_META = {
       "adsetNome": "[TESTE] [AEROPORTO USA] [LAL BASE COMPRADORES]",
       "campId": "120214656968890437",
       "campNome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
-      "gasto": 211.68,
-      "impressoes": 3545,
-      "cliques": 202,
-      "ctr": 5.698,
-      "cpc": 1.048,
-      "alcance": 3036,
+      "gasto": 215.08,
+      "impressoes": 3573,
+      "cliques": 203,
+      "ctr": 5.681,
+      "cpc": 1.06,
+      "alcance": 3064,
       "mensagens": {
         "conexoes": 1,
         "firstReply": 1,
@@ -109357,35 +109358,16 @@ const DADOS_META = {
       "adsetNome": "🟢[LAL-LISTA-COMPRADORES][BRASIL]",
       "campId": "120214656968890437",
       "campNome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
-      "gasto": 199.03,
-      "impressoes": 13021,
-      "cliques": 446,
-      "ctr": 3.425,
-      "cpc": 0.446,
-      "alcance": 10031,
+      "gasto": 191.21,
+      "impressoes": 12538,
+      "cliques": 426,
+      "ctr": 3.398,
+      "cpc": 0.449,
+      "alcance": 9740,
       "mensagens": {
         "conexoes": 3,
         "firstReply": 3,
         "conversas": 3
-      }
-    },
-    {
-      "adId": "120246252976030437",
-      "nome": "SHAKIRA ES",
-      "adsetId": "120246252976020437",
-      "adsetNome": "🟢[LAL-LISTA-COMPRADORES][RJ] [SHAKIRA]",
-      "campId": "120214656968890437",
-      "campNome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
-      "gasto": 177.69,
-      "impressoes": 42331,
-      "cliques": 597,
-      "ctr": 1.41,
-      "cpc": 0.298,
-      "alcance": 32494,
-      "mensagens": {
-        "conexoes": 0,
-        "firstReply": 0,
-        "conversas": 0
       }
     },
     {
@@ -109395,12 +109377,12 @@ const DADOS_META = {
       "adsetNome": "[LAL] [BASE COMPRADORES]",
       "campId": "120226714217400437",
       "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO]",
-      "gasto": 162.43,
-      "impressoes": 10734,
-      "cliques": 752,
-      "ctr": 7.006,
+      "gasto": 162.61,
+      "impressoes": 10743,
+      "cliques": 754,
+      "ctr": 7.019,
       "cpc": 0.216,
-      "alcance": 9595,
+      "alcance": 9608,
       "mensagens": {
         "conexoes": 0,
         "firstReply": 0,
@@ -109427,14 +109409,33 @@ const DADOS_META = {
       }
     },
     {
+      "adId": "120246252976030437",
+      "nome": "SHAKIRA ES",
+      "adsetId": "120246252976020437",
+      "adsetNome": "🟢[LAL-LISTA-COMPRADORES][RJ] [SHAKIRA]",
+      "campId": "120214656968890437",
+      "campNome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
+      "gasto": 150.62,
+      "impressoes": 35231,
+      "cliques": 500,
+      "ctr": 1.419,
+      "cpc": 0.301,
+      "alcance": 28106,
+      "mensagens": {
+        "conexoes": 0,
+        "firstReply": 0,
+        "conversas": 0
+      }
+    },
+    {
       "adId": "120246945057390437",
       "nome": "vertical.rio - tag them below!",
       "adsetId": "120236493853490437",
       "adsetNome": "🟢[LAL-LISTA-COMPRADORES][BRASIL]",
       "campId": "120214656968890437",
       "campNome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
-      "gasto": 137.93,
-      "impressoes": 16612,
+      "gasto": 137.97,
+      "impressoes": 16615,
       "cliques": 329,
       "ctr": 1.98,
       "cpc": 0.419,
@@ -109452,16 +109453,35 @@ const DADOS_META = {
       "adsetNome": "[TESTE] [AEROPORTO DEMAIS PAISES] [LAL BASE COMPRADORES]",
       "campId": "120247060568150437",
       "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO] [TESTE]",
-      "gasto": 129.2,
-      "impressoes": 17155,
-      "cliques": 750,
-      "ctr": 4.372,
-      "cpc": 0.172,
-      "alcance": 12896,
+      "gasto": 129.95,
+      "impressoes": 17231,
+      "cliques": 752,
+      "ctr": 4.364,
+      "cpc": 0.173,
+      "alcance": 12955,
       "mensagens": {
         "conexoes": 0,
         "firstReply": 0,
         "conversas": 0
+      }
+    },
+    {
+      "adId": "120248214897690437",
+      "nome": "namorados.PT2",
+      "adsetId": "120248214897700437",
+      "adsetNome": "[MSG][DIADOSNAMORADOS][RJ][RMKT-7D] [8080]",
+      "campId": "120243998081540437",
+      "campNome": "[MSG][GRINGO][RJ][NUVENS-ORG]",
+      "gasto": 121.22,
+      "impressoes": 9049,
+      "cliques": 55,
+      "ctr": 0.608,
+      "cpc": 2.204,
+      "alcance": 7841,
+      "mensagens": {
+        "conexoes": 16,
+        "firstReply": 15,
+        "conversas": 15
       }
     },
     {
@@ -109471,12 +109491,12 @@ const DADOS_META = {
       "adsetNome": "[TESTE] [AEROPORTO USA] [LAL BASE COMPRADORES]",
       "campId": "120247060568150437",
       "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO] [TESTE]",
-      "gasto": 98.82,
-      "impressoes": 2134,
-      "cliques": 216,
-      "ctr": 10.122,
-      "cpc": 0.458,
-      "alcance": 1815,
+      "gasto": 104.88,
+      "impressoes": 2298,
+      "cliques": 218,
+      "ctr": 9.487,
+      "cpc": 0.481,
+      "alcance": 2018,
       "mensagens": {
         "conexoes": 0,
         "firstReply": 0,
@@ -109490,31 +109510,12 @@ const DADOS_META = {
       "adsetNome": "[LAL] [BASE COMPRADORES]",
       "campId": "120226714217400437",
       "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO]",
-      "gasto": 98.5,
-      "impressoes": 25997,
-      "cliques": 792,
-      "ctr": 3.047,
-      "cpc": 0.124,
-      "alcance": 21500,
-      "mensagens": {
-        "conexoes": 0,
-        "firstReply": 0,
-        "conversas": 0
-      }
-    },
-    {
-      "adId": "120246140363700437",
-      "nome": "xavskitchen",
-      "adsetId": "120226828786180437",
-      "adsetNome": "[LAL ENVOLVIMENTO 180D] [LATAM] [PAGE VIEW]",
-      "campId": "120226714217400437",
-      "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO]",
-      "gasto": 87.82,
-      "impressoes": 23598,
-      "cliques": 630,
-      "ctr": 2.67,
-      "cpc": 0.139,
-      "alcance": 18475,
+      "gasto": 93.88,
+      "impressoes": 24906,
+      "cliques": 753,
+      "ctr": 3.023,
+      "cpc": 0.125,
+      "alcance": 20711,
       "mensagens": {
         "conexoes": 0,
         "firstReply": 0,
@@ -109528,12 +109529,12 @@ const DADOS_META = {
       "adsetNome": "[TESTE] [AEROPORTO USA] [LAL BASE COMPRADORES]",
       "campId": "120247060568150437",
       "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO] [TESTE]",
-      "gasto": 82.33,
-      "impressoes": 3045,
-      "cliques": 178,
-      "ctr": 5.846,
-      "cpc": 0.463,
-      "alcance": 2638,
+      "gasto": 82.92,
+      "impressoes": 3089,
+      "cliques": 181,
+      "ctr": 5.86,
+      "cpc": 0.458,
+      "alcance": 2676,
       "mensagens": {
         "conexoes": 0,
         "firstReply": 0,
@@ -109560,18 +109561,37 @@ const DADOS_META = {
       }
     },
     {
+      "adId": "120246140363700437",
+      "nome": "xavskitchen",
+      "adsetId": "120226828786180437",
+      "adsetNome": "[LAL ENVOLVIMENTO 180D] [LATAM] [PAGE VIEW]",
+      "campId": "120226714217400437",
+      "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO]",
+      "gasto": 80.57,
+      "impressoes": 22169,
+      "cliques": 585,
+      "ctr": 2.639,
+      "cpc": 0.138,
+      "alcance": 17466,
+      "mensagens": {
+        "conexoes": 0,
+        "firstReply": 0,
+        "conversas": 0
+      }
+    },
+    {
       "adId": "120239849273360437",
       "nome": "If there is something that Rio knows very weel is how to touch our emotions, right?! 🥲🫶🏻",
       "adsetId": "120214657076200437",
       "adsetNome": "🟢[LAL-LISTA-COMPRADORES][EUROPA/EUA]",
       "campId": "120214656968890437",
       "campNome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
-      "gasto": 80.13,
-      "impressoes": 5877,
-      "cliques": 240,
-      "ctr": 4.084,
-      "cpc": 0.334,
-      "alcance": 5480,
+      "gasto": 77.33,
+      "impressoes": 5533,
+      "cliques": 230,
+      "ctr": 4.157,
+      "cpc": 0.336,
+      "alcance": 5138,
       "mensagens": {
         "conexoes": 0,
         "firstReply": 0,
@@ -109623,12 +109643,12 @@ const DADOS_META = {
       "adsetNome": "🟢[LAL-LISTA-COMPRADORES][BRASIL]",
       "campId": "120214656968890437",
       "campNome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
-      "gasto": 69.69,
-      "impressoes": 4675,
-      "cliques": 148,
-      "ctr": 3.166,
-      "cpc": 0.471,
-      "alcance": 4002,
+      "gasto": 70.03,
+      "impressoes": 4686,
+      "cliques": 149,
+      "ctr": 3.18,
+      "cpc": 0.47,
+      "alcance": 4036,
       "mensagens": {
         "conexoes": 0,
         "firstReply": 0,
@@ -109642,12 +109662,12 @@ const DADOS_META = {
       "adsetNome": "[LAL] [BASE COMPRADORES]",
       "campId": "120226714217400437",
       "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO]",
-      "gasto": 63.02,
-      "impressoes": 13682,
-      "cliques": 401,
-      "ctr": 2.931,
+      "gasto": 63.25,
+      "impressoes": 13732,
+      "cliques": 402,
+      "ctr": 2.927,
       "cpc": 0.157,
-      "alcance": 11413,
+      "alcance": 11425,
       "mensagens": {
         "conexoes": 0,
         "firstReply": 0,
@@ -109661,12 +109681,12 @@ const DADOS_META = {
       "adsetNome": "[LAL ENVOLVIMENTO 180D] [LATAM] [PAGE VIEW]",
       "campId": "120226714217400437",
       "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO]",
-      "gasto": 62.27,
-      "impressoes": 16522,
-      "cliques": 458,
-      "ctr": 2.772,
+      "gasto": 62.97,
+      "impressoes": 16687,
+      "cliques": 462,
+      "ctr": 2.769,
       "cpc": 0.136,
-      "alcance": 13175,
+      "alcance": 13295,
       "mensagens": {
         "conexoes": 0,
         "firstReply": 0,
@@ -109712,22 +109732,22 @@ const DADOS_META = {
       }
     },
     {
-      "adId": "120248214897690437",
-      "nome": "namorados.PT2",
-      "adsetId": "120248214897700437",
-      "adsetNome": "[MSG][DIADOSNAMORADOS][RJ][RMKT-7D] [8080]",
-      "campId": "120243998081540437",
-      "campNome": "[MSG][GRINGO][RJ][NUVENS-ORG]",
-      "gasto": 53.43,
-      "impressoes": 3688,
-      "cliques": 18,
-      "ctr": 0.488,
-      "cpc": 2.968,
-      "alcance": 3433,
+      "adId": "120248299438470437",
+      "nome": "vertical.rio - tag them below!",
+      "adsetId": "120248299438450437",
+      "adsetNome": "[PUBLICO-AMERICADONORTE][LAL BASE]",
+      "campId": "120214656968890437",
+      "campNome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
+      "gasto": 52.45,
+      "impressoes": 4402,
+      "cliques": 55,
+      "ctr": 1.249,
+      "cpc": 0.954,
+      "alcance": 4290,
       "mensagens": {
-        "conexoes": 4,
-        "firstReply": 4,
-        "conversas": 4
+        "conexoes": 0,
+        "firstReply": 0,
+        "conversas": 0
       }
     },
     {
@@ -109775,12 +109795,12 @@ const DADOS_META = {
       "adsetNome": "[LAL-LISTA-COMPRADORES][LATAM]",
       "campId": "120214656968890437",
       "campNome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
-      "gasto": 44.66,
-      "impressoes": 14013,
-      "cliques": 333,
-      "ctr": 2.376,
+      "gasto": 44.39,
+      "impressoes": 13925,
+      "cliques": 331,
+      "ctr": 2.377,
       "cpc": 0.134,
-      "alcance": 11826,
+      "alcance": 11705,
       "mensagens": {
         "conexoes": 0,
         "firstReply": 0,
@@ -109832,31 +109852,12 @@ const DADOS_META = {
       "adsetNome": "[TESTE] [AEROPORTO DEMAIS PAISES] [LAL BASE COMPRADORES]",
       "campId": "120247060568150437",
       "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO] [TESTE]",
-      "gasto": 37.49,
-      "impressoes": 4651,
-      "cliques": 274,
-      "ctr": 5.891,
+      "gasto": 37.69,
+      "impressoes": 4686,
+      "cliques": 276,
+      "ctr": 5.89,
       "cpc": 0.137,
-      "alcance": 4206,
-      "mensagens": {
-        "conexoes": 0,
-        "firstReply": 0,
-        "conversas": 0
-      }
-    },
-    {
-      "adId": "120239848780160437",
-      "nome": "If there is something that Rio knows very weel is how to touch our emotions, right?! 🥲🫶🏻",
-      "adsetId": "120226828786180437",
-      "adsetNome": "[LAL ENVOLVIMENTO 180D] [LATAM] [PAGE VIEW]",
-      "campId": "120226714217400437",
-      "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO]",
-      "gasto": 35.38,
-      "impressoes": 6722,
-      "cliques": 247,
-      "ctr": 3.675,
-      "cpc": 0.143,
-      "alcance": 6025,
+      "alcance": 4244,
       "mensagens": {
         "conexoes": 0,
         "firstReply": 0,
@@ -109870,16 +109871,35 @@ const DADOS_META = {
       "adsetNome": "[LAL] [BASE COMPRADORES]",
       "campId": "120226714217400437",
       "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO]",
-      "gasto": 34.73,
-      "impressoes": 5163,
+      "gasto": 34.75,
+      "impressoes": 5166,
       "cliques": 162,
-      "ctr": 3.138,
-      "cpc": 0.214,
+      "ctr": 3.136,
+      "cpc": 0.215,
       "alcance": 3773,
       "mensagens": {
         "conexoes": 1,
         "firstReply": 1,
         "conversas": 1
+      }
+    },
+    {
+      "adId": "120239848780160437",
+      "nome": "If there is something that Rio knows very weel is how to touch our emotions, right?! 🥲🫶🏻",
+      "adsetId": "120226828786180437",
+      "adsetNome": "[LAL ENVOLVIMENTO 180D] [LATAM] [PAGE VIEW]",
+      "campId": "120226714217400437",
+      "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO]",
+      "gasto": 34.64,
+      "impressoes": 6641,
+      "cliques": 243,
+      "ctr": 3.659,
+      "cpc": 0.143,
+      "alcance": 5972,
+      "mensagens": {
+        "conexoes": 0,
+        "firstReply": 0,
+        "conversas": 0
       }
     },
     {
@@ -109902,22 +109922,60 @@ const DADOS_META = {
       }
     },
     {
+      "adId": "120248299323430437",
+      "nome": "jessicatarin_  e viajerasfronterizas",
+      "adsetId": "120248299323390437",
+      "adsetNome": "[PUBLICO-EUROPA][LAL-BASE]",
+      "campId": "120214656968890437",
+      "campNome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
+      "gasto": 32.28,
+      "impressoes": 2841,
+      "cliques": 157,
+      "ctr": 5.526,
+      "cpc": 0.206,
+      "alcance": 2725,
+      "mensagens": {
+        "conexoes": 0,
+        "firstReply": 0,
+        "conversas": 0
+      }
+    },
+    {
       "adId": "120246944730240437",
       "nome": "margankieley  e outros 2",
       "adsetId": "120246139277530437",
       "adsetNome": "[LAL] [BASE COMPRADORES]",
       "campId": "120226714217400437",
       "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO]",
-      "gasto": 28.68,
-      "impressoes": 5063,
+      "gasto": 28.69,
+      "impressoes": 5065,
       "cliques": 139,
-      "ctr": 2.745,
+      "ctr": 2.744,
       "cpc": 0.206,
-      "alcance": 3919,
+      "alcance": 3924,
       "mensagens": {
         "conexoes": 0,
         "firstReply": 0,
         "conversas": 0
+      }
+    },
+    {
+      "adId": "120248299323630437",
+      "nome": "vertical.rio - tag them below!",
+      "adsetId": "120248299323390437",
+      "adsetNome": "[PUBLICO-EUROPA][LAL-BASE]",
+      "campId": "120214656968890437",
+      "campNome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
+      "gasto": 27.61,
+      "impressoes": 3544,
+      "cliques": 64,
+      "ctr": 1.806,
+      "cpc": 0.431,
+      "alcance": 3388,
+      "mensagens": {
+        "conexoes": 1,
+        "firstReply": 1,
+        "conversas": 1
       }
     },
     {
@@ -109946,12 +110004,31 @@ const DADOS_META = {
       "adsetNome": "🟢[LAL-LISTA-COMPRADORES][RJ]",
       "campId": "120214656968890437",
       "campNome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
-      "gasto": 26.17,
-      "impressoes": 3434,
-      "cliques": 41,
-      "ctr": 1.194,
-      "cpc": 0.638,
-      "alcance": 2787,
+      "gasto": 27.01,
+      "impressoes": 3471,
+      "cliques": 42,
+      "ctr": 1.21,
+      "cpc": 0.643,
+      "alcance": 2829,
+      "mensagens": {
+        "conexoes": 0,
+        "firstReply": 0,
+        "conversas": 0
+      }
+    },
+    {
+      "adId": "120248299438480437",
+      "nome": "vertical.rio - tag them below!",
+      "adsetId": "120248299438450437",
+      "adsetNome": "[PUBLICO-AMERICADONORTE][LAL BASE]",
+      "campId": "120214656968890437",
+      "campNome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
+      "gasto": 23.73,
+      "impressoes": 2396,
+      "cliques": 52,
+      "ctr": 2.17,
+      "cpc": 0.456,
+      "alcance": 2288,
       "mensagens": {
         "conexoes": 0,
         "firstReply": 0,
@@ -109978,25 +110055,6 @@ const DADOS_META = {
       }
     },
     {
-      "adId": "120237000517440437",
-      "nome": "josephinewit - a long way from home",
-      "adsetId": "120214657076200437",
-      "adsetNome": "🟢[LAL-LISTA-COMPRADORES][EUROPA/EUA]",
-      "campId": "120214656968890437",
-      "campNome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
-      "gasto": 22.29,
-      "impressoes": 2030,
-      "cliques": 61,
-      "ctr": 3.005,
-      "cpc": 0.365,
-      "alcance": 1907,
-      "mensagens": {
-        "conexoes": 0,
-        "firstReply": 0,
-        "conversas": 0
-      }
-    },
-    {
       "adId": "120248163055310437",
       "nome": "Namorados.ENG",
       "adsetId": "120248163055370437",
@@ -110016,18 +110074,56 @@ const DADOS_META = {
       }
     },
     {
+      "adId": "120237000517440437",
+      "nome": "josephinewit - a long way from home",
+      "adsetId": "120214657076200437",
+      "adsetNome": "🟢[LAL-LISTA-COMPRADORES][EUROPA/EUA]",
+      "campId": "120214656968890437",
+      "campNome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
+      "gasto": 19.92,
+      "impressoes": 1718,
+      "cliques": 56,
+      "ctr": 3.26,
+      "cpc": 0.356,
+      "alcance": 1639,
+      "mensagens": {
+        "conexoes": 0,
+        "firstReply": 0,
+        "conversas": 0
+      }
+    },
+    {
       "adId": "120240062256770437",
       "nome": "🤍🇧🇷😝 #fyp #explore #brazil #travel #rio #summer #reels",
       "adsetId": "120239848415130437",
       "adsetNome": "[VIDEOVIEW] [TOP ESTADOS] [RJ]",
       "campId": "120226714217400437",
       "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO]",
-      "gasto": 17.82,
-      "impressoes": 4644,
+      "gasto": 17.84,
+      "impressoes": 4647,
       "cliques": 140,
-      "ctr": 3.015,
+      "ctr": 3.013,
       "cpc": 0.127,
-      "alcance": 4334,
+      "alcance": 4344,
+      "mensagens": {
+        "conexoes": 0,
+        "firstReply": 0,
+        "conversas": 0
+      }
+    },
+    {
+      "adId": "120248299323620437",
+      "nome": "vertical.rio - tag them below!",
+      "adsetId": "120248299323390437",
+      "adsetNome": "[PUBLICO-EUROPA][LAL-BASE]",
+      "campId": "120214656968890437",
+      "campNome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
+      "gasto": 17.68,
+      "impressoes": 2325,
+      "cliques": 58,
+      "ctr": 2.495,
+      "cpc": 0.305,
+      "alcance": 2255,
       "mensagens": {
         "conexoes": 0,
         "firstReply": 0,
@@ -110092,18 +110188,37 @@ const DADOS_META = {
       }
     },
     {
+      "adId": "120248299323710437",
+      "nome": "vertical.rio  e cristoredentoroficial 2",
+      "adsetId": "120248299323390437",
+      "adsetNome": "[PUBLICO-EUROPA][LAL-BASE]",
+      "campId": "120214656968890437",
+      "campNome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
+      "gasto": 13.79,
+      "impressoes": 1458,
+      "cliques": 14,
+      "ctr": 0.96,
+      "cpc": 0.985,
+      "alcance": 1390,
+      "mensagens": {
+        "conexoes": 0,
+        "firstReply": 0,
+        "conversas": 0
+      }
+    },
+    {
       "adId": "120247647016980437",
       "nome": "Casal 01",
       "adsetId": "120247647016900437",
       "adsetNome": "[MSG][GRINGO][RJ][RMKT-7D]",
       "campId": "120243998081540437",
       "campNome": "[MSG][GRINGO][RJ][NUVENS-ORG]",
-      "gasto": 12.86,
-      "impressoes": 776,
+      "gasto": 12.95,
+      "impressoes": 782,
       "cliques": 14,
-      "ctr": 1.804,
-      "cpc": 0.919,
-      "alcance": 596,
+      "ctr": 1.79,
+      "cpc": 0.925,
+      "alcance": 600,
       "mensagens": {
         "conexoes": 2,
         "firstReply": 2,
@@ -110123,6 +110238,25 @@ const DADOS_META = {
       "ctr": 3.665,
       "cpc": 0.141,
       "alcance": 2222,
+      "mensagens": {
+        "conexoes": 0,
+        "firstReply": 0,
+        "conversas": 0
+      }
+    },
+    {
+      "adId": "120246944944250437",
+      "nome": "margankieley  e outros 2",
+      "adsetId": "120226828786180437",
+      "adsetNome": "[LAL ENVOLVIMENTO 180D] [LATAM] [PAGE VIEW]",
+      "campId": "120226714217400437",
+      "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO]",
+      "gasto": 11.01,
+      "impressoes": 2480,
+      "cliques": 85,
+      "ctr": 3.427,
+      "cpc": 0.13,
+      "alcance": 2193,
       "mensagens": {
         "conexoes": 0,
         "firstReply": 0,
@@ -110168,18 +110302,18 @@ const DADOS_META = {
       }
     },
     {
-      "adId": "120246944944250437",
-      "nome": "margankieley  e outros 2",
-      "adsetId": "120226828786180437",
-      "adsetNome": "[LAL ENVOLVIMENTO 180D] [LATAM] [PAGE VIEW]",
-      "campId": "120226714217400437",
-      "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO]",
-      "gasto": 9.85,
-      "impressoes": 2282,
-      "cliques": 75,
-      "ctr": 3.287,
-      "cpc": 0.131,
-      "alcance": 2024,
+      "adId": "120248299438490437",
+      "nome": "jessicatarin_  e viajerasfronterizas",
+      "adsetId": "120248299438450437",
+      "adsetNome": "[PUBLICO-AMERICADONORTE][LAL BASE]",
+      "campId": "120214656968890437",
+      "campNome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
+      "gasto": 9.51,
+      "impressoes": 564,
+      "cliques": 18,
+      "ctr": 3.191,
+      "cpc": 0.528,
+      "alcance": 555,
       "mensagens": {
         "conexoes": 0,
         "firstReply": 0,
@@ -110193,12 +110327,12 @@ const DADOS_META = {
       "adsetNome": "[MSG][GRINGO][RJ][RMKT-7D]",
       "campId": "120243998081540437",
       "campNome": "[MSG][GRINGO][RJ][NUVENS-ORG]",
-      "gasto": 8.26,
-      "impressoes": 447,
+      "gasto": 8.28,
+      "impressoes": 449,
       "cliques": 5,
-      "ctr": 1.119,
-      "cpc": 1.652,
-      "alcance": 357,
+      "ctr": 1.114,
+      "cpc": 1.656,
+      "alcance": 359,
       "mensagens": {
         "conexoes": 0,
         "firstReply": 0,
@@ -110231,12 +110365,31 @@ const DADOS_META = {
       "adsetNome": "[MSG][DIADOSNAMORADOS][RJ][RMKT-7D] [8080]",
       "campId": "120243998081540437",
       "campNome": "[MSG][GRINGO][RJ][NUVENS-ORG]",
-      "gasto": 6.26,
-      "impressoes": 323,
+      "gasto": 6.52,
+      "impressoes": 344,
       "cliques": 1,
-      "ctr": 0.31,
-      "cpc": 6.26,
-      "alcance": 298,
+      "ctr": 0.291,
+      "cpc": 6.52,
+      "alcance": 315,
+      "mensagens": {
+        "conexoes": 0,
+        "firstReply": 0,
+        "conversas": 0
+      }
+    },
+    {
+      "adId": "120248214897710437",
+      "nome": "Namorados.ENG",
+      "adsetId": "120248214897700437",
+      "adsetNome": "[MSG][DIADOSNAMORADOS][RJ][RMKT-7D] [8080]",
+      "campId": "120243998081540437",
+      "campNome": "[MSG][GRINGO][RJ][NUVENS-ORG]",
+      "gasto": 6.28,
+      "impressoes": 443,
+      "cliques": 5,
+      "ctr": 1.129,
+      "cpc": 1.256,
+      "alcance": 393,
       "mensagens": {
         "conexoes": 0,
         "firstReply": 0,
@@ -110263,6 +110416,25 @@ const DADOS_META = {
       }
     },
     {
+      "adId": "120247060569550437",
+      "nome": "If there is something that Rio knows very weel is how to touch our emotions, right?! 🥲🫶🏻",
+      "adsetId": "120247060570110437",
+      "adsetNome": "[TESTE] [AEROPORTO DEMAIS PAISES] [LAL BASE COMPRADORES]",
+      "campId": "120247060568150437",
+      "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO] [TESTE]",
+      "gasto": 5.59,
+      "impressoes": 569,
+      "cliques": 28,
+      "ctr": 4.921,
+      "cpc": 0.2,
+      "alcance": 525,
+      "mensagens": {
+        "conexoes": 0,
+        "firstReply": 0,
+        "conversas": 0
+      }
+    },
+    {
       "adId": "120246945057310437",
       "nome": "vertical.rio  e cristoredentoroficial 2",
       "adsetId": "120214657076200437",
@@ -110282,37 +110454,18 @@ const DADOS_META = {
       }
     },
     {
-      "adId": "120247060569550437",
-      "nome": "If there is something that Rio knows very weel is how to touch our emotions, right?! 🥲🫶🏻",
-      "adsetId": "120247060570110437",
-      "adsetNome": "[TESTE] [AEROPORTO DEMAIS PAISES] [LAL BASE COMPRADORES]",
-      "campId": "120247060568150437",
-      "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO] [TESTE]",
-      "gasto": 5.52,
-      "impressoes": 562,
-      "cliques": 28,
-      "ctr": 4.982,
-      "cpc": 0.197,
-      "alcance": 520,
-      "mensagens": {
-        "conexoes": 0,
-        "firstReply": 0,
-        "conversas": 0
-      }
-    },
-    {
-      "adId": "120248214897710437",
-      "nome": "Namorados.ENG",
-      "adsetId": "120248214897700437",
-      "adsetNome": "[MSG][DIADOSNAMORADOS][RJ][RMKT-7D] [8080]",
+      "adId": "120247647016920437",
+      "nome": "Estilo Vlog",
+      "adsetId": "120247647016900437",
+      "adsetNome": "[MSG][GRINGO][RJ][RMKT-7D]",
       "campId": "120243998081540437",
       "campNome": "[MSG][GRINGO][RJ][NUVENS-ORG]",
-      "gasto": 5.27,
-      "impressoes": 368,
-      "cliques": 4,
-      "ctr": 1.087,
-      "cpc": 1.317,
-      "alcance": 335,
+      "gasto": 5.42,
+      "impressoes": 128,
+      "cliques": 2,
+      "ctr": 1.562,
+      "cpc": 2.71,
+      "alcance": 105,
       "mensagens": {
         "conexoes": 0,
         "firstReply": 0,
@@ -110339,25 +110492,6 @@ const DADOS_META = {
       }
     },
     {
-      "adId": "120247647016920437",
-      "nome": "Estilo Vlog",
-      "adsetId": "120247647016900437",
-      "adsetNome": "[MSG][GRINGO][RJ][RMKT-7D]",
-      "campId": "120243998081540437",
-      "campNome": "[MSG][GRINGO][RJ][NUVENS-ORG]",
-      "gasto": 5.22,
-      "impressoes": 126,
-      "cliques": 2,
-      "ctr": 1.587,
-      "cpc": 2.61,
-      "alcance": 104,
-      "mensagens": {
-        "conexoes": 0,
-        "firstReply": 0,
-        "conversas": 0
-      }
-    },
-    {
       "adId": "120247647016910437",
       "nome": "Cristo Redentor (seven wonders)",
       "adsetId": "120247647016900437",
@@ -110377,18 +110511,18 @@ const DADOS_META = {
       }
     },
     {
-      "adId": "120246140363590437",
-      "nome": "xavskitchen",
-      "adsetId": "120239848415130437",
-      "adsetNome": "[VIDEOVIEW] [TOP ESTADOS] [RJ]",
-      "campId": "120226714217400437",
-      "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO]",
+      "adId": "120246945035360437",
+      "nome": "vertical.rio  e cristoredentoroficial 2",
+      "adsetId": "120241679927520437",
+      "adsetNome": "🟢[LAL-LISTA-COMPRADORES][RJ]",
+      "campId": "120214656968890437",
+      "campNome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
       "gasto": 4.61,
-      "impressoes": 1282,
-      "cliques": 30,
-      "ctr": 2.34,
-      "cpc": 0.154,
-      "alcance": 1171,
+      "impressoes": 508,
+      "cliques": 9,
+      "ctr": 1.772,
+      "cpc": 0.512,
+      "alcance": 456,
       "mensagens": {
         "conexoes": 0,
         "firstReply": 0,
@@ -110396,18 +110530,18 @@ const DADOS_META = {
       }
     },
     {
-      "adId": "120246945035360437",
-      "nome": "vertical.rio  e cristoredentoroficial 2",
-      "adsetId": "120241679927520437",
-      "adsetNome": "🟢[LAL-LISTA-COMPRADORES][RJ]",
-      "campId": "120214656968890437",
-      "campNome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
-      "gasto": 4.58,
-      "impressoes": 505,
-      "cliques": 9,
-      "ctr": 1.782,
-      "cpc": 0.509,
-      "alcance": 453,
+      "adId": "120246140363590437",
+      "nome": "xavskitchen",
+      "adsetId": "120239848415130437",
+      "adsetNome": "[VIDEOVIEW] [TOP ESTADOS] [RJ]",
+      "campId": "120226714217400437",
+      "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO]",
+      "gasto": 4.53,
+      "impressoes": 1242,
+      "cliques": 31,
+      "ctr": 2.496,
+      "cpc": 0.146,
+      "alcance": 1150,
       "mensagens": {
         "conexoes": 0,
         "firstReply": 0,
@@ -110453,37 +110587,18 @@ const DADOS_META = {
       }
     },
     {
-      "adId": "120245189451160437",
-      "nome": "Casal 01",
-      "adsetId": "120239848415130437",
-      "adsetNome": "[VIDEOVIEW] [TOP ESTADOS] [RJ]",
-      "campId": "120226714217400437",
-      "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO]",
-      "gasto": 4.27,
-      "impressoes": 564,
-      "cliques": 44,
-      "ctr": 7.801,
-      "cpc": 0.097,
-      "alcance": 542,
-      "mensagens": {
-        "conexoes": 0,
-        "firstReply": 0,
-        "conversas": 0
-      }
-    },
-    {
       "adId": "120239849273510437",
       "nome": "If there is something that Rio knows very weel is how to touch our emotions, right?! 🥲🫶🏻",
       "adsetId": "120214657056280437",
       "adsetNome": "[LAL-LISTA-COMPRADORES][LATAM]",
       "campId": "120214656968890437",
       "campNome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
-      "gasto": 4.12,
-      "impressoes": 943,
-      "cliques": 30,
-      "ctr": 3.181,
-      "cpc": 0.137,
-      "alcance": 914,
+      "gasto": 3.86,
+      "impressoes": 860,
+      "cliques": 26,
+      "ctr": 3.023,
+      "cpc": 0.148,
+      "alcance": 834,
       "mensagens": {
         "conexoes": 0,
         "firstReply": 0,
@@ -110503,6 +110618,25 @@ const DADOS_META = {
       "ctr": 3.514,
       "cpc": 0.099,
       "alcance": 945,
+      "mensagens": {
+        "conexoes": 0,
+        "firstReply": 0,
+        "conversas": 0
+      }
+    },
+    {
+      "adId": "120245189451160437",
+      "nome": "Casal 01",
+      "adsetId": "120239848415130437",
+      "adsetNome": "[VIDEOVIEW] [TOP ESTADOS] [RJ]",
+      "campId": "120226714217400437",
+      "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO]",
+      "gasto": 3.32,
+      "impressoes": 437,
+      "cliques": 32,
+      "ctr": 7.323,
+      "cpc": 0.104,
+      "alcance": 423,
       "mensagens": {
         "conexoes": 0,
         "firstReply": 0,
@@ -110554,50 +110688,12 @@ const DADOS_META = {
       "adsetNome": "[LAL] [BASE COMPRADORES]",
       "campId": "120226714217400437",
       "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO]",
-      "gasto": 2.31,
-      "impressoes": 352,
-      "cliques": 7,
-      "ctr": 1.989,
-      "cpc": 0.33,
-      "alcance": 337,
-      "mensagens": {
-        "conexoes": 0,
-        "firstReply": 0,
-        "conversas": 0
-      }
-    },
-    {
-      "adId": "120240062488520437",
-      "nome": "A MUST-DO for your Rio bucket list🇧🇷🚁",
-      "adsetId": "120214657056280437",
-      "adsetNome": "[LAL-LISTA-COMPRADORES][LATAM]",
-      "campId": "120214656968890437",
-      "campNome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
-      "gasto": 2.21,
-      "impressoes": 731,
-      "cliques": 15,
-      "ctr": 2.052,
-      "cpc": 0.147,
-      "alcance": 692,
-      "mensagens": {
-        "conexoes": 0,
-        "firstReply": 0,
-        "conversas": 0
-      }
-    },
-    {
-      "adId": "120236424596310437",
-      "nome": "Duvida - ENG + leg ENG.mov",
-      "adsetId": "120226828786180437",
-      "adsetNome": "[LAL ENVOLVIMENTO 180D] [LATAM] [PAGE VIEW]",
-      "campId": "120226714217400437",
-      "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO]",
       "gasto": 2.16,
-      "impressoes": 229,
-      "cliques": 14,
-      "ctr": 6.114,
-      "cpc": 0.154,
-      "alcance": 214,
+      "impressoes": 334,
+      "cliques": 6,
+      "ctr": 1.796,
+      "cpc": 0.36,
+      "alcance": 321,
       "mensagens": {
         "conexoes": 0,
         "firstReply": 0,
@@ -110668,12 +110764,12 @@ const DADOS_META = {
       "adsetNome": "[LAL ENVOLVIMENTO 180D] [LATAM] [PAGE VIEW]",
       "campId": "120226714217400437",
       "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO]",
-      "gasto": 1.75,
-      "impressoes": 435,
+      "gasto": 1.78,
+      "impressoes": 438,
       "cliques": 6,
-      "ctr": 1.379,
-      "cpc": 0.292,
-      "alcance": 408,
+      "ctr": 1.37,
+      "cpc": 0.297,
+      "alcance": 412,
       "mensagens": {
         "conexoes": 0,
         "firstReply": 0,
@@ -110681,37 +110777,18 @@ const DADOS_META = {
       }
     },
     {
-      "adId": "120238830098620437",
-      "nome": "If you’re worried because your flight is on a cloudy day, relax.",
-      "adsetId": "120226828786180437",
-      "adsetNome": "[LAL ENVOLVIMENTO 180D] [LATAM] [PAGE VIEW]",
-      "campId": "120226714217400437",
-      "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO]",
-      "gasto": 1.72,
-      "impressoes": 396,
-      "cliques": 9,
-      "ctr": 2.273,
-      "cpc": 0.191,
-      "alcance": 353,
-      "mensagens": {
-        "conexoes": 0,
-        "firstReply": 0,
-        "conversas": 0
-      }
-    },
-    {
-      "adId": "120246140363690437",
-      "nome": "Jonas01",
-      "adsetId": "120226828786180437",
-      "adsetNome": "[LAL ENVOLVIMENTO 180D] [LATAM] [PAGE VIEW]",
-      "campId": "120226714217400437",
-      "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO]",
-      "gasto": 1.71,
-      "impressoes": 307,
-      "cliques": 8,
-      "ctr": 2.606,
-      "cpc": 0.214,
-      "alcance": 288,
+      "adId": "120240062488520437",
+      "nome": "A MUST-DO for your Rio bucket list🇧🇷🚁",
+      "adsetId": "120214657056280437",
+      "adsetNome": "[LAL-LISTA-COMPRADORES][LATAM]",
+      "campId": "120214656968890437",
+      "campNome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
+      "gasto": 1.74,
+      "impressoes": 555,
+      "cliques": 11,
+      "ctr": 1.982,
+      "cpc": 0.158,
+      "alcance": 538,
       "mensagens": {
         "conexoes": 0,
         "firstReply": 0,
@@ -110731,6 +110808,25 @@ const DADOS_META = {
       "ctr": 3.265,
       "cpc": 0.212,
       "alcance": 222,
+      "mensagens": {
+        "conexoes": 0,
+        "firstReply": 0,
+        "conversas": 0
+      }
+    },
+    {
+      "adId": "120246140363690437",
+      "nome": "Jonas01",
+      "adsetId": "120226828786180437",
+      "adsetNome": "[LAL ENVOLVIMENTO 180D] [LATAM] [PAGE VIEW]",
+      "campId": "120226714217400437",
+      "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO]",
+      "gasto": 1.69,
+      "impressoes": 304,
+      "cliques": 8,
+      "ctr": 2.632,
+      "cpc": 0.211,
+      "alcance": 285,
       "mensagens": {
         "conexoes": 0,
         "firstReply": 0,
@@ -110795,6 +110891,25 @@ const DADOS_META = {
       }
     },
     {
+      "adId": "120238830098620437",
+      "nome": "If you’re worried because your flight is on a cloudy day, relax.",
+      "adsetId": "120226828786180437",
+      "adsetNome": "[LAL ENVOLVIMENTO 180D] [LATAM] [PAGE VIEW]",
+      "campId": "120226714217400437",
+      "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO]",
+      "gasto": 1.48,
+      "impressoes": 362,
+      "cliques": 8,
+      "ctr": 2.21,
+      "cpc": 0.185,
+      "alcance": 322,
+      "mensagens": {
+        "conexoes": 0,
+        "firstReply": 0,
+        "conversas": 0
+      }
+    },
+    {
       "adId": "120234443463370437",
       "nome": "\"Send this video to that person who needs",
       "adsetId": "120214657056280437",
@@ -110807,6 +110922,25 @@ const DADOS_META = {
       "ctr": 2.526,
       "cpc": 0.122,
       "alcance": 469,
+      "mensagens": {
+        "conexoes": 0,
+        "firstReply": 0,
+        "conversas": 0
+      }
+    },
+    {
+      "adId": "120248299438460437",
+      "nome": "vertical.rio  e cristoredentoroficial 2",
+      "adsetId": "120248299438450437",
+      "adsetNome": "[PUBLICO-AMERICADONORTE][LAL BASE]",
+      "campId": "120214656968890437",
+      "campNome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
+      "gasto": 1.46,
+      "impressoes": 178,
+      "cliques": 2,
+      "ctr": 1.124,
+      "cpc": 0.73,
+      "alcance": 177,
       "mensagens": {
         "conexoes": 0,
         "firstReply": 0,
@@ -110947,6 +111081,25 @@ const DADOS_META = {
       }
     },
     {
+      "adId": "120236424596310437",
+      "nome": "Duvida - ENG + leg ENG.mov",
+      "adsetId": "120226828786180437",
+      "adsetNome": "[LAL ENVOLVIMENTO 180D] [LATAM] [PAGE VIEW]",
+      "campId": "120226714217400437",
+      "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO]",
+      "gasto": 0.96,
+      "impressoes": 154,
+      "cliques": 7,
+      "ctr": 4.545,
+      "cpc": 0.137,
+      "alcance": 142,
+      "mensagens": {
+        "conexoes": 0,
+        "firstReply": 0,
+        "conversas": 0
+      }
+    },
+    {
       "adId": "120246139909790437",
       "nome": "Jonas01",
       "adsetId": "120246139277530437",
@@ -111004,25 +111157,6 @@ const DADOS_META = {
       }
     },
     {
-      "adId": "120246253069720437",
-      "nome": "SHAKIRA ING",
-      "adsetId": "120246252976020437",
-      "adsetNome": "🟢[LAL-LISTA-COMPRADORES][RJ] [SHAKIRA]",
-      "campId": "120214656968890437",
-      "campNome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
-      "gasto": 0.84,
-      "impressoes": 80,
-      "cliques": 0,
-      "ctr": 0.0,
-      "cpc": null,
-      "alcance": 76,
-      "mensagens": {
-        "conexoes": 0,
-        "firstReply": 0,
-        "conversas": 0
-      }
-    },
-    {
       "adId": "120247060569160437",
       "nome": "A MUST-DO for your Rio bucket list🇧🇷🚁",
       "adsetId": "120247060570130437",
@@ -111061,41 +111195,41 @@ const DADOS_META = {
       }
     },
     {
+      "adId": "120246253069720437",
+      "nome": "SHAKIRA ING",
+      "adsetId": "120246252976020437",
+      "adsetNome": "🟢[LAL-LISTA-COMPRADORES][RJ] [SHAKIRA]",
+      "campId": "120214656968890437",
+      "campNome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
+      "gasto": 0.76,
+      "impressoes": 76,
+      "cliques": 0,
+      "ctr": 0.0,
+      "cpc": null,
+      "alcance": 72,
+      "mensagens": {
+        "conexoes": 0,
+        "firstReply": 0,
+        "conversas": 0
+      }
+    },
+    {
       "adId": "120247647016890437",
       "nome": "Time flies/me too",
       "adsetId": "120247647016900437",
       "adsetNome": "[MSG][GRINGO][RJ][RMKT-7D]",
       "campId": "120243998081540437",
       "campNome": "[MSG][GRINGO][RJ][NUVENS-ORG]",
-      "gasto": 0.63,
-      "impressoes": 68,
+      "gasto": 0.68,
+      "impressoes": 72,
       "cliques": 1,
-      "ctr": 1.471,
-      "cpc": 0.63,
-      "alcance": 53,
+      "ctr": 1.389,
+      "cpc": 0.68,
+      "alcance": 56,
       "mensagens": {
         "conexoes": 1,
         "firstReply": 1,
         "conversas": 1
-      }
-    },
-    {
-      "adId": "120246139277810437",
-      "nome": "Even cloudy days can be beautiful ☁️ - V1",
-      "adsetId": "120246139277530437",
-      "adsetNome": "[LAL] [BASE COMPRADORES]",
-      "campId": "120226714217400437",
-      "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO]",
-      "gasto": 0.62,
-      "impressoes": 107,
-      "cliques": 3,
-      "ctr": 2.804,
-      "cpc": 0.207,
-      "alcance": 100,
-      "mensagens": {
-        "conexoes": 0,
-        "firstReply": 0,
-        "conversas": 0
       }
     },
     {
@@ -111118,37 +111252,18 @@ const DADOS_META = {
       }
     },
     {
-      "adId": "120240062333730437",
-      "nome": "A MUST-DO for your Rio bucket list🇧🇷🚁",
-      "adsetId": "120226828786180437",
-      "adsetNome": "[LAL ENVOLVIMENTO 180D] [LATAM] [PAGE VIEW]",
-      "campId": "120226714217400437",
-      "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO]",
-      "gasto": 0.59,
-      "impressoes": 111,
-      "cliques": 4,
-      "ctr": 3.604,
-      "cpc": 0.147,
-      "alcance": 107,
-      "mensagens": {
-        "conexoes": 0,
-        "firstReply": 0,
-        "conversas": 0
-      }
-    },
-    {
-      "adId": "120246250793920437",
-      "nome": "SHAKIRA ING",
-      "adsetId": "120246250502820437",
-      "adsetNome": "[LAL] [BASE COMPRADORES] [SHAKIRA]",
+      "adId": "120246139277810437",
+      "nome": "Even cloudy days can be beautiful ☁️ - V1",
+      "adsetId": "120246139277530437",
+      "adsetNome": "[LAL] [BASE COMPRADORES]",
       "campId": "120226714217400437",
       "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO]",
       "gasto": 0.58,
-      "impressoes": 43,
-      "cliques": 0,
-      "ctr": 0.0,
-      "cpc": null,
-      "alcance": 43,
+      "impressoes": 96,
+      "cliques": 2,
+      "ctr": 2.083,
+      "cpc": 0.29,
+      "alcance": 89,
       "mensagens": {
         "conexoes": 0,
         "firstReply": 0,
@@ -111181,12 +111296,12 @@ const DADOS_META = {
       "adsetNome": "🟢[LAL-LISTA-COMPRADORES][EUROPA/EUA]",
       "campId": "120214656968890437",
       "campNome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
-      "gasto": 0.55,
-      "impressoes": 51,
-      "cliques": 4,
-      "ctr": 7.843,
-      "cpc": 0.138,
-      "alcance": 51,
+      "gasto": 0.53,
+      "impressoes": 49,
+      "cliques": 3,
+      "ctr": 6.122,
+      "cpc": 0.177,
+      "alcance": 49,
       "mensagens": {
         "conexoes": 0,
         "firstReply": 0,
@@ -111213,18 +111328,18 @@ const DADOS_META = {
       }
     },
     {
-      "adId": "120237000517390437",
-      "nome": "mjosefaj - Una experiencia única que sin duda",
-      "adsetId": "120214657056280437",
-      "adsetNome": "[LAL-LISTA-COMPRADORES][LATAM]",
-      "campId": "120214656968890437",
-      "campNome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
-      "gasto": 0.5,
-      "impressoes": 101,
-      "cliques": 2,
-      "ctr": 1.98,
-      "cpc": 0.25,
-      "alcance": 98,
+      "adId": "120240062333730437",
+      "nome": "A MUST-DO for your Rio bucket list🇧🇷🚁",
+      "adsetId": "120226828786180437",
+      "adsetNome": "[LAL ENVOLVIMENTO 180D] [LATAM] [PAGE VIEW]",
+      "campId": "120226714217400437",
+      "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO]",
+      "gasto": 0.44,
+      "impressoes": 93,
+      "cliques": 3,
+      "ctr": 3.226,
+      "cpc": 0.147,
+      "alcance": 89,
       "mensagens": {
         "conexoes": 0,
         "firstReply": 0,
@@ -111238,12 +111353,12 @@ const DADOS_META = {
       "adsetNome": "[LAL] [BASE COMPRADORES]",
       "campId": "120226714217400437",
       "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO]",
-      "gasto": 0.46,
+      "gasto": 0.44,
       "impressoes": 68,
       "cliques": 3,
       "ctr": 4.412,
-      "cpc": 0.153,
-      "alcance": 66,
+      "cpc": 0.147,
+      "alcance": 65,
       "mensagens": {
         "conexoes": 0,
         "firstReply": 0,
@@ -111270,6 +111385,25 @@ const DADOS_META = {
       }
     },
     {
+      "adId": "120237000517390437",
+      "nome": "mjosefaj - Una experiencia única que sin duda",
+      "adsetId": "120214657056280437",
+      "adsetNome": "[LAL-LISTA-COMPRADORES][LATAM]",
+      "campId": "120214656968890437",
+      "campNome": "[LX][TRAFEGO-SEGUIDORES][ABO][PUBLICO_FRIO]",
+      "gasto": 0.43,
+      "impressoes": 84,
+      "cliques": 2,
+      "ctr": 2.381,
+      "cpc": 0.215,
+      "alcance": 81,
+      "mensagens": {
+        "conexoes": 0,
+        "firstReply": 0,
+        "conversas": 0
+      }
+    },
+    {
       "adId": "120247060569560437",
       "nome": "If you’re worried because your flight is on a cloudy day, relax.",
       "adsetId": "120247060570110437",
@@ -111289,18 +111423,18 @@ const DADOS_META = {
       }
     },
     {
-      "adId": "120245189688630437",
-      "nome": "I found peace",
-      "adsetId": "120239848415130437",
-      "adsetNome": "[VIDEOVIEW] [TOP ESTADOS] [RJ]",
+      "adId": "120246250793920437",
+      "nome": "SHAKIRA ING",
+      "adsetId": "120246250502820437",
+      "adsetNome": "[LAL] [BASE COMPRADORES] [SHAKIRA]",
       "campId": "120226714217400437",
       "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO]",
       "gasto": 0.31,
-      "impressoes": 43,
-      "cliques": 3,
-      "ctr": 6.977,
-      "cpc": 0.103,
-      "alcance": 42,
+      "impressoes": 25,
+      "cliques": 0,
+      "ctr": 0.0,
+      "cpc": null,
+      "alcance": 25,
       "mensagens": {
         "conexoes": 0,
         "firstReply": 0,
@@ -111346,6 +111480,25 @@ const DADOS_META = {
       }
     },
     {
+      "adId": "120245189688630437",
+      "nome": "I found peace",
+      "adsetId": "120239848415130437",
+      "adsetNome": "[VIDEOVIEW] [TOP ESTADOS] [RJ]",
+      "campId": "120226714217400437",
+      "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO]",
+      "gasto": 0.13,
+      "impressoes": 24,
+      "cliques": 0,
+      "ctr": 0.0,
+      "cpc": null,
+      "alcance": 23,
+      "mensagens": {
+        "conexoes": 0,
+        "firstReply": 0,
+        "conversas": 0
+      }
+    },
+    {
       "adId": "120247060569360437",
       "nome": "vertical.rio - tag them below!",
       "adsetId": "120247060570130437",
@@ -111371,12 +111524,12 @@ const DADOS_META = {
       "adsetNome": "[VIDEOVIEW] [TOP ESTADOS] [RJ]",
       "campId": "120226714217400437",
       "campNome": "[LX][TRAFEGO-SITE][PAGE VIEW][ABO][PUBLICO_FRIO]",
-      "gasto": 0.12,
-      "impressoes": 14,
+      "gasto": 0.11,
+      "impressoes": 13,
       "cliques": 1,
-      "ctr": 7.143,
-      "cpc": 0.12,
-      "alcance": 14,
+      "ctr": 7.692,
+      "cpc": 0.11,
+      "alcance": 13,
       "mensagens": {
         "conexoes": 0,
         "firstReply": 0,
@@ -111597,47 +111750,47 @@ const DADOS_META = {
   "generoD30": [
     {
       "genero": "female",
-      "gasto": 10901.91,
-      "impressoes": 1612709,
-      "cliques": 56673
+      "gasto": 10477.42,
+      "impressoes": 1530603,
+      "cliques": 53792
     },
     {
       "genero": "male",
-      "gasto": 15398.39,
-      "impressoes": 1951808,
-      "cliques": 79004
+      "gasto": 15275.02,
+      "impressoes": 1898801,
+      "cliques": 76896
     },
     {
       "genero": "unknown",
-      "gasto": 117.04,
-      "impressoes": 13900,
-      "cliques": 552
+      "gasto": 113.16,
+      "impressoes": 13396,
+      "cliques": 534
     }
   ],
   "dispositivosD30": [
     {
       "dispositivo": "desktop",
       "gasto": 0.19,
-      "impressoes": 147,
+      "impressoes": 137,
       "cliques": 1
     },
     {
       "dispositivo": "mobile_app",
-      "gasto": 26417.06,
-      "impressoes": 3578171,
-      "cliques": 136227
+      "gasto": 25865.31,
+      "impressoes": 3442566,
+      "cliques": 131220
     },
     {
       "dispositivo": "mobile_web",
-      "gasto": 0.09,
-      "impressoes": 99,
+      "gasto": 0.1,
+      "impressoes": 97,
       "cliques": 1
     }
   ],
-  "dataAtualizacao": "28/05/2026 17:59:42"
+  "dataAtualizacao": "29/05/2026 12:33:06"
 };
 const DADOS_GOOGLE = {
-  "dataAtualizacao": "29/05/2026 11:44:05",
+  "dataAtualizacao": "29/05/2026 12:36:28",
   "fonte": "Windsor.ai",
   "d1": {
     "totalGasto": 594.56,
@@ -121261,16 +121414,17 @@ function dadosMeta() {
 function dadosRezdy() {
   const r = DADOS_REZDY_LIVE || {};
   const tabela = (r.resumo && r.resumo.tabela) ? r.resumo.tabela : [];
+  const confirmadas = tabela.filter(t => t.status === 'CONFIRMED');
   if (FILTRO_ATIVO === 'custom') {
-    const from = document.getElementById('customFrom')?.value || '2000-01-01';
-    const to   = document.getElementById('customTo')?.value   || new Date().toISOString().slice(0,10);
-    return tabela.filter(t => !t.dataCriacao || (t.dataCriacao >= from && t.dataCriacao <= to));
+    const from = CAL.from || '2000-01-01';
+    const to   = CAL.to   || new Date().toISOString().slice(0,10);
+    return confirmadas.filter(t => !t.dataCriacao || (t.dataCriacao >= from && t.dataCriacao <= to));
   }
   const hoje  = new Date();
   const dias  = {ontem:1,'7d':7,'14d':14,'30d':30,'90d':90,max:9999};
   const n     = dias[FILTRO_ATIVO] || 30;
   const corte = new Date(hoje - n * 86400000).toISOString().slice(0,10);
-  return tabela.filter(t => !t.dataCriacao || t.dataCriacao >= corte);
+  return confirmadas.filter(t => !t.dataCriacao || t.dataCriacao >= corte);
 }
 
 /* ═════════════════════ DELTA % ═════════════════════ */

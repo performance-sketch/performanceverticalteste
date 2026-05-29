@@ -35,37 +35,37 @@
   .loading-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:9999;align-items:center;justify-content:center;display:none}
   .loading-overlay span{color:#fff;font-size:16px;font-weight:700;background:var(--card);padding:18px 32px;border-radius:14px;border:1px solid var(--border)}
   /* ── CALENDAR PICKER ── */
-  .cal-inputs{display:none;align-items:center;gap:8px;position:relative}
-  .cal-input-wrap{display:flex;flex-direction:column;gap:2px}
-  .cal-input-wrap label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;font-weight:600}
-  .cal-input-field{background:#0f172a;border:1px solid var(--border);color:var(--txt);padding:5px 10px;border-radius:8px;font-size:12px;font-family:inherit;cursor:pointer;min-width:110px;text-align:left;transition:.15s}
+  .cal-inputs{display:none;align-items:center;gap:8px}
+  .cal-input-wrap{display:flex;flex-direction:column;gap:3px}
+  .cal-input-wrap label{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;font-weight:700}
+  .cal-input-field{background:var(--card);border:1px solid var(--border);color:var(--txt);padding:5px 10px;border-radius:8px;font-size:12px;font-family:inherit;cursor:pointer;min-width:112px;text-align:left;transition:.15s;white-space:nowrap}
   .cal-input-field:hover,.cal-input-field.active{border-color:var(--cyan);color:var(--cyan)}
-  .cal-sep{color:var(--muted);font-size:16px}
-  .cal-apply{background:var(--cyan);color:#04121a;border:none;padding:6px 16px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;transition:.15s;align-self:flex-end;margin-bottom:1px}
+  .cal-sep{color:var(--muted);font-size:13px;padding-top:14px}
+  .cal-apply{background:var(--cyan);color:#04121a;border:none;padding:6px 14px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;transition:.15s;white-space:nowrap;margin-top:14px}
   .cal-apply:hover{opacity:.85}
   .cal-apply:disabled{opacity:.5;cursor:not-allowed}
-  .cal-dropdown{position:absolute;top:calc(100% + 8px);left:0;z-index:9999;background:#fff;border-radius:16px;box-shadow:0 8px 40px rgba(0,0,0,.18),0 2px 8px rgba(0,0,0,.10);padding:16px 20px 20px;width:320px;max-height:80vh;overflow-y:auto;display:none;scrollbar-width:thin}
-  .cal-dropdown.open{display:block}
-  .cal-nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;position:sticky;top:0;background:#fff;padding:4px 0 8px;z-index:2;border-bottom:1px solid #f1f5f9}
-  .cal-nav-btn{background:none;border:1px solid #e2e8f0;color:#334155;width:32px;height:32px;border-radius:8px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:.15s}
-  .cal-nav-btn:hover{background:#f1f5f9}
-  .cal-nav-label{font-size:13px;color:#64748b;font-weight:600}
-  .cal-month{margin-bottom:16px}
-  .cal-month-title{font-size:12px;font-weight:800;color:#1e293b;letter-spacing:1px;margin-bottom:8px;text-align:center}
-  .cal-weekdays{display:grid;grid-template-columns:repeat(7,1fr);gap:0;margin-bottom:4px}
-  .cal-weekdays span{font-size:10px;color:#94a3b8;text-align:center;font-weight:700;padding:3px 0}
-  .cal-days{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
-  .cal-day{height:32px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#334155;cursor:pointer;border-radius:50%;position:relative;transition:.1s;font-weight:500;user-select:none}
-  .cal-day:hover:not(.disabled):not(.empty){background:#e0f2fe;color:#0369a1}
-  .cal-day.empty{cursor:default}
-  .cal-day.disabled{color:#cbd5e1;cursor:default}
-  .cal-day.start{background:#1d4ed8!important;color:#fff!important;border-radius:50%!important;font-weight:700;z-index:1}
-  .cal-day.end{background:#1d4ed8!important;color:#fff!important;border-radius:50%!important;font-weight:700;z-index:1}
-  .cal-day.in-range{background:#bfdbfe;color:#1e40af;border-radius:0;font-weight:600}
+  /* dropdown — position:fixed posicionado via JS, fora do fluxo do header */
+  #calDropdown{position:fixed;z-index:999999;background:#0d1117;border:1px solid rgba(255,255,255,.1);border-radius:14px;box-shadow:0 20px 60px rgba(0,0,0,.7),0 4px 12px rgba(0,0,0,.4);padding:14px 16px 18px;width:296px;max-height:72vh;overflow-y:auto;display:none;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.15) transparent}
+  #calDropdown.open{display:block}
+  .cal-nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;position:sticky;top:0;background:#0d1117;padding:2px 0 10px;z-index:2;border-bottom:1px solid rgba(255,255,255,.08)}
+  .cal-nav-btn{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#94a3b8;width:28px;height:28px;border-radius:7px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:.15s;line-height:1}
+  .cal-nav-btn:hover{background:rgba(255,255,255,.12);color:#fff}
+  .cal-nav-label{font-size:11px;color:#64748b;font-weight:700;letter-spacing:.5px}
+  .cal-month{margin-bottom:14px}
+  .cal-month-title{font-size:10px;font-weight:800;color:#00e5ff;letter-spacing:2px;margin-bottom:8px;text-align:center;text-transform:uppercase}
+  .cal-weekdays{display:grid;grid-template-columns:repeat(7,1fr);margin-bottom:3px}
+  .cal-weekdays span{font-size:9px;color:#475569;text-align:center;font-weight:700;padding:2px 0}
+  .cal-days{display:grid;grid-template-columns:repeat(7,1fr);gap:1px}
+  .cal-day{height:30px;display:flex;align-items:center;justify-content:center;font-size:11px;color:#94a3b8;cursor:pointer;border-radius:50%;position:relative;transition:.1s;font-weight:500;user-select:none}
+  .cal-day:hover:not(.cal-day-disabled):not(.cal-day-empty){background:rgba(255,255,255,.08);color:#e2e8f0}
+  .cal-day-empty{cursor:default;pointer-events:none}
+  .cal-day-disabled{color:#1e293b;cursor:default;pointer-events:none}
+  .cal-day.start{background:#1d4ed8!important;color:#fff!important;border-radius:50%!important;font-weight:700}
+  .cal-day.end{background:#1d4ed8!important;color:#fff!important;border-radius:50%!important;font-weight:700}
+  .cal-day.in-range{background:rgba(29,78,216,.25);color:#93c5fd;border-radius:0}
   .cal-day.in-range.start{border-radius:50% 0 0 50%}
   .cal-day.in-range.end{border-radius:0 50% 50% 0}
-  .cal-day.today{font-weight:800;color:#0369a1}
-  .cal-day.today:not(.start):not(.end):not(.in-range)::after{content:'';position:absolute;bottom:3px;left:50%;transform:translateX(-50%);width:4px;height:4px;background:#1d4ed8;border-radius:50%}
+  .cal-day.today:not(.start):not(.end)::after{content:'';position:absolute;bottom:2px;left:50%;transform:translateX(-50%);width:3px;height:3px;background:#00e5ff;border-radius:50%}
   .cmp-toggle{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--muted);cursor:pointer;user-select:none}
   .cmp-toggle input{accent-color:var(--cyan);width:15px;height:15px}
   .status-dots{display:flex;gap:14px;font-size:11px;color:var(--muted)}
@@ -209,7 +209,6 @@
       <button class="cal-input-field" id="calToBtn" onclick="abrirCal('to')">Selecionar data</button>
     </div>
     <button class="cal-apply" id="btnAplicar" onclick="aplicarCustom()">Aplicar</button>
-    <div class="cal-dropdown" id="calDropdown"></div>
   </div>
   <div class="loading-overlay" id="loadingOverlay"><span>⏳ Buscando dados...</span></div>
   <label class="cmp-toggle"><input type="checkbox" id="cmpToggle" onchange="toggleComparar(this)">Comparar período anterior</label>
@@ -121168,10 +121167,14 @@ function abrirCal(tipo) {
   CAL.selecting = tipo;
   document.getElementById('calFromBtn').classList.toggle('active', tipo==='from');
   document.getElementById('calToBtn').classList.toggle('active', tipo==='to');
-  const dropdown = document.getElementById('calDropdown');
-  dropdown.classList.add('open');
+  const drop    = document.getElementById('calDropdown');
+  const anchor  = document.getElementById('calInputs');
+  const rect    = anchor.getBoundingClientRect();
+  // posiciona abaixo do bloco de inputs, alinhado à esquerda
+  drop.style.top  = (rect.bottom + 8) + 'px';
+  drop.style.left = Math.min(rect.left, window.innerWidth - 312) + 'px';
+  drop.classList.add('open');
   renderCal();
-  // close on outside click
   setTimeout(() => document.addEventListener('click', fecharCalFora, {once:true}), 10);
 }
 
@@ -121216,7 +121219,7 @@ function renderMes(year, month, hojeStr) {
     <div class="cal-weekdays">${DIAS_PT.map(d=>`<span>${d}</span>`).join('')}</div>
     <div class="cal-days">`;
 
-  for (let b = 0; b < firstDay; b++) html += `<div class="cal-day empty"></div>`;
+  for (let b = 0; b < firstDay; b++) html += `<div class="cal-day cal-day-empty"></div>`;
 
   for (let d = 1; d <= daysInMonth; d++) {
     const ds = year+'-'+String(month+1).padStart(2,'0')+'-'+String(d).padStart(2,'0');
@@ -122003,5 +122006,8 @@ document.addEventListener('DOMContentLoaded', init);
 /* ═════════════════════ AUTO-RELOAD (30 min) ═════════════════════ */
 setTimeout(() => location.reload(), 30 * 60 * 1000);
 </script>
+
+<!-- calendário suspenso — fora do header para evitar clipping -->
+<div id="calDropdown"></div>
 </body>
 </html>

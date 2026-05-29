@@ -32,6 +32,14 @@
     padding:6px 12px;border-radius:9px;cursor:pointer;font-size:12px;font-weight:600;font-family:inherit;transition:.15s}
   .filter-btn:hover{color:var(--txt)}
   .filter-btn.active{background:var(--cyan);color:#04121a;border-color:var(--cyan)}
+  .custom-picker{display:none;align-items:center;gap:6px;background:var(--card);border:1px solid var(--border);padding:6px 10px;border-radius:10px}
+  .custom-picker input[type=date]{background:var(--bg);border:1px solid var(--border);color:var(--txt);padding:4px 8px;border-radius:7px;font-size:12px;font-family:inherit;cursor:pointer;color-scheme:dark}
+  .custom-picker .sep{color:var(--muted);font-size:12px}
+  .custom-picker .btn-aplicar{background:var(--cyan);color:#04121a;border:none;padding:5px 14px;border-radius:7px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;transition:.15s}
+  .custom-picker .btn-aplicar:hover{opacity:.85}
+  .custom-picker .btn-aplicar:disabled{opacity:.5;cursor:not-allowed}
+  .loading-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:9999;display:flex;align-items:center;justify-content:center;display:none}
+  .loading-overlay span{color:#fff;font-size:16px;font-weight:700;background:var(--card);padding:18px 32px;border-radius:14px;border:1px solid var(--border)}
   .cmp-toggle{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--muted);cursor:pointer;user-select:none}
   .cmp-toggle input{accent-color:var(--cyan);width:15px;height:15px}
   .status-dots{display:flex;gap:14px;font-size:11px;color:var(--muted)}
@@ -162,7 +170,15 @@
     <button class="filter-btn active" onclick="setFiltro('30d')">30d</button>
     <button class="filter-btn" onclick="setFiltro('90d')">90d</button>
     <button class="filter-btn" onclick="setFiltro('max')">Máximo</button>
+    <button class="filter-btn" id="btnCustom" onclick="toggleCustomPicker()">📅 Personalizado</button>
+    <div class="custom-picker" id="customPicker">
+      <input type="date" id="customFrom">
+      <span class="sep">até</span>
+      <input type="date" id="customTo">
+      <button class="btn-aplicar" id="btnAplicar" onclick="aplicarCustom()">Aplicar</button>
+    </div>
   </div>
+  <div class="loading-overlay" id="loadingOverlay"><span>⏳ Buscando dados...</span></div>
   <label class="cmp-toggle"><input type="checkbox" id="cmpToggle" onchange="toggleComparar(this)">Comparar período anterior</label>
   <div class="status-dots">
     <span class="dot" id="status-meta">Meta</span>
@@ -111594,8 +111610,147 @@ const DADOS_META = {
   "dataAtualizacao": "28/05/2026 17:59:42"
 };
 const DADOS_GOOGLE = {
-  "dataAtualizacao": "29/05/2026 11:28:55",
+  "dataAtualizacao": "29/05/2026 11:44:05",
   "fonte": "Windsor.ai",
+  "d1": {
+    "totalGasto": 594.56,
+    "totalCliques": 358,
+    "totalImpressoes": 16017,
+    "totalConversoes": 15.9,
+    "totalValorConv": 15.87,
+    "roas": 0.03,
+    "campanhas": [
+      {
+        "nome": "[LX][SEARCH][CONVERSAO][EN] - RJ",
+        "gasto": 328.12,
+        "cliques": 45,
+        "impressoes": 434,
+        "ctr": 10.37,
+        "cpc": 7.29,
+        "conv": 9.4,
+        "valor_conv": 9.41
+      },
+      {
+        "nome": "[GDM][RJ][ABERTO][MSG]",
+        "gasto": 115.46,
+        "cliques": 299,
+        "impressoes": 15466,
+        "ctr": 1.93,
+        "cpc": 0.39,
+        "conv": 0.0,
+        "valor_conv": 0.0
+      },
+      {
+        "nome": "[LX][SEARCH][INSTITUCIONAL][BR]",
+        "gasto": 81.14,
+        "cliques": 5,
+        "impressoes": 23,
+        "ctr": 21.74,
+        "cpc": 16.23,
+        "conv": 3.0,
+        "valor_conv": 3.0
+      },
+      {
+        "nome": "[LX][SEARCH][COMPRA][EN] - EUA, UK, FLO, California - EN",
+        "gasto": 43.99,
+        "cliques": 4,
+        "impressoes": 52,
+        "ctr": 7.69,
+        "cpc": 11.0,
+        "conv": 3.5,
+        "valor_conv": 3.46
+      },
+      {
+        "nome": "[LX][SEARCH][COMPRA]  [ES]- AR, PR, CHL",
+        "gasto": 22.25,
+        "cliques": 1,
+        "impressoes": 30,
+        "ctr": 3.33,
+        "cpc": 22.25,
+        "conv": 0.0,
+        "valor_conv": 0.0
+      },
+      {
+        "nome": "[LX][SEARCH][CONVERSAO][BR] - RJ, SP, RS, SC",
+        "gasto": 3.6,
+        "cliques": 4,
+        "impressoes": 12,
+        "ctr": 33.33,
+        "cpc": 0.9,
+        "conv": 0.0,
+        "valor_conv": 0.0
+      }
+    ],
+    "dispositivos": [
+      {
+        "dispositivo": "Mobile",
+        "gasto": 510.74,
+        "cliques": 349,
+        "impressoes": 15973
+      },
+      {
+        "dispositivo": "Desktop",
+        "gasto": 83.82,
+        "cliques": 9,
+        "impressoes": 44
+      }
+    ],
+    "geos": [
+      {
+        "pais": "Brazil",
+        "gasto": 447.18,
+        "cliques": 348,
+        "conversoes": 9.4
+      },
+      {
+        "pais": "United States",
+        "gasto": 67.25,
+        "cliques": 4,
+        "conversoes": 4.0
+      },
+      {
+        "pais": "Canada",
+        "gasto": 57.88,
+        "cliques": 5,
+        "conversoes": 2.5
+      },
+      {
+        "pais": "Chile",
+        "gasto": 22.25,
+        "cliques": 1,
+        "conversoes": 0.0
+      },
+      {
+        "pais": "Argentina",
+        "gasto": 0.0,
+        "cliques": 0,
+        "conversoes": 0.0
+      },
+      {
+        "pais": "Peru",
+        "gasto": 0.0,
+        "cliques": 0,
+        "conversoes": 0.0
+      }
+    ],
+    "serie": [
+      {
+        "data": "2026-05-28",
+        "gasto": 519.12,
+        "cliques": 296,
+        "conv": 14.9
+      },
+      {
+        "data": "2026-05-29",
+        "gasto": 75.44,
+        "cliques": 62,
+        "conv": 1.0
+      }
+    ],
+    "idades": [],
+    "genero": [],
+    "palavrasChave": []
+  },
   "d7": {
     "totalGasto": 4187.74,
     "totalCliques": 2032,
@@ -120741,10 +120896,14 @@ const GOOGLE_FALLBACK = {
 };
 
 /* ═════════════════════ ESTADO GLOBAL ═════════════════════ */
-let FILTRO_ATIVO = 'd30';
-let COMPARAR     = false;
-let ABA_ATIVA    = 'visaoGeral';
-const _charts    = {};
+let FILTRO_ATIVO    = 'd30';
+let COMPARAR        = false;
+let ABA_ATIVA       = 'visaoGeral';
+let GOOGLE_CUSTOM   = null;
+const _charts       = {};
+const WINDSOR_KEY   = '2a3b6cc17507c2540c6b98c651a31cd95d6b';
+const WINDSOR_URL   = 'https://connectors.windsor.ai/google_ads';
+const WINDSOR_FIELDS= 'date,campaign,device,country,clicks,spend,impressions,ctr,cpc,conversions,conversion_value';
 
 /* ═════════════════════ CHART DEFAULTS ═════════════════════ */
 Chart.defaults.color = '#64748b';
@@ -120785,12 +120944,128 @@ function setFiltro(f) {
   FILTRO_ATIVO = f;
   document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
   if (typeof event !== 'undefined' && event.currentTarget) event.currentTarget.classList.add('active');
+  document.getElementById('customPicker').style.display = 'none';
   renderizarTudo();
 }
 
 function toggleComparar(cb) {
   COMPARAR = cb.checked;
   renderizarTudo();
+}
+
+function toggleCustomPicker() {
+  const picker = document.getElementById('customPicker');
+  const aberto = picker.style.display === 'flex';
+  picker.style.display = aberto ? 'none' : 'flex';
+  if (!aberto) {
+    const hoje  = new Date();
+    const d30   = new Date(hoje - 29 * 86400000);
+    const fmt   = d => d.toISOString().slice(0,10);
+    if (!document.getElementById('customFrom').value) document.getElementById('customFrom').value = fmt(d30);
+    if (!document.getElementById('customTo').value)   document.getElementById('customTo').value   = fmt(hoje);
+  }
+}
+
+/* ═════════════════════ PROCESSAR REGISTROS GOOGLE (JS) ═════════════════════ */
+function processarRegistrosGoogle(registros) {
+  const camps = {}, devs = {}, geos = {}, serie = {};
+  const DEV = {DESKTOP:'Desktop', MOBILE:'Mobile', TABLET:'Tablet'};
+
+  for (const r of registros) {
+    const nome = r.campaign || 'Sem campanha';
+    const dev  = DEV[r.device] || r.device || 'Outros';
+    const pais = r.country || 'Desconhecido';
+    const data = (r.date||'').slice(0,10);
+    const clk  = +(r.clicks||0), gasto = +(r.spend||0),
+          impr = +(r.impressions||0), conv = +(r.conversions||0), valConv = +(r.conversion_value||0);
+
+    if (!camps[nome]) camps[nome] = {cliques:0,gasto:0,impressoes:0,conv:0,valor_conv:0};
+    camps[nome].cliques+=clk; camps[nome].gasto+=gasto; camps[nome].impressoes+=impr;
+    camps[nome].conv+=conv;   camps[nome].valor_conv+=valConv;
+
+    if (!devs[dev]) devs[dev] = {cliques:0,gasto:0,impressoes:0};
+    devs[dev].cliques+=clk; devs[dev].gasto+=gasto; devs[dev].impressoes+=impr;
+
+    if (!geos[pais]) geos[pais] = {cliques:0,gasto:0,conv:0};
+    geos[pais].cliques+=clk; geos[pais].gasto+=gasto; geos[pais].conv+=conv;
+
+    if (!serie[data]) serie[data] = {gasto:0,cliques:0,conv:0};
+    serie[data].gasto+=gasto; serie[data].cliques+=clk; serie[data].conv+=conv;
+  }
+
+  const r2 = n => Math.round(n*100)/100;
+  const r1 = n => Math.round(n*10)/10;
+
+  const campanhas = Object.entries(camps).map(([nome,m]) => ({
+    nome,
+    gasto:      r2(m.gasto),
+    cliques:    Math.round(m.cliques),
+    impressoes: Math.round(m.impressoes),
+    ctr:  m.impressoes ? r2(m.cliques/m.impressoes*100) : 0,
+    cpc:  m.cliques    ? r2(m.gasto/m.cliques)          : 0,
+    conv: r1(m.conv),
+    valor_conv: r2(m.valor_conv),
+  })).sort((a,b) => b.gasto-a.gasto);
+
+  const dispositivos = Object.entries(devs)
+    .map(([d,m]) => ({dispositivo:d, gasto:r2(m.gasto), cliques:Math.round(m.cliques), impressoes:Math.round(m.impressoes)}))
+    .sort((a,b) => b.gasto-a.gasto);
+
+  const geosArr = Object.entries(geos)
+    .map(([p,m]) => ({pais:p, gasto:r2(m.gasto), cliques:Math.round(m.cliques), conversoes:r1(m.conv)}))
+    .sort((a,b) => b.gasto-a.gasto).slice(0,10);
+
+  const serieArr = Object.entries(serie)
+    .map(([data,m]) => ({data, gasto:r2(m.gasto), cliques:Math.round(m.cliques), conv:r1(m.conv)}))
+    .sort((a,b) => a.data.localeCompare(b.data));
+
+  const totalGasto     = r2(campanhas.reduce((s,c)=>s+c.gasto,0));
+  const totalCliques   = campanhas.reduce((s,c)=>s+c.cliques,0);
+  const totalImpressoes= campanhas.reduce((s,c)=>s+c.impressoes,0);
+  const totalConversoes= r1(campanhas.reduce((s,c)=>s+c.conv,0));
+  const totalValorConv = r2(campanhas.reduce((s,c)=>s+c.valor_conv,0));
+
+  return {
+    totalGasto, totalCliques, totalImpressoes, totalConversoes, totalValorConv,
+    roas: totalGasto ? r2(totalValorConv/totalGasto) : 0,
+    campanhas, dispositivos, geos: geosArr, serie: serieArr,
+    idades:[], genero:[], palavrasChave:[],
+  };
+}
+
+/* ═════════════════════ APLICAR FILTRO PERSONALIZADO ═════════════════════ */
+async function aplicarCustom() {
+  const from = document.getElementById('customFrom').value;
+  const to   = document.getElementById('customTo').value;
+  if (!from || !to)  { alert('Selecione data inicial e final.'); return; }
+  if (from > to)     { alert('Data inicial deve ser anterior à final.');  return; }
+
+  const overlay = document.getElementById('loadingOverlay');
+  const btn     = document.getElementById('btnAplicar');
+  overlay.style.display = 'flex';
+  btn.disabled  = true;
+  btn.textContent = '⏳';
+
+  try {
+    const url  = `${WINDSOR_URL}?api_key=${WINDSOR_KEY}&date_from=${from}&date_to=${to}&fields=${WINDSOR_FIELDS}`;
+    const resp = await fetch(url);
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    const json = await resp.json();
+    GOOGLE_CUSTOM = processarRegistrosGoogle(json.data || []);
+    GOOGLE_CUSTOM._from = from;
+    GOOGLE_CUSTOM._to   = to;
+
+    FILTRO_ATIVO = 'custom';
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('btnCustom').classList.add('active');
+    renderizarTudo();
+  } catch(e) {
+    alert('Erro ao buscar dados Windsor.ai:\n' + e.message);
+  } finally {
+    overlay.style.display = 'none';
+    btn.disabled    = false;
+    btn.textContent = 'Aplicar';
+  }
 }
 
 function toggleCollapse(hd) {
@@ -120801,7 +121076,7 @@ function toggleCollapse(hd) {
 
 /* ═════════════════════ DADOS POR FILTRO ═════════════════════ */
 function dadosMeta() {
-  const mapa = {ontem:'d7','7d':'d7','14d':'d14','30d':'d30','90d':'d90',max:'max'};
+  const mapa = {ontem:'d7','7d':'d7','14d':'d14','30d':'d30','90d':'d90',max:'max',custom:'d30'};
   const p    = mapa[FILTRO_ATIVO] || 'd30';
   const d    = (DADOS_META && DADOS_META[p]) ? DADOS_META[p] : {};
   return {
@@ -120827,10 +121102,15 @@ function dadosMeta() {
 function dadosRezdy() {
   const r = DADOS_REZDY_LIVE || {};
   const tabela = (r.resumo && r.resumo.tabela) ? r.resumo.tabela : [];
-  const hoje   = new Date();
-  const dias   = {ontem:1,'7d':7,'14d':14,'30d':30,'90d':90,max:9999};
-  const n      = dias[FILTRO_ATIVO] || 30;
-  const corte  = new Date(hoje - n * 86400000).toISOString().slice(0,10);
+  if (FILTRO_ATIVO === 'custom') {
+    const from = document.getElementById('customFrom')?.value || '2000-01-01';
+    const to   = document.getElementById('customTo')?.value   || new Date().toISOString().slice(0,10);
+    return tabela.filter(t => !t.dataCriacao || (t.dataCriacao >= from && t.dataCriacao <= to));
+  }
+  const hoje  = new Date();
+  const dias  = {ontem:1,'7d':7,'14d':14,'30d':30,'90d':90,max:9999};
+  const n     = dias[FILTRO_ATIVO] || 30;
+  const corte = new Date(hoje - n * 86400000).toISOString().slice(0,10);
   return tabela.filter(t => !t.dataCriacao || t.dataCriacao >= corte);
 }
 
@@ -120892,9 +121172,14 @@ function checkStatus() {
 
 /* ═════════════════════ GOOGLE: resolve dados ou fallback ═════════════════════ */
 function dadosGoogle() {
-  const mapa = {ontem:'d7','7d':'d7','14d':'d14','30d':'d30','90d':'d90',max:'max'};
-  const p    = mapa[FILTRO_ATIVO] || 'd30';
-  const base = (DADOS_GOOGLE && DADOS_GOOGLE[p]) ? DADOS_GOOGLE[p] : null;
+  let base;
+  if (FILTRO_ATIVO === 'custom') {
+    base = GOOGLE_CUSTOM;
+  } else {
+    const mapa = {ontem:'d1','7d':'d7','14d':'d14','30d':'d30','90d':'d90',max:'max'};
+    const p    = mapa[FILTRO_ATIVO] || 'd30';
+    base = (DADOS_GOOGLE && DADOS_GOOGLE[p]) ? DADOS_GOOGLE[p] : null;
+  }
   const usaFallback = !base || !base.totalGasto;
   const src  = usaFallback ? GOOGLE_FALLBACK : base;
   const camps = src.campanhas || [];
@@ -121080,7 +121365,11 @@ function renderizarGoogle() {
   set('g-ctr',     fmtP(g.ctr));
 
   /* ── label do período ── */
-  const labelPeriodo = {ontem:'Ontem','7d':'Últimos 7 dias','14d':'Últimos 14 dias','30d':'Últimos 30 dias','90d':'Últimos 90 dias',max:'Histórico completo'};
+  const labelPeriodo = {
+    ontem:'Ontem','7d':'Últimos 7 dias','14d':'Últimos 14 dias',
+    '30d':'Últimos 30 dias','90d':'Últimos 90 dias',max:'Histórico completo',
+    custom: GOOGLE_CUSTOM ? `${GOOGLE_CUSTOM._from} → ${GOOGLE_CUSTOM._to}` : 'Personalizado',
+  };
   const periodoLabel = labelPeriodo[FILTRO_ATIVO] || 'Período selecionado';
 
   /* ── série diária ── */

@@ -190,12 +190,12 @@
   <span class="brand">🚁 Vertical Rio — Central de Performance</span>
   <div class="spacer"></div>
   <div class="filters">
-    <button class="filter-btn" onclick="setFiltro('ontem')">Ontem</button>
-    <button class="filter-btn" onclick="setFiltro('7d')">7d</button>
-    <button class="filter-btn" onclick="setFiltro('14d')">14d</button>
-    <button class="filter-btn active" onclick="setFiltro('30d')">30d</button>
-    <button class="filter-btn" onclick="setFiltro('90d')">90d</button>
-    <button class="filter-btn" onclick="setFiltro('max')">Máximo</button>
+    <button class="filter-btn" onclick="setFiltro('ontem',this)">Ontem</button>
+    <button class="filter-btn" onclick="setFiltro('7d',this)">7d</button>
+    <button class="filter-btn" onclick="setFiltro('14d',this)">14d</button>
+    <button class="filter-btn active" onclick="setFiltro('30d',this)">30d</button>
+    <button class="filter-btn" onclick="setFiltro('90d',this)">90d</button>
+    <button class="filter-btn" onclick="setFiltro('max',this)">Máximo</button>
     <button class="filter-btn" id="btnCustom" onclick="toggleCustomPicker()">📅 Personalizado</button>
   </div>
   <div class="cal-inputs" id="calInputs">
@@ -121120,11 +121120,14 @@ function showSubTab(container, sub) {
 }
 
 /* ═════════════════════ FILTRO DE DATA ═════════════════════ */
-function setFiltro(f) {
+function setFiltro(f, btn) {
   FILTRO_ATIVO = f;
   document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  if (typeof event !== 'undefined' && event.currentTarget) event.currentTarget.classList.add('active');
-  document.getElementById('customPicker').style.display = 'none';
+  if (btn) btn.classList.add('active');
+  const cal = document.getElementById('calInputs');
+  if (cal) cal.style.display = 'none';
+  const drop = document.getElementById('calDropdown');
+  if (drop) drop.classList.remove('open');
   renderizarTudo();
 }
 

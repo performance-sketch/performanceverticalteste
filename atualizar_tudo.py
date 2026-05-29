@@ -1,80 +1,66 @@
-"""
-atualizar_tudo.py
-=================
-Orquestrador principal — atualiza todos os dados do dashboard de uma vez.
-
-Ordem de execução:
-  1. Meta Ads        (atualizar_meta.py)
-  2. Google Ads      (atualizar_google.py)
-  3. Publico-alvo    (atualizar_publico.py)
-  4. Rezdy           (atualizar_dados.py)
-  5. Respond.io      (atualizar_respondio.py)
-  6. Passageiros     (atualizar_passageiros.py)
-
-Execute: python atualizar_tudo.py
-"""
-
 import subprocess
 import sys
 import time
 from datetime import datetime
 
 SCRIPTS = [
-    ("Meta Ads",        "atualizar_meta.py"),
-    ("Google Ads",      "atualizar_google.py"),
-    ("Publico-alvo",    "atualizar_publico.py"),
-    ("Rezdy",           "atualizar_dados.py"),
-    ("Respond.io",      "atualizar_respondio.py"),
-    ("Passageiros",     "atualizar_passageiros.py"),
+    ("Meta Ads",     "atualizar_meta.py"),
+    ("Google Ads",   "atualizar_google.py"),
+    ("Publico",      "atualizar_publico.py"),
+    ("Rezdy",        "atualizar_dados.py"),
+    ("Respond.io",   "atualizar_respondio.py"),
+    ("Passageiros",  "atualizar_passageiros.py"),
+    ("Linktree",     "atualizar_linktree.py"),
 ]
 
-SEP = "=" * 58
 
-
-def rodar(nome, script):
-    print(f"\n{SEP}")
-    print(f"  {nome} ({script})")
-    print(SEP)
-    t0     = time.time()
-    result = subprocess.run([sys.executable, script], capture_output=False)
-    dur    = round(time.time() - t0, 1)
-    ok     = result.returncode == 0
-    if not ok:
-        print(f"\n  [AVISO] {script} encerrou com codigo {result.returncode}")
-    return ok, dur
+def rodar(nome, arquivo):
+    print(f"\n{'='*50}")
+    print(f"  Executando: {nome}  ({arquivo})")
+    print(f"{'='*50}")
+    inicio = time.time()
+    resultado = subprocess.run([sys.executable, arquivo])
+    duracao = round(time.time() - inicio, 1)
+    ok = resultado.returncode == 0
+    status = "OK" if ok else f"ERRO (codigo {resultado.returncode})"
+    print(f"  [{status}]  {duracao}s")
+    return ok, duracao
 
 
 def main():
-    inicio = datetime.now()
-    print(f"\n{SEP}")
-    print(f"  CENTRAL DE PERFORMANCE — Atualização Completa")
-    print(f"  {inicio.strftime('%d/%m/%Y %H:%M:%S')}")
-    print(SEP)
+    inicio_total = time.time()
+    agora = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+
+    print("\n" + "="*50)
+    print(f"  ATUALIZACAO DASHBOARD — {agora}")
+    print("="*50)
 
     resultados = []
-    for nome, script in SCRIPTS:
-        ok, dur = rodar(nome, script)
-        resultados.append((nome, script, ok, dur))
+    for nome, arquivo in SCRIPTS:
+        ok, duracao = rodar(nome, arquivo)
+        resultados.append((nome, ok, duracao))
 
-    fim     = datetime.now()
-    duracao = round((fim - inicio).total_seconds(), 1)
+    duracao_total = round(time.time() - inicio_total, 1)
 
-    print(f"\n{SEP}")
-    print(f"  RESUMO FINAL")
-    print(SEP)
-    for nome, script, ok, dur in resultados:
-        status = "OK" if ok else "ERRO"
-        print(f"  {status:<6}  {nome:<20} {dur:>5}s   ({script})")
-    print(f"\n  Duração total: {duracao}s")
-    print(f"  Concluído:     {fim.strftime('%d/%m/%Y %H:%M:%S')}")
-    print(f"\n  Dashboard: https://performance-sketch.github.io/performanceverticalteste")
-    print(f"{SEP}\n")
+    print("\n" + "="*50)
+    print("  RESUMO FINAL")
+    print("="*50)
+    erros = []
+    for nome, ok, duracao in resultados:
+        icone = "✓" if ok else "✗"
+        print(f"  {icone}  {nome:<15} {duracao}s")
+        if not ok:
+            erros.append(nome)
 
-    erros = [n for n, _, ok, _ in resultados if not ok]
+    print(f"\n  Tempo total: {duracao_total}s")
+    print(f"  Dashboard:   https://performance-sketch.github.io/performanceverticalteste/")
+
     if erros:
-        print(f"  Scripts com erro: {', '.join(erros)}")
-        print("  Verifique tokens/credenciais nos respectivos arquivos.\n")
+        print(f"\n  ATENCAO: Falha em: {', '.join(erros)}")
+        print("  Verifique os tokens/credenciais nos arquivos correspondentes.")
         sys.exit(1)
+    else:
+        print("\n  Dashboard atualizado com sucesso!")
 
 
 if __name__ == "__main__":
